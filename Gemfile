@@ -1,3 +1,12 @@
 source 'http://rubygems.org'
 
 gem 'sinatra'
+gem 'activerecord', :require => 'active_record'
+gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
+gem 'bcrypt'
+gem 'pry'
+gem 'rake'
+gem 'require_all'
+gem 'shotgun'
+gem 'sqlite3'
+gem 'thin'
