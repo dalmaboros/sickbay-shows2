@@ -7,4 +7,21 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
+  get '/' do
+    erb :index
+  end
+
+  get '/shows' do
+    @shows = Show.all
+    erb :'/shows/shows_index'
+  end
+
+  get '/shows/new' do
+    erb :'/shows/create'
+  end
+
+  post '/shows/new' do
+    #
+  end
+
 end

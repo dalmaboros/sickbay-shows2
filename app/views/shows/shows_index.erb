@@ -1,0 +1,13 @@
+<h1>Upcoming Sickbay Shows</h1>
+
+<ul>
+<% @shows.each do |show| %>
+  <li><%= show.date %> @ <%= show.venue.name %>:
+    <a href="<%= show.url %>">
+    <% show.artists.each do |artist| %>
+      <%= artist.name %> +
+    <% end %>
+    </a>
+  </li>
+<% end %>
+</ul>
