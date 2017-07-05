@@ -8,7 +8,7 @@
   Venue:
   <input type="text" list="venues" name="venue" value="<%= @show.venue.name %>" autocomplete="off" required />
   <datalist id="venues">
-    <% Venue.all.each do |venue| %>
+    <% Venue.all.order(:name).each do |venue| %>
       <option value="<%= venue.name %>"><%= venue.name %></option>
     <% end %>
   </datalist> REQUIRED</p>
@@ -16,7 +16,7 @@
   Artist 1:
   <input type="text" list="artists" name="artists[]" value="<%= @show.artists[0].name if @show.artists[0]%>" autocomplete="off" required />
   <datalist id="artists">
-    <% Artist.all.each do |artist| %>
+    <% Artist.all.order(:name).each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
     <% end %>
   </datalist> REQUIRED</p>
@@ -24,7 +24,7 @@
   Artist 2:
   <input type="text" list="artists2" name="artists[]" value="<%= @show.artists[1].name if @show.artists[1]%>" autocomplete="off" />
   <datalist id="artists2">
-    <% Artist.all.each do |artist| %>
+    <% Artist.all.order(:name).each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
     <% end %>
   </datalist></p>
@@ -32,7 +32,7 @@
   Artist 3:
   <input type="text" list="artists3" name="artists[]" value="<%= @show.artists[2].name if @show.artists[2]%>" autocomplete="off" />
   <datalist id="artists3">
-    <% Artist.all.each do |artist| %>
+    <% Artist.all.order(:name).each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
     <% end %>
   </datalist></p>
@@ -40,7 +40,7 @@
   Artist 4:
   <input type="text" list="artists4" name="artists[]" value="<%= @show.artists[3].name if @show.artists[3]%>" autocomplete="off" />
   <datalist id="artists4">
-    <% Artist.all.each do |artist| %>
+    <% Artist.all.order(:name).each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
     <% end %>
   </datalist></p>
