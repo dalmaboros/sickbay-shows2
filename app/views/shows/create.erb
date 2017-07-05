@@ -1,10 +1,21 @@
 <h1>Create a New Show</h1>
 
-<form>
+<form method="POST" action="/shows/new">
   Date: <input type="text"></p>
-  Choose Venue: </p>
-  Create Venue: <input type="text"></p>
-  Create Artists: <input type="text"></p>
+  Choose Venue:
+    <select name="venue">
+      <% Venue.all.each do |venue| %>
+      <option value="<%= venue.name %>"><%= venue.name %></option>
+      <% end %>
+    </select>
+  <i>or Create Venue: </i><input type="text"></p>
+  Choose Artists:
+    <select name="artists[]">
+      <% Artist.all.sort.each do |artist| %>
+      <option value="<%= artist.name %>"><%= artist.name %></option>
+      <% end %>
+    </select>
+  <i>or Create Artists: </i><input type="text"></p>
   URL: <input type="url" name="url"></p>
   <input type="submit"> <a href="/">Cancel</a>
 </form>

@@ -21,7 +21,11 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/shows/new' do
-    #
+    binding.pry
+  end
+
+  get '/shows/archive' do
+    erb :'/shows/archive'
   end
 
 end
