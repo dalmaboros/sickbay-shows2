@@ -38,7 +38,7 @@ class ApplicationController < Sinatra::Base
         @show.artists << artist_object
       end
     end
-    
+
     @show.save
     redirect to "/shows/#{@show.id}"
   end
@@ -51,6 +51,16 @@ class ApplicationController < Sinatra::Base
 
   get '/shows/archive' do
     erb :'/shows/archive'
+  end
+
+  # EDIT
+  get '/shows/:id/edit' do
+    @show = Show.find_by(id: params[:id])
+    erb :'/shows/edit_show'
+  end
+
+  patch '/shows/:id' do
+    #
   end
 
   # HELPERS

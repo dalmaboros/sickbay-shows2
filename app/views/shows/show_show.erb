@@ -4,9 +4,6 @@ Date: <%= @show.date %> parsed: <%= Date.parse(@show.date) %></p>
 
 Venue: <%= @show.venue.name %></p>
 
-Artists:
-  <% @show.artists.each do |artist| %>
-    <%= artist.name %> +
-  <% end %></p>
+Artists: <%= @show.artists.collect { |artist| artist.name }.join(" + ") %></p>
 
 URL: <%= @show.url %></p>
