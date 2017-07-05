@@ -1,12 +1,12 @@
 <h1>Show <%= @show.id %> Details</h1>
 
-Date: <%= @show.date %></p>
+Date: <%= @show.date %> parsed: <%= Date.parse(@show.date) %></p>
 
 Venue: <%= @show.venue.name %></p>
 
 Artists:
   <% @show.artists.each do |artist| %>
-    <%= artist.name %>
+    <%= artist.name %> +
   <% end %></p>
 
-URL: </p>
+URL: <%= @show.url %></p>

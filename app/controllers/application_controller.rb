@@ -29,8 +29,16 @@ class ApplicationController < Sinatra::Base
     # binding.pry
     @venue = Venue.find_or_create_by(name: params[:venue])
     @show = Show.new(date: params[:date], venue: @venue)
-    # add URL if not empty
+    @show.url = params[:url] if params[:url] != ""
+
     # add all artists if not empty
+    params[:artists].each do |artist|
+      if artist != ""
+        artist_object = Artist.find_or_create_by(name: artist)
+        @show.artists << artist_object
+      end
+    end
+    
     @show.save
     redirect to "/shows/#{@show.id}"
   end
