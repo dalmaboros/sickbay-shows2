@@ -20,6 +20,10 @@ class ApplicationController < Sinatra::Base
     erb :contact
   end
 
+  get '/backdoor' do
+    erb :backdoor
+  end
+
   # HELPERS
 
 end
