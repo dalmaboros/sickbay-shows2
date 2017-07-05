@@ -1,12 +1,12 @@
 <h1>Edit Show <%= @show.id %></h1>
 
-<form method="POST" action="/shows/new">
+<form method="POST" action="/shows/<%= @show.id %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 
-  Date: <input type="date" name="date" required /> REQUIRED</p>
+  Date: <input type="date" name="date" value="<%= @show.date %>" required /> REQUIRED</p>
 
   Venue:
-  <input type="text" list="venues" name="venue" required />
+  <input type="text" list="venues" name="venue" value="<%= @show.venue.name %>" required />
   <datalist id="venues">
     <% Venue.all.each do |venue| %>
       <option value="<%= venue.name %>"><%= venue.name %></option>
@@ -14,7 +14,7 @@
   </datalist> REQUIRED</p>
 
   Artist 1:
-  <input type="text" list="artists" name="artists[]" required />
+  <input type="text" list="artists" name="artists[]" value="<%= @show.artists[0].name %>" required />
   <datalist id="artists">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
@@ -22,7 +22,7 @@
   </datalist> REQUIRED</p>
 
   Artist 2:
-  <input type="text" list="artists2" name="artists[]" />
+  <input type="text" list="artists2" name="artists[]" value="<%= @show.artists[1].name if @show.artists[1]%>"/>
   <datalist id="artists2">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
@@ -30,7 +30,7 @@
   </datalist></p>
 
   Artist 3:
-  <input type="text" list="artists3" name="artists[]" />
+  <input type="text" list="artists3" name="artists[]" value="<%= @show.artists[2].name if @show.artists[2]%>"/>
   <datalist id="artists3">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
@@ -38,16 +38,16 @@
   </datalist></p>
 
   Artist 4:
-  <input type="text" list="artists4" name="artists[]" />
+  <input type="text" list="artists4" name="artists[]" value="<%= @show.artists[3].name if @show.artists[3]%>"/>
   <datalist id="artists4">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
     <% end %>
   </datalist></p>
 
-  URL: <input type="url" name="url"></p>
+  URL: <input type="url" name="url" value="<%= @show.url %>"></p>
 
-  <input type="submit" /> <a href="/">Cancel</a>
+  <input type="submit" /> <a href="/shows/<%= @show.id %>">Cancel</a>
 </form>
 
 <script src="datalist.polyfill.min.js"></script>
