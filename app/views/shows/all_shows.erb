@@ -1,0 +1,11 @@
+<h1>All Sickbay Shows Ever</h1>
+
+<ul>
+<% @shows.each do |show| %>
+  <li>
+    <%= show.date %> @
+    <%= show.venue.name %>:
+    <a href="<%= show.url %>"><%= show.artists.collect { |artist| artist.name }.join(" + ") %></a>
+  </li>
+<% end %>
+</ul>

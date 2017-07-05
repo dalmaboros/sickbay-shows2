@@ -1,10 +1,5 @@
 class ShowsController < ApplicationController
 
-  get '/shows' do
-    @shows = Show.order(:date).where("date > ?", DateTime.now.to_date)
-    erb :'/shows/shows_index'
-  end
-
   # CREATE
   get '/shows/new' do
     erb :'/shows/create_show'
@@ -29,9 +24,19 @@ class ShowsController < ApplicationController
   end
 
   # READ
+  get '/shows' do
+    @shows = Show.order(:date).where("date > ?", DateTime.now.to_date)
+    erb :'/shows/shows_index'
+  end
+
   get '/shows/archive' do
-    @archived = Show.order(:date).where("date < ?", DateTime.now.to_date)
+    @archived = Show.order(:date).where("date < ?", DateTime.now.to_date).reverse
     erb :'/shows/shows_archive'
+  end
+
+  get '/shows/all' do
+    @shows = Show.order(:date).reverse
+    erb :'/shows/all_shows'
   end
 
   get '/shows/:id' do
