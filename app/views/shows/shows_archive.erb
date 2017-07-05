@@ -3,21 +3,9 @@
 <ul>
 <% @archived.each do |archive| %>
   <li>
-    <%= archive.date %> @
+    <%= archive.date.to_date.strftime("%m-%d-%y") %> @
     <%= archive.venue.name %>:
     <a href="<%= archive.url %>"><%= archive.artists.collect { |artist| artist.name }.join(" + ") %></a>
   </li>
 <% end %>
 </ul>
-
-<hr>
-<h1>Testing Time Stuff</h1>
-<p>Time.now <%= Time.now %></p>
-<p>Time.now.asctime <%= Time.now.asctime %></p>
-<p>Time.now.to_a <%= Time.now.to_a %></p>
-<p>Time.now.to_s <%= Time.now.to_s %></p>
-<p>Time.now.strftime("%F") <%= Time.now.strftime("%F") %></p>
-
-<p>Time.new <%= Time.new(2017, 7, 8, 18) %></p>
-
-<%= DateTime.now %>

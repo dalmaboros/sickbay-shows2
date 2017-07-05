@@ -3,9 +3,9 @@
 <ul>
 <% @shows.each do |show| %>
   <li>
-    <%= show.date %> @
-    <%= show.venue.name %>:
+    <%= show.date.to_date.strftime("%m-%d-%y") %>
     <a href="<%= show.url %>"><%= show.artists.collect { |artist| artist.name }.join(" + ") %></a>
+    at <%= show.venue.name %>
   </li>
 <% end %>
 </ul>

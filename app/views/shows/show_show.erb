@@ -1,6 +1,6 @@
 <h1>Show <%= @show.id %> Details</h1>
 
-Date: <%= @show.date %> parsed: <%= Date.parse(@show.date) %></p>
+Date: <%= @show.date.to_date.strftime("%A, %B %d, %Y") %> </p>
 
 Venue: <%= @show.venue.name %></p>
 
