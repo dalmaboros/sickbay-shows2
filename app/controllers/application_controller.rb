@@ -18,13 +18,27 @@ class ApplicationController < Sinatra::Base
     erb :'/shows/shows_index'
   end
 
+  # CREATE
+
   get '/shows/new' do
     @style = polyfill_css
     erb :'/shows/create'
   end
 
   post '/shows/new' do
-    binding.pry
+    # binding.pry
+    @venue = Venue.find_or_create_by(name: params[:venue])
+    @show = Show.new(date: params[:date], venue: @venue)
+    # add URL if not empty
+    # add all artists if not empty
+    @show.save
+    redirect to "/shows/#{@show.id}"
+  end
+
+  # READ
+  get '/shows/:id' do
+    @show = Show.find_by(id: params[:id])
+    erb :'/shows/show_show'
   end
 
   get '/shows/archive' do

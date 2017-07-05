@@ -1,10 +1,10 @@
 <h1>Create a New Show</h1>
 
 <form method="POST" action="/shows/new">
-  Date: <input type="date" name="date"> REQUIRED</p>
+  Date: <input type="date" name="date" required /> REQUIRED</p>
 
   Venue:
-  <input type="text" list="venues" name="venue" />
+  <input type="text" list="venues" name="venue" required />
   <datalist id="venues">
     <% Venue.all.each do |venue| %>
       <option value="<%= venue.name %>"><%= venue.name %></option>
@@ -12,7 +12,7 @@
   </datalist> REQUIRED</p>
 
   Artist 1:
-  <input type="text" list="artists" name="artists[]" />
+  <input type="text" list="artists" name="artists[]" required />
   <datalist id="artists">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
@@ -45,7 +45,7 @@
 
   URL: <input type="url" name="url"></p>
 
-  <input type="submit"> <a href="/">Cancel</a>
+  <input type="submit" /> <a href="/">Cancel</a>
 </form>
 
 <script src="datalist.polyfill.min.js"></script>
