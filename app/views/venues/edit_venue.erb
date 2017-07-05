@@ -3,7 +3,7 @@
 <form method="POST" action="/venues/<%= @venue.id %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 
-  Name: <input type="text" name="name" value="<%= @venue.name %>" required /></p>
+  Name: <input type="text" name="name" value="<%= @venue.name %>" autocomplete="off" required /></p>
 
   <input type="submit" /> <a href="/venues/<%= @venue.id %>">Cancel</a>
 </form></p>

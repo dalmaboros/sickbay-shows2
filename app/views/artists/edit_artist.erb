@@ -3,7 +3,7 @@
 <form method="POST" action="/artists/<%= @artist.id %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 
-  Name: <input type="text" name="name" value="<%= @artist.name %>" required /></p>
+  Name: <input type="text" name="name" value="<%= @artist.name %>" autocomplete="off" required /></p>
 
   <input type="submit" /> <a href="/artists/<%= @artist.id %>">Cancel</a>
 </form></p>

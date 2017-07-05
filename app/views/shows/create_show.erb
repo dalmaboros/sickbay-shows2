@@ -12,7 +12,7 @@
   </datalist> REQUIRED</p>
 
   Artist 1:
-  <input type="text" list="artists" name="artists[]" required />
+  <input type="text" list="artists" name="artists[]" autocomplete="off" required />
   <datalist id="artists">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
@@ -20,7 +20,7 @@
   </datalist> REQUIRED</p>
 
   Artist 2:
-  <input type="text" list="artists2" name="artists[]" />
+  <input type="text" list="artists2" name="artists[]" autocomplete="off" />
   <datalist id="artists2">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
@@ -28,7 +28,7 @@
   </datalist></p>
 
   Artist 3:
-  <input type="text" list="artists3" name="artists[]" />
+  <input type="text" list="artists3" name="artists[]" autocomplete="off" />
   <datalist id="artists3">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
@@ -36,14 +36,14 @@
   </datalist></p>
 
   Artist 4:
-  <input type="text" list="artists4" name="artists[]" />
+  <input type="text" list="artists4" name="artists[]" autocomplete="off" />
   <datalist id="artists4">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
     <% end %>
   </datalist></p>
 
-  URL: <input type="url" name="url"></p>
+  URL: <input type="url" name="url" autocomplete="off" ></p>
 
   <input type="submit" /> <a href="/">Cancel</a>
 </form>

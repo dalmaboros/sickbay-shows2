@@ -6,7 +6,7 @@
   Date: <input type="date" name="date" value="<%= @show.date %>" required /> REQUIRED</p>
 
   Venue:
-  <input type="text" list="venues" name="venue" value="<%= @show.venue.name %>" required />
+  <input type="text" list="venues" name="venue" value="<%= @show.venue.name %>" autocomplete="off" required />
   <datalist id="venues">
     <% Venue.all.each do |venue| %>
       <option value="<%= venue.name %>"><%= venue.name %></option>
@@ -14,7 +14,7 @@
   </datalist> REQUIRED</p>
 
   Artist 1:
-  <input type="text" list="artists" name="artists[]" value="<%= @show.artists[0].name if @show.artists[0]%>" required />
+  <input type="text" list="artists" name="artists[]" value="<%= @show.artists[0].name if @show.artists[0]%>" autocomplete="off" required />
   <datalist id="artists">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
@@ -22,7 +22,7 @@
   </datalist> REQUIRED</p>
 
   Artist 2:
-  <input type="text" list="artists2" name="artists[]" value="<%= @show.artists[1].name if @show.artists[1]%>"/>
+  <input type="text" list="artists2" name="artists[]" value="<%= @show.artists[1].name if @show.artists[1]%>" autocomplete="off" />
   <datalist id="artists2">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
@@ -30,7 +30,7 @@
   </datalist></p>
 
   Artist 3:
-  <input type="text" list="artists3" name="artists[]" value="<%= @show.artists[2].name if @show.artists[2]%>"/>
+  <input type="text" list="artists3" name="artists[]" value="<%= @show.artists[2].name if @show.artists[2]%>" autocomplete="off" />
   <datalist id="artists3">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
@@ -38,14 +38,14 @@
   </datalist></p>
 
   Artist 4:
-  <input type="text" list="artists4" name="artists[]" value="<%= @show.artists[3].name if @show.artists[3]%>"/>
+  <input type="text" list="artists4" name="artists[]" value="<%= @show.artists[3].name if @show.artists[3]%>" autocomplete="off" />
   <datalist id="artists4">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
     <% end %>
   </datalist></p>
 
-  URL: <input type="url" name="url" value="<%= @show.url %>"></p>
+  URL: <input type="url" name="url" value="<%= @show.url %>" autocomplete="off" ></p>
 
   <input type="submit" /> <a href="/shows/<%= @show.id %>">Cancel</a>
 </form></p>
