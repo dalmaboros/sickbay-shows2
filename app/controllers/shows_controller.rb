@@ -1,7 +1,7 @@
 class ShowsController < ApplicationController
 
   get '/shows' do
-    @shows = Show.order(:date)
+    @shows = Show.order(:date).where("date > ?", DateTime.now.to_date)
     erb :'/shows/shows_index'
   end
 
@@ -29,6 +29,11 @@ class ShowsController < ApplicationController
   end
 
   # READ
+  get '/shows/archive' do
+    @archived = Show.order(:date).where("date < ?", DateTime.now.to_date)
+    erb :'/shows/shows_archive'
+  end
+
   get '/shows/:id' do
     @show = Show.find_by(id: params[:id])
     if @show.nil?
@@ -36,10 +41,6 @@ class ShowsController < ApplicationController
     else
       erb :'/shows/show_show'
     end
-  end
-
-  get '/shows/archive' do
-    erb :'/shows/archive'
   end
 
   # EDIT
