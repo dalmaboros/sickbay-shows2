@@ -21,7 +21,24 @@ class VenuesController < ApplicationController
   end
 
   # EDIT
+  get '/venues/:id/edit' do
+    @venue = Venue.find_by(id: params[:id])
+    erb :'/venues/edit_venue'
+  end
+
+  patch '/venues/:id' do
+    @venue = Venue.find_by(id: params[:id])
+    # binding.pry
+    @venue.name = params[:name] if params[:name] != @venue.name
+    @venue.save
+    redirect to "/venues/#{@venue.id}"
+  end
 
   # DELETE
+  delete '/venues/:id/delete' do
+    @venue = Venue.find_by(id: params[:id])
+    @venue.destroy
+    redirect to '/venues'
+  end
 
 end

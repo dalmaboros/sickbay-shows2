@@ -4,7 +4,7 @@
   Date: <input type="date" name="date" required /> REQUIRED</p>
 
   Venue:
-  <input type="text" list="venues" name="venue" required />
+  <input type="text" list="venues" name="venue" autocomplete="off" required />
   <datalist id="venues">
     <% Venue.all.each do |venue| %>
       <option value="<%= venue.name %>"><%= venue.name %></option>
