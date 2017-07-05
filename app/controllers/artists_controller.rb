@@ -5,6 +5,21 @@ class ArtistsController < ApplicationController
     erb :'/artists/artists_index'
   end
 
+  # CREATE
+  get '/artists/new' do
+    erb :'/artists/create_artist'
+  end
+
+  post '/artists/new' do
+    if Artist.find_by(name: params[:name])
+      redirect to "artists/new"
+    else
+      @artist = Artist.create(name: params[:name])
+      redirect to "artists/#{@artist.id}"
+    end
+  end
+
+  # READ
   get '/artists/:id' do
     @artist = Artist.find_by(id: params[:id])
     erb :'/artists/show_artist'
