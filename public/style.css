@@ -1,3 +1,200 @@
+/*////// FONTS //////*/
+
+@import url('https://fonts.googleapis.com/css?family=VT323');
+
+
+@font-face {
+  font-family: Firecat;
+  src: url(../FirecatMedium.ttf);
+}
+
+/*////// LAYOUT //////*/
+
+body {
+  font-size: 100%;
+  background: pink;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.clearfix:after {
+  content:"";
+  clear: both;
+  display: table;
+}
+
+/*////// LINKS //////*/
+
+a {
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+a:link, a:visited {
+  color: black;
+}
+
+a:hover {
+  color: violet;
+}
+
+a:active {
+  color: beige;
+}
+
+/*////// HEADER //////*/
+
+h1 {
+  font-family: Firecat;
+  font-size: 3.3em;
+  color: beige;
+  text-shadow: 2px 2px 2px violet;
+  text-align: center;
+  margin-bottom: 0;
+  padding-bottom: 12px;
+  margin-left: -1px;
+  display: block;
+  max-width: 100%;
+}
+
+h2 {
+  font-family: 'VT323', monospace;
+  font-size: 2.4em;
+  margin: 10px 0 20px;
+  letter-spacing: normal;
+}
+
+#logo a:link, #logo a:visited, #logo a:active, #logo a:hover {
+  color: beige;
+  text-decoration: none;
+}
+
+/*////// NAV //////*/
+
+nav {
+  text-align: center;
+  padding: 5px;
+  font-family: 'VT323', monospace;
+  font-size: 1.5em;
+}
+
+nav a {
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+nav a:link, nav a:visited {
+  color: black;
+}
+
+nav a:hover {
+  color: violet;
+}
+
+nav a:active {
+  color: beige;
+}
+
+nav .active {
+  text-decoration: none;
+}
+
+/*////// BODY //////*/
+
+p {
+  font-family: 'VT323', monospace;
+  font-size: 1.6em;
+  color: black;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+/*////// SECTIONS //////*/
+
+section {
+  margin: 10px auto;
+}
+
+footer {
+  text-align: center;
+  border: 1px solid pink;
+  font-size: .9em;
+}
+
+#shows {
+  max-width: 700px;
+  padding: 10px 30px;
+}
+
+/*////// TABLE //////*/
+table {
+  font-family: 'VT323', monospace;
+  font-size: 1.6em;
+  color: black;
+}
+
+td {
+  vertical-align: top;
+  padding: 12px 0;
+  text-transform: uppercase;
+}
+
+.details {
+  padding-left: 10px;
+}
+
+table a {
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+table a:link, table a:visited {
+  color: black;
+}
+
+table a:hover {
+  color: violet;
+}
+
+table a:active {
+  color: beige;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (min-width: 480px) {
+  body {
+  font-size: 120%;
+  }
+}
+
+/* TEXT SELECT */
+
+/* Mozilla based browsers */
+::-moz-selection {
+       background-color: beige;
+       color: violet;
+}
+
+/* Works in Safari */
+::selection {
+       background-color: beige;
+       color: violet;
+}
+
+/* DATALIST POLYFILL */
+
 .datalist-polyfill {
 	list-style: none;
 	display: none;
@@ -20,7 +217,7 @@
         padding: 3px;
         font: 13px "Lucida Grande", Sans-Serif;
     }
-    
+
     .datalist-polyfill__active {
         background: #3875d7;
         color: white;
