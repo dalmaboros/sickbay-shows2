@@ -10,6 +10,7 @@ class ArtistsController < ApplicationController
     erb :'/artists/show_artist'
   end
 
+  # EDIT
   get '/artists/:id/edit' do
     @artist = Artist.find_by(id: params[:id])
     erb :'/artists/edit_artist'
@@ -21,5 +22,12 @@ class ArtistsController < ApplicationController
     @artist.name = params[:name] if params[:name] != @artist.name
     @artist.save
     redirect to "/artists/#{@artist.id}"
+  end
+
+  # DELETE
+  delete '/artists/:id/delete' do
+    @artist = Artist.find_by(id: params[:id])
+    @artist.destroy
+    redirect to '/artists'
   end
 end
