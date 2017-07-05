@@ -1,11 +1,10 @@
 <h2>Past Shows</h2>
 
-<ul>
-<% @archived.each do |archive| %>
-  <li>
-    <%= archive.date.to_date.strftime("%m-%d-%y") %> @
-    <%= archive.venue.name %>:
-    <a href="<%= archive.url %>"><%= archive.artists.collect { |artist| artist.name }.join(" + ") %></a>
-  </li>
-<% end %>
-</ul>
+<table>
+  <tr>
+  <% @shows.each do |show| %>
+    <td><%= show.date.to_date.strftime("%m.%d.%y") %></td>
+    <td class="details"><a href="<%= show.url %>"><%= show.artists.collect { |artist| artist.name }.join(" + ") %></a> at <%= show.venue.name %></td>
+  </tr>
+  <% end %>
+</table>

@@ -30,7 +30,7 @@ class ShowsController < ApplicationController
   end
 
   get '/shows/archive' do
-    @archived = Show.order(:date).where("date < ?", DateTime.now.to_date).reverse
+    @shows = Show.order(:date).where("date < ?", DateTime.now.to_date).reverse
     erb :'/shows/shows_archive'
   end
 
