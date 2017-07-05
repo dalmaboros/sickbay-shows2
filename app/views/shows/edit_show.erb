@@ -14,7 +14,7 @@
   </datalist> REQUIRED</p>
 
   Artist 1:
-  <input type="text" list="artists" name="artists[]" value="<%= @show.artists[0].name %>" required />
+  <input type="text" list="artists" name="artists[]" value="<%= @show.artists[0].name if @show.artists[0]%>" required />
   <datalist id="artists">
     <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
@@ -48,6 +48,11 @@
   URL: <input type="url" name="url" value="<%= @show.url %>"></p>
 
   <input type="submit" /> <a href="/shows/<%= @show.id %>">Cancel</a>
-</form>
+</form></p>
+
+<form method="POST" action="/shows/<%= @show.id %>/delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Show"></p>
+</form></p>
 
 <script src="datalist.polyfill.min.js"></script>

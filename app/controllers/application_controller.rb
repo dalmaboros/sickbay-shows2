@@ -19,7 +19,6 @@ class ApplicationController < Sinatra::Base
   end
 
   # CREATE
-
   get '/shows/new' do
     @style = polyfill_css
     erb :'/shows/create'
@@ -46,7 +45,11 @@ class ApplicationController < Sinatra::Base
   # READ
   get '/shows/:id' do
     @show = Show.find_by(id: params[:id])
-    erb :'/shows/show_show'
+    if @show.nil?
+      erb :'/shows/not_found'
+    else
+      erb :'/shows/show_show'
+    end
   end
 
   get '/shows/archive' do
@@ -77,6 +80,13 @@ class ApplicationController < Sinatra::Base
 
     @show.save
     redirect to "/shows/#{@show.id}"
+  end
+
+  # DELETE
+  delete '/shows/:id/delete' do
+    @show = Show.find_by(id: params[:id])
+    @show.destroy
+    redirect to '/'
   end
 
   # HELPERS
