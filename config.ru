@@ -6,4 +6,6 @@ end
 
 use Rack::MethodOverride
 use ShowsController
+use ArtistsController
+use VenuesController
 run ApplicationController

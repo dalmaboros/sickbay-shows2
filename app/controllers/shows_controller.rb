@@ -1,13 +1,13 @@
 class ShowsController < ApplicationController
 
   get '/shows' do
-    @shows = Show.all
+    @shows = Show.order(:date)
     erb :'/shows/shows_index'
   end
 
   # CREATE
   get '/shows/new' do
-    erb :'/shows/create'
+    erb :'/shows/create_show'
   end
 
   post '/shows/new' do
