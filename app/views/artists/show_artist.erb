@@ -1,0 +1,13 @@
+<h1><%= @artist.name %></h1>
+
+Shows: </p>
+
+<ul>
+<% @artist.shows.each do |show| %>
+  <li>
+    <%= show.date %> @
+    <%= show.venue.name %>
+    <a href="<%= show.url %>"><%= show.artists.collect { |artist| artist.name }.join(" + ") %></a>
+  </li>
+<% end %>
+</ul>

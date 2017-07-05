@@ -9,4 +9,17 @@ class ArtistsController < ApplicationController
     @artist = Artist.find_by(id: params[:id])
     erb :'/artists/show_artist'
   end
+
+  get '/artists/:id/edit' do
+    @artist = Artist.find_by(id: params[:id])
+    erb :'/artists/edit_artist'
+  end
+
+  patch '/artists/:id' do
+    @artist = Artist.find_by(id: params[:id])
+    # binding.pry
+    @artist.name = params[:name] if params[:name] != @artist.name
+    @artist.save
+    redirect to "/artists/#{@artist.id}"
+  end
 end

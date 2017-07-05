@@ -1,0 +1,16 @@
+<h1>Edit Artist <%= @artist.name %></h1>
+
+<form method="POST" action="/artists/<%= @artist.id %>">
+<input id="hidden" type="hidden" name="_method" value="patch">
+
+  Name: <input type="text" name="name" value="<%= @artist.name %>" required /></p>
+
+  <input type="submit" /> <a href="/artists/<%= @artist.id %>">Cancel</a>
+</form></p>
+
+<form method="POST" action="/artists/<%= @artist.id %>/delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Artist"></p>
+</form></p>
+
+<script src="datalist.polyfill.min.js"></script>
