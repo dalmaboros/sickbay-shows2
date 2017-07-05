@@ -1,12 +1,43 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= @title %></title>
-    <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
-  </head>
 
-  <body>
-    <h1>Sickbay</h1>
-    <%= yield %>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+  <title>Sickbay - Local Alternative Music Shows in Lafayette, Louisiana</title>
+</head>
+
+<body>
+
+  <header>
+    <div class="wrapper">
+      <div id="logo">
+        <h1><a href="#">Sickbay</a></h1>
+      </div>
+      <nav>
+        <a href="/shows">Shows</a>
+        <a href="/shows/archive">Archive</a>
+        <a href="/contact">Contact</a>
+        <a href="https://sickbaysounds.bandcamp.com/" target="_blank">Singles Club</a>
+      </nav>
+    </div> <!-- .wrapper -->
+  </header>
+
+  <div class="wrapper clearfix">
+    <section id="shows">
+      <!-- <h2>HEADING</h2> -->
+      <!-- TABLE -->
+      <%= yield %>
+
+    </section>
+  </div> <!-- .wrapper -->
+
+  <div class="wrapper clearfix">
+    <footer>
+      <p>&copy; 2017 Sickbay. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+</body>
 </html>

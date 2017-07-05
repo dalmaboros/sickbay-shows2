@@ -1,11 +1,14 @@
-<h1>Upcoming Sickbay Shows</h1>
+<h2>Upcoming Shows</h2>
 
-<ul>
-<% @shows.each do |show| %>
-  <li>
-    <%= show.date.to_date.strftime("%m-%d") %>
-    <a href="<%= show.url %>"><%= show.artists.collect { |artist| artist.name }.join(" + ") %></a>
-    at <%= show.venue.name %>
-  </li>
-<% end %>
-</ul>
+<table>
+  <tr>
+  <% @shows.each do |show| %>
+    <td><%= show.date.to_date.strftime("%m.%d") %></td>
+    <td class="details"><a href="<%= show.url %>"><%= show.artists.collect { |artist| artist.name }.join(" + ") %></a> at <%= show.venue.name %></td>
+  </tr>
+  <% end %>
+  <!-- <tr>
+    <td>03.13</td>
+    <td class="details"><a href="https://www.facebook.com/events/1871991923081397/" target="_blank">RAD WAGON + SCENIC WORLD + GRUBBY LITTLE HANDS</a></td>
+  </tr> -->
+</table>
