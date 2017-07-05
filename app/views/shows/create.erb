@@ -1,22 +1,50 @@
 <h1>Create a New Show</h1>
 
 <form method="POST" action="/shows/new">
-  Date: <input type="date" name="date"></p>
-  Choose Venue:
-    <select name="venue">
-      <% Venue.all.each do |venue| %>
+  Date: <input type="date" name="date"> REQUIRED</p>
+
+  Venue:
+  <input type="text" list="venues" name="venue" />
+  <datalist id="venues">
+    <% Venue.all.each do |venue| %>
       <option value="<%= venue.name %>"><%= venue.name %></option>
-      <% end %>
-    </select>
-  <i>or Create Venue: </i><input type="text"></p>
-  Choose Artists:
-    <select name="artists[]">
-      <% Artist.all.sort.each do |artist| %>
+    <% end %>
+  </datalist> REQUIRED</p>
+
+  Artist 1:
+  <input type="text" list="artists" name="artists[]" />
+  <datalist id="artists">
+    <% Artist.all.each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
-      <% end %>
-    </select>
-  <i>or Create Artists: </i><input type="text"></p>
+    <% end %>
+  </datalist> REQUIRED</p>
+
+  Artist 2:
+  <input type="text" list="artists2" name="artists[]" />
+  <datalist id="artists2">
+    <% Artist.all.each do |artist| %>
+      <option value="<%= artist.name %>"><%= artist.name %></option>
+    <% end %>
+  </datalist></p>
+
+  Artist 3:
+  <input type="text" list="artists3" name="artists[]" />
+  <datalist id="artists3">
+    <% Artist.all.each do |artist| %>
+      <option value="<%= artist.name %>"><%= artist.name %></option>
+    <% end %>
+  </datalist></p>
+
+  Artist 4:
+  <input type="text" list="artists4" name="artists[]" />
+  <datalist id="artists4">
+    <% Artist.all.each do |artist| %>
+      <option value="<%= artist.name %>"><%= artist.name %></option>
+    <% end %>
+  </datalist></p>
+
   URL: <input type="url" name="url"></p>
+
   <input type="submit"> <a href="/">Cancel</a>
 </form>
 
