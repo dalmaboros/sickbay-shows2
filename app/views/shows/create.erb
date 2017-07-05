@@ -1,7 +1,7 @@
 <h1>Create a New Show</h1>
 
 <form method="POST" action="/shows/new">
-  Date: <input type="text"></p>
+  Date: <input type="date" name="date"></p>
   Choose Venue:
     <select name="venue">
       <% Venue.all.each do |venue| %>
@@ -19,3 +19,5 @@
   URL: <input type="url" name="url"></p>
   <input type="submit"> <a href="/">Cancel</a>
 </form>
+
+<script src="datalist.polyfill.min.js"></script>
