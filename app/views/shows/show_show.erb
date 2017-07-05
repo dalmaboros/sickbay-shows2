@@ -1,9 +1,9 @@
-<h2>Show <%= @show.id %> Details</h2>
+<h2>Show I.D. #<%= @show.id %> Details</h2>
 
-Date: <%= @show.date.to_date.strftime("%A, %B %d, %Y") %> </p>
+<p>Date: <%= @show.date.to_date.strftime("%A, %B %d, %Y") %> </p>
 
-Venue: <%= @show.venue.name %></p>
+<p>Venue: <a href="/venues/<%= @show.venue.id %>"><%= @show.venue.name %></a></p>
 
-Artists: <%= @show.artists.collect { |artist| artist.name }.join(" + ") %></p>
+<p>Artists: <%= @show.artists.collect { |artist| artist.name }.join(" + ") %></p>
 
-URL: <%= @show.url %></p>
+<p>URL: <a href="<%= @show.url %>"><%= @show.url %></a></p>

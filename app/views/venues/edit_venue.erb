@@ -1,14 +1,18 @@
-<h1>Edit Venue <%= @venue.name %></h1>
+<h2>Edit <%= @venue.name %></h2>
 
 <form method="POST" action="/venues/<%= @venue.id %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 
-  Name: <input type="text" name="name" value="<%= @venue.name %>" autocomplete="off" required /></p>
+  <p>Name: <input type="text" name="name" value="<%= @venue.name %>" autocomplete="off" required /></p>
 
-  <input type="submit" /> <a href="/venues/<%= @venue.id %>">Cancel</a>
-</form></p>
+  <input type="submit" value ="SUBMIT"/>
+</form>
+
+<form action="/venues">
+    <input type="submit" value="CANCEL" />
+</form>
 
 <form method="POST" action="/venues/<%= @venue.id %>/delete">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Venue"></p>
+  <input type="submit" value="DELETE VENUE"></p>
 </form></p>

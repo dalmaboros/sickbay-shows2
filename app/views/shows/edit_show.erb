@@ -1,27 +1,27 @@
-<h2>Edit Show <%= @show.id %></h2>
+<h2>Edit Show I.D. #<%= @show.id %></h2>
 
 <form method="POST" action="/shows/<%= @show.id %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 
-  Date: <input type="date" name="date" value="<%= @show.date %>" required /> REQUIRED</p>
+  <p>Date: <input type="date" name="date" value="<%= @show.date %>" required /> </p>
 
-  Venue:
+  <p>Venue:
   <input type="text" list="venues" name="venue" value="<%= @show.venue.name %>" autocomplete="off" required />
   <datalist id="venues">
     <% Venue.all.order(:name).each do |venue| %>
       <option value="<%= venue.name %>"><%= venue.name %></option>
     <% end %>
-  </datalist> REQUIRED</p>
+  </datalist> </p>
 
-  Artist 1:
+  <p>Artist 1:
   <input type="text" list="artists" name="artists[]" value="<%= @show.artists[0].name if @show.artists[0]%>" autocomplete="off" required />
   <datalist id="artists">
     <% Artist.all.order(:name).each do |artist| %>
       <option value="<%= artist.name %>"><%= artist.name %></option>
     <% end %>
-  </datalist> REQUIRED</p>
+  </datalist> </p>
 
-  Artist 2:
+  <p>Artist 2:
   <input type="text" list="artists2" name="artists[]" value="<%= @show.artists[1].name if @show.artists[1]%>" autocomplete="off" />
   <datalist id="artists2">
     <% Artist.all.order(:name).each do |artist| %>
@@ -29,7 +29,7 @@
     <% end %>
   </datalist></p>
 
-  Artist 3:
+  <p>Artist 3:
   <input type="text" list="artists3" name="artists[]" value="<%= @show.artists[2].name if @show.artists[2]%>" autocomplete="off" />
   <datalist id="artists3">
     <% Artist.all.order(:name).each do |artist| %>
@@ -37,7 +37,7 @@
     <% end %>
   </datalist></p>
 
-  Artist 4:
+  <p>Artist 4:
   <input type="text" list="artists4" name="artists[]" value="<%= @show.artists[3].name if @show.artists[3]%>" autocomplete="off" />
   <datalist id="artists4">
     <% Artist.all.order(:name).each do |artist| %>
@@ -45,14 +45,18 @@
     <% end %>
   </datalist></p>
 
-  URL: <input type="url" name="url" value="<%= @show.url %>" autocomplete="off" ></p>
+  <p>URL: <input type="url" name="url" value="<%= @show.url %>" autocomplete="off" ></p>
 
-  <input type="submit" /> <a href="/shows/<%= @show.id %>">Cancel</a>
-</form></p>
+  <input type="submit" value="SUBMIT"/>
+</form>
+
+<form action="/shows/<%= @show.id %>">
+    <input type="submit" value="CANCEL" />
+</form>
 
 <form method="POST" action="/shows/<%= @show.id %>/delete">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Show"></p>
+  <input type="submit" value="DELETE SHOW"></p>
 </form></p>
 
 <script src="datalist.polyfill.min.js"></script>

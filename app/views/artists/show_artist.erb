@@ -1,13 +1,10 @@
-<h1><%= @artist.name %></h1>
+<h2><%= @artist.name %> Shows</h2>
 
-Shows: </p>
-
-<ul>
-<% @artist.shows.each do |show| %>
-  <li>
-    <%= show.date %> @
-    <%= show.venue.name %>
-    <a href="<%= show.url %>"><%= show.artists.collect { |artist| artist.name }.join(" + ") %></a>
-  </li>
-<% end %>
-</ul>
+<table>
+  <tr>
+  <% @artist.shows.order(:date).each do |show| %>
+    <td><%= show.date.to_date.strftime("%m.%d") %></td>
+    <td class="details"><a href="<%= show.url %>"><%= show.artists.collect { |artist| artist.name }.join(" + ") %></a> at <%= show.venue.name %></td>
+  </tr>
+  <% end %>
+</table>

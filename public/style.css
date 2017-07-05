@@ -51,7 +51,7 @@ a:active {
   color: beige;
 }
 
-/*////// HEADER //////*/
+/*////// HEADINGS //////*/
 
 h1 {
   font-family: Firecat;
@@ -124,7 +124,7 @@ p, li {
 }
 
 ul {
-  list-style-type: square; 
+  list-style-type: square;
 }
 
 .uppercase {
@@ -149,6 +149,7 @@ footer {
 }
 
 /*////// TABLE //////*/
+
 table {
   font-family: 'VT323', monospace;
   font-size: 1.6em;
@@ -182,26 +183,37 @@ table a:active {
   color: beige;
 }
 
-/* MEDIA QUERIES */
+/*////// FORM //////*/
 
-@media only screen and (min-width: 480px) {
-  body {
-  font-size: 120%;
-  }
+input[type=text], input[type=url], select {
+    width: 100%;
+    background-color: beige;
+    font-family: 'VT323', monospace;
+    font-size: .8em;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-/* TEXT SELECT */
-
-/* Mozilla based browsers */
-::-moz-selection {
-       background-color: beige;
-       color: violet;
+input[type=submit] {
+    width: 100%;
+    background-color: #000;
+    color: beige;
+    font-family: 'VT323', monospace;
+    font-size: 1.6em;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* Works in Safari */
-::selection {
-       background-color: beige;
-       color: violet;
+input[type=submit]:hover {
+    background-color: violet;
 }
 
 /* DATALIST POLYFILL */
@@ -233,3 +245,25 @@ table a:active {
         background: #3875d7;
         color: white;
     }
+
+/* MEDIA QUERIES */
+
+@media only screen and (min-width: 480px) {
+  body {
+  font-size: 120%;
+  }
+}
+
+/* TEXT SELECT */
+
+/* Mozilla based browsers */
+::-moz-selection {
+       background-color: beige;
+       color: violet;
+}
+
+/* Works in Safari */
+::selection {
+       background-color: beige;
+       color: violet;
+}
