@@ -7,11 +7,16 @@ class VenuesController < ApplicationController
 
   # CREATE
   get '/venues/new' do
-
+    erb :'/venues/create_venue'
   end
 
   post '/venues/new' do
-
+    if Venue.find_by(name: params[:name])
+      redirect to "venues/new"
+    else
+      @venue = Venue.create(name: params[:name])
+      redirect to "venues/#{@venue.id}"
+    end
   end
 
   # READ
