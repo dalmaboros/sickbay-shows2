@@ -48,8 +48,9 @@ class UsersController < ApplicationController
   end
 
   patch '/settings' do
-    binding.pry
+
     @user = current_user
+    binding.pry
     if logged_in? && @user.authenticate(params[:password])
       if @user.username != params[:username] && !params[:username].empty?
         @user.username = params[:username]
@@ -64,7 +65,17 @@ class UsersController < ApplicationController
     end
   end
 
-
+  patch '/password' do
+    binding.pry
+    @user = current_user
+    if logged_in? && @user.authenticate(params[:old_password]) && params[:password] === params[:confirm_password]
+      @user.password = params[:password]
+      @user.save
+      redirect to '/control'
+    else
+      redirect to '/settings'
+    end
+  end
 
   # DELETE
 

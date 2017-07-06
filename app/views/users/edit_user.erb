@@ -12,7 +12,9 @@
   <input type="submit" value="SUBMIT" />
 </form>
 
-<form method="POST" action="/">
+<form method="POST" action="/password">
+<input id="hidden" type="hidden" name="_method" value="patch">
+
   <h2>Change Password</h2>
 
   <p>Old Password: <input type="password" name="old_password" required /></p>
