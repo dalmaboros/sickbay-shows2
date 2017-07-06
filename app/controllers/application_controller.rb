@@ -16,12 +16,20 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  get '/backdoor' do
+    erb :backdoor
+  end
+
   get '/contact' do
     erb :contact
   end
 
-  get '/backdoor' do
-    erb :backdoor
+  get '/login' do
+    erb :login
+  end
+
+  get '/signup' do
+    erb :signup
   end
 
   # HELPERS
