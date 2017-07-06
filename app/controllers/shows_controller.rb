@@ -6,7 +6,6 @@ class ShowsController < ApplicationController
   end
 
   post '/shows/new' do
-    binding.pry
     @venue = Venue.find_or_create_by(name: params[:venue])
     @show = Show.new(date: params[:date], venue: @venue)
     @show.url = params[:url] if !params[:url].empty?

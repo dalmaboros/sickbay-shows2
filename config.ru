@@ -8,4 +8,5 @@ use Rack::MethodOverride
 use ShowsController
 use ArtistsController
 use VenuesController
+use UsersController
 run ApplicationController

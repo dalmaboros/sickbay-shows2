@@ -110,8 +110,11 @@ nav a:active {
   color: beige;
 }
 
-nav .active {
+nav.active {
   text-decoration: none;
+}
+
+nav.logged_in a:link, nav.logged_in a:visited {
 }
 
 /*////// BODY //////*/

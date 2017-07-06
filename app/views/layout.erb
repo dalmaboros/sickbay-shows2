@@ -21,6 +21,13 @@
         <a href="/contact">Contact</a>
         <a href="https://sickbaysounds.bandcamp.com/" target="_blank">Singles Club</a>
       </nav>
+      <% if logged_in? %>
+      <nav class="logged_in">
+        <a href="/shows/new">New Show</a>
+        <a href="/control">Dashboard</a>
+        <a href="/logout">Log Out</a>
+      </nav>
+      <% end %>
     </div> <!-- .wrapper -->
   </header>
 

@@ -16,36 +16,19 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  get '/backdoor' do
-    erb :'/users/backdoor'
-  end
-
   get '/contact' do
     erb :contact
   end
 
-  get '/login' do
-    erb :'/users/login'
-  end
+  # HELPERS
+  helpers do
+    def logged_in?
+      !!session[:user_id]
+    end
 
-  get '/signup' do
-    erb :'/users/signup'
-  end
-
-  post '/signup' do
-    if params[:username] != "" && params[:email] != "" && params[:password] != ""
-      @user = User.new(username: params[:username], email: params[:email], password: params[:password])
-      if @user.save
-        session[:user_id] = @user.id
-        redirect to '/control'
-      else
-        redirect to '/backdoor'
-      end
-    else
-      redirect to '/signup'
+    def current_user
+      User.find(session[:user_id])
     end
   end
-
-  # HELPERS
 
 end
