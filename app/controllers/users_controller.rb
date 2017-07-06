@@ -47,10 +47,26 @@ class UsersController < ApplicationController
     erb :'/users/edit_user'
   end
 
+  patch '/settings' do
+    binding.pry
+    @user = current_user
+    if logged_in? && @user.authenticate(params[:password])
+      if @user.username != params[:username] && !params[:username].empty?
+        @user.username = params[:username]
+      end
+      if @user.email != params[:email] && !params[:email].empty?
+        @user.email = params[:email]
+      end
+      @user.save
+      redirect to '/settings'
+    else
+      redirect to '/settings'
+    end
+  end
+
 
 
   # DELETE
-
 
   get '/backdoor' do
     erb :'/users/backdoor'
@@ -70,8 +86,5 @@ class UsersController < ApplicationController
     end
     redirect to '/backdoor'
   end
-
-  # HELPERS
-  
 
 end

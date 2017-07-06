@@ -1,6 +1,8 @@
 <h2>Edit User</h2>
 
-<form method="POST" action="/">
+<form method="POST" action="/settings">
+<input id="hidden" type="hidden" name="_method" value="patch">
+
   <p>Username: <input type="text" name="username" value="<%= current_user.username %>" autocomplete="off" required /></p>
 
   <p>Email: <input type="email" name="email" value="<%= current_user.email %>" autocomplete="off" required /></p>

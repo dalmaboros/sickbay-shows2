@@ -117,6 +117,10 @@ nav.active {
 nav.logged_in a:link, nav.logged_in a:visited {
 }
 
+nav a[href="/shows/new"] {
+  color: violet;
+}
+
 /*////// BODY //////*/
 
 p, li {

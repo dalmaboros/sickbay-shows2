@@ -56,7 +56,6 @@ class ShowsController < ApplicationController
   patch '/shows/:id' do
     @show = Show.find_by(id: params[:id])
     # binding.pry
-
     @show.date = params[:date] if params[:date] != @show.date
     @show.venue = Venue.find_or_create_by(name: params[:venue]) if params[:venue] != @show.venue.name
     @show.url = params[:url] if params[:url] != @show.url && !params[:url].empty?
