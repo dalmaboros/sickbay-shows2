@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
     binding.pry
-    if params[:username] != "" && params[:email] != "" && params[:password] != "" && params[:password] === params[:confirm_password]
+    if !params[:username].empty? && !params[:email].empty? && !params[:password].empty? && params[:password] === params[:confirm_password]
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
         session[:user_id] = @user.id
@@ -78,12 +78,20 @@ class UsersController < ApplicationController
   end
 
   # DELETE
+  delete '/users/:id/delete' do
+    binding.pry
+    @user = current_user
+    @user.destroy
+    session.clear
+    redirect to '/backdoor'
+  end
 
   get '/backdoor' do
     erb :'/users/backdoor'
   end
 
   get '/dashboard' do
+    binding.pry
     if logged_in?
       erb :'/users/dashboard'
     else
