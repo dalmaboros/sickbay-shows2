@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/backdoor' do
-    erb :backdoor
+    erb :'/users/backdoor'
   end
 
   get '/contact' do
@@ -25,11 +25,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-    erb :login
+    erb :'/users/login'
   end
 
   get '/signup' do
-    erb :signup
+    erb :'/users/signup'
   end
 
   post '/signup' do
@@ -37,9 +37,9 @@ class ApplicationController < Sinatra::Base
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
         session[:user_id] = @user.id
-        redirect to '/tweets'
+        redirect to '/control'
       else
-        redirect to '/signup'
+        redirect to '/backdoor'
       end
     else
       redirect to '/signup'
