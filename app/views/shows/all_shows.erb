@@ -4,7 +4,7 @@
   <tr>
   <% @shows.each do |show| %>
     <td><%= show.date.to_date.strftime("%m.%d.%y") %></td>
-    <td class="details"><a href="<%= show.url %>"><%= show.artists.collect { |artist| artist.name }.join(" + ") %></a> at <%= show.venue.name %></td>
+    <td class="details"><a href="<%= show.url %>"><%= show.artists.collect { |artist| artist.name }.join(" + ") %> at <%= show.venue.name %></a></td>
   </tr>
   <% end %>
 </table>

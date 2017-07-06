@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
         session[:user_id] = @user.id
-        redirect to '/control'
+        redirect to '/dashboard'
       else
         redirect to '/backdoor'
       end
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'/users/login'
     else
-      redirect to '/control'
+      redirect to '/dashboard'
     end
   end
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect to '/control'
+      redirect to '/dashboard'
     else
       redirect to '/login'
     end
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     if logged_in? && @user.authenticate(params[:old_password]) && params[:password] === params[:confirm_password]
       @user.password = params[:password]
       @user.save
-      redirect to '/control'
+      redirect to '/dashboard'
     else
       redirect to '/settings'
     end
@@ -83,9 +83,9 @@ class UsersController < ApplicationController
     erb :'/users/backdoor'
   end
 
-  get '/control' do
+  get '/dashboard' do
     if logged_in?
-      erb :'/users/control_panel'
+      erb :'/users/dashboard'
     else
       erb :index
     end
