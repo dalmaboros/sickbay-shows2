@@ -7,13 +7,13 @@ class UsersController < ApplicationController
 
   post '/signup' do
     binding.pry
-    if !params[:username].empty? && !params[:email].empty? && !params[:password].empty? && params[:password] === params[:confirm_password]
+    if !params[:username].empty? && !params[:email].empty? && !params[:password].empty? && params[:password] === params[:confirm_password] && !User.find_by(username: params[:username])
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
         session[:user_id] = @user.id
         redirect to '/dashboard'
       else
-        redirect to '/backdoor'
+        redirect to '/signup'
       end
     else
       redirect to '/signup'
@@ -48,7 +48,6 @@ class UsersController < ApplicationController
   end
 
   patch '/settings' do
-
     @user = current_user
     binding.pry
     if logged_in? && @user.authenticate(params[:password])
@@ -86,6 +85,8 @@ class UsersController < ApplicationController
     redirect to '/backdoor'
   end
 
+  # ETC...
+
   get '/backdoor' do
     erb :'/users/backdoor'
   end
@@ -95,15 +96,13 @@ class UsersController < ApplicationController
     if logged_in?
       erb :'/users/dashboard'
     else
-      erb :index
+      redirect to '/'
     end
   end
 
   get '/logout' do
-    if logged_in?
-      session.clear
-    end
-    redirect to '/backdoor'
+    session.clear if logged_in?
+    redirect to '/'
   end
 
 end
