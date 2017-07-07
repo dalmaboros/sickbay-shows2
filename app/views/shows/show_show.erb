@@ -4,6 +4,12 @@
 
 <p>Venue: <a href="/venues/<%= @show.venue.id %>"><%= @show.venue.name %></a></p>
 
-<p>Artists: <%= @show.artists.collect { |artist| artist.name }.join(" + ") %></p>
+<p>Artists:
+  <ul>
+    <% @show.artists.collect do |artist| %>
+      <li><a href="/artists/<%= artist.id %>"><%= artist.name %></a></li>
+    <% end %>
+  </ul>
+</p>
 
 <p>URL: <a href="<%= @show.url %>"><%= @show.url %></a></p>
