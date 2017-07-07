@@ -191,7 +191,7 @@ table a:active {
 
 /*////// FORM //////*/
 
-input[type=text], input[type=url], input[type=password], input[type=email] {
+input[type=text], input[type=url], input[type=password], input[type=email], input[type=date] {
     width: 100%;
     background-color: beige;
     font-family: 'VT323', monospace;
@@ -203,6 +203,20 @@ input[type=text], input[type=url], input[type=password], input[type=email] {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+/*datalist {
+  width: 100%;
+  background-color: beige;
+  font-family: 'VT323', monospace;
+  font-size: .8em;
+  color: violet;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+}*/
 
 input[type=submit] {
     width: 100%;
