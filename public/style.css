@@ -119,6 +119,12 @@ nav.logged_in a:link, nav.logged_in a:visited {
 
 nav a[href="/shows/new"] {
   color: violet;
+  /*transition: text-shadow 0.3s ease;*/
+}
+
+nav a[href="/shows/new"]:hover {
+  color: beige;
+  /*text-shadow: 2px 2px 2px beige;*/
 }
 
 /*////// BODY //////*/
