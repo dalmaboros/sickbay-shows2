@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
 
   not_found do
     status 404
-    erb :oops
+    redirect to '/'
   end
 
   # HELPERS

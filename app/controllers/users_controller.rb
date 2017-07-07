@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    binding.pry
     if !params[:username].empty? && !params[:email].empty? && !params[:password].empty? && params[:password] === params[:confirm_password] && !User.find_by(username: params[:username])
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
@@ -53,7 +52,6 @@ class UsersController < ApplicationController
 
   patch '/settings' do
     @user = current_user
-    binding.pry
     if logged_in? && @user.authenticate(params[:password])
       if @user.username != params[:username] && !params[:username].empty?
         @user.username = params[:username]
@@ -69,7 +67,6 @@ class UsersController < ApplicationController
   end
 
   patch '/password' do
-    binding.pry
     @user = current_user
     if logged_in? && @user.authenticate(params[:old_password]) && params[:password] === params[:confirm_password]
       @user.password = params[:password]
@@ -82,7 +79,6 @@ class UsersController < ApplicationController
 
   # DELETE
   delete '/users/:id/delete' do
-    binding.pry
     if logged_in?
       @user = current_user
       @user.destroy
@@ -104,7 +100,6 @@ class UsersController < ApplicationController
   end
 
   get '/dashboard' do
-    binding.pry
     if logged_in?
       erb :'/users/dashboard'
     else

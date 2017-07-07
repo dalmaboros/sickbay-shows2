@@ -72,7 +72,6 @@ class ShowsController < ApplicationController
   patch '/shows/:id' do
     if logged_in?
       @show = Show.find_by(id: params[:id])
-      # binding.pry
       @show.date = params[:date] if params[:date] != @show.date
       @show.venue = Venue.find_or_create_by(name: params[:venue]) if params[:venue] != @show.venue.name
       @show.url = params[:url] if params[:url] != @show.url && !params[:url].empty?
@@ -94,12 +93,14 @@ class ShowsController < ApplicationController
 
   # DELETE
   delete '/shows/:id/delete' do
-    if logged_in?
-      @show = Show.find_by(id: params[:id])
+    binding.pry
+    @user = current_user
+    @show = Show.find_by(id: params[:id])
+    if logged_in? && @user.authenticate(params[:password])
       @show.destroy
-      redirect to '/'
-    else
       redirect to '/shows'
+    else
+      redirect to "/shows/#{@show.id}/edit"
     end
   end
 end

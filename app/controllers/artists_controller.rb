@@ -46,7 +46,6 @@ class ArtistsController < ApplicationController
   patch '/artists/:id' do
     if logged_in?
       @artist = Artist.find_by(id: params[:id])
-      # binding.pry
       @artist.name = params[:name] if params[:name] != @artist.name
       @artist.save
       redirect to "/artists/#{@artist.id}"

@@ -55,6 +55,8 @@
 </form>
 
 <form method="POST" action="/shows/<%= @show.id %>/delete">
-  <input id="hidden" type="hidden" name="_method" value="delete">
+<input id="hidden" type="hidden" name="_method" value="delete">
+
+  <p>Enter Password to Delete Show: <input type="password" name="password" required /></p>
   <input type="submit" value="DELETE SHOW"></p>
 </form></p>
