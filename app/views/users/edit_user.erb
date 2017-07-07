@@ -12,16 +12,10 @@
   <input type="submit" value="SUBMIT" />
 </form>
 
-<form method="POST" action="/users/<%= @user.id %>/delete">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="DELETE USER"></p>
-</form></p>
+<h2>Change Password</h2>
 
 <form method="POST" action="/password">
 <input id="hidden" type="hidden" name="_method" value="patch">
-
-  <h2>Change Password</h2>
-
   <p>Old Password: <input type="password" name="old_password" required /></p>
 
   <p>New Password: <input type="password" name="password" required /></p>
@@ -29,3 +23,12 @@
   <p>Confirm New Password: <input type="password" name="confirm_password" required /></p>
   <input type="submit" value="SUBMIT" />
 </form>
+
+<h2>Delete Account</h2>
+
+<form method="POST" action="/users/<%= @user.id %>/delete">
+<input id="hidden" type="hidden" name="_method" value="delete">
+  <p>Enter Password to Delete User: <input type="password" name="password" required /></p>
+
+  <input type="submit" value="DELETE USER"></p>
+</form></p>

@@ -79,13 +79,13 @@ class UsersController < ApplicationController
 
   # DELETE
   delete '/users/:id/delete' do
-    if logged_in?
-      @user = current_user
+    @user = current_user
+    if logged_in? && @user.authenticate(params[:password])
       @user.destroy
       session.clear
       redirect to '/backdoor'
     else
-      redirect to '/'
+      redirect to "/settings"
     end
   end
 
@@ -109,7 +109,7 @@ class UsersController < ApplicationController
 
   get '/logout' do
     session.clear if logged_in?
-    redirect to '/'
+    redirect to '/backdoor'
   end
 
 end
