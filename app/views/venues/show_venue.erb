@@ -20,3 +20,8 @@
   </tr>
   <% end %>
 </table>
+
+<% if logged_in? %>
+<h3><a href="/venues/<%= @venue.id %>/edit">Edit <%= @venue.name %></a></h3>
+<% end %>
+<h3><a href="/venues">All Venues</a></h3>
