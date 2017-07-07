@@ -3,7 +3,14 @@
 <table>
   <tr>
   <% @shows.each do |show| %>
-    <td><%= show.date.to_date.strftime("%m.%d.%y") %></td>
+    <td>
+      <% if logged_in? %>
+      <a href="/shows/<%= show.id %>">
+      <% end %>
+      <%= show.date.to_date.strftime("%m.%d.%y") %>
+      </a>
+    </td>
+
     <td class="details">
       <% if !show.url.nil? %>
       <a href="<%= show.url %>">
