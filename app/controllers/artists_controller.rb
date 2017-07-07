@@ -56,12 +56,13 @@ class ArtistsController < ApplicationController
 
   # DELETE
   delete '/artists/:id/delete' do
-    if logged_in?
-      @artist = Artist.find_by(id: params[:id])
+    @user = current_user
+    @artist = Artist.find_by(id: params[:id])
+    if logged_in? && @user.authenticate(params[:password])
       @artist.destroy
       redirect to '/artists'
     else
-      redirect to '/artists'
+      redirect to "/artists/#{@artist.id}/edit"
     end
   end
 end

@@ -11,6 +11,8 @@
 <a href="/artists"><input type="submit" value="CANCEL" /></a>
 
 <form method="POST" action="/artists/<%= @artist.id %>/delete">
-  <input id="hidden" type="hidden" name="_method" value="delete">
+<input id="hidden" type="hidden" name="_method" value="delete">
+
+  <p>Enter Password to Delete Artist: <input type="password" name="password" required /></p>
   <input type="submit" value="DELETE ARTIST"></p>
 </form>
