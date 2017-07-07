@@ -129,6 +129,20 @@ p, li {
   color: black;
 }
 
+p.flash {
+  width: 100%;
+  background-color: violet;
+  font-family: 'VT323', monospace;
+  font-size: 1.6em;
+  color: beige;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 ul {
   list-style-type: square;
 }
@@ -203,20 +217,6 @@ input[type=text], input[type=url], input[type=password], input[type=email], inpu
     border-radius: 4px;
     box-sizing: border-box;
 }
-
-/*datalist {
-  width: 100%;
-  background-color: beige;
-  font-family: 'VT323', monospace;
-  font-size: .8em;
-  color: violet;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: none;
-  border-radius: 4px;
-  box-sizing: border-box;
-}*/
 
 input[type=submit] {
     width: 100%;

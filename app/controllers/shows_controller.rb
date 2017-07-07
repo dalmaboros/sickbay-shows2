@@ -1,4 +1,6 @@
 class ShowsController < ApplicationController
+  enable :sessions
+  use Rack::Flash
 
   # CREATE
   get '/shows/new' do
@@ -24,6 +26,7 @@ class ShowsController < ApplicationController
       end
 
       @show.save
+      flash[:message] = "Successfully created show!"
       redirect to "/shows/#{@show.id}"
     else
       redirect to "/shows"
