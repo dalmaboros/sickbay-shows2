@@ -46,7 +46,7 @@ class VenuesController < ApplicationController
   patch '/venues/:id' do
     if logged_in?
       @venue = Venue.find_by(id: params[:id])
-      @venue.name = params[:name] if params[:name] != @venue.name
+      @venue.name = params[:name] if params[:name] != @venue.name  && !params[:name].empty?
       @venue.save
       redirect to "/venues/#{@venue.id}"
     else
@@ -56,12 +56,13 @@ class VenuesController < ApplicationController
 
   # DELETE
   delete '/venues/:id/delete' do
-    if logged_in?
-      @venue = Venue.find_by(id: params[:id])
+    @user = current_user
+    @venue = Venue.find_by(id: params[:id])
+    if logged_in? && @user.authenticate(params[:password])
       @venue.destroy
       redirect to '/venues'
     else
-      redirect to '/venues'
+      redirect to "/venues/#{@venue.id}/edit"
     end
   end
 
