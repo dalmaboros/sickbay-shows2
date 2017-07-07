@@ -2,24 +2,32 @@ class ShowsController < ApplicationController
 
   # CREATE
   get '/shows/new' do
-    erb :'/shows/create_show'
+    if logged_in?
+      erb :'/shows/create_show'
+    else
+      redirect to '/shows'
+    end
   end
 
   post '/shows/new' do
-    @venue = Venue.find_or_create_by(name: params[:venue])
-    @show = Show.new(date: params[:date], venue: @venue)
-    @show.url = params[:url] if !params[:url].empty?
+    if logged_in?
+      @venue = Venue.find_or_create_by(name: params[:venue])
+      @show = Show.new(date: params[:date], venue: @venue)
+      @show.url = params[:url] if !params[:url].empty?
 
-    # add all artists if not empty
-    params[:artists].each do |artist|
-      if !artist.empty?
-        artist_object = Artist.find_or_create_by(name: artist)
-        @show.artists << artist_object
+      # add all artists if not empty
+      params[:artists].each do |artist|
+        if !artist.empty?
+          artist_object = Artist.find_or_create_by(name: artist)
+          @show.artists << artist_object
+        end
       end
-    end
 
-    @show.save
-    redirect to "/shows/#{@show.id}"
+      @show.save
+      redirect to "/shows/#{@show.id}"
+    else
+      redirect to "/shows"
+    end
   end
 
   # READ
