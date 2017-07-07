@@ -13,11 +13,17 @@ class ApplicationController < Sinatra::Base
 
   # ROUTES
   get '/' do
-    erb :index
+    @shows = Show.order(:date).where("date > ?", DateTime.now.to_date)
+    erb :'/shows/shows_index'
   end
 
   get '/contact' do
     erb :contact
+  end
+
+  not_found do
+    status 404
+    erb :oops
   end
 
   # HELPERS

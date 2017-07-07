@@ -43,8 +43,12 @@ class UsersController < ApplicationController
 
   # EDIT
   get '/settings' do
-    @user = current_user
-    erb :'/users/edit_user'
+    if logged_in?
+      @user = current_user
+      erb :'/users/edit_user'
+    else
+      redirect to '/'
+    end
   end
 
   patch '/settings' do
@@ -79,16 +83,24 @@ class UsersController < ApplicationController
   # DELETE
   delete '/users/:id/delete' do
     binding.pry
-    @user = current_user
-    @user.destroy
-    session.clear
-    redirect to '/backdoor'
+    if logged_in?
+      @user = current_user
+      @user.destroy
+      session.clear
+      redirect to '/backdoor'
+    else
+      redirect to '/'
+    end
   end
 
   # ETC...
 
   get '/backdoor' do
-    erb :'/users/backdoor'
+    if !logged_in?
+      erb :'/users/backdoor'
+    else
+      redirect to '/dashboard'
+    end
   end
 
   get '/dashboard' do
