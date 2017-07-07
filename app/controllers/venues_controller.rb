@@ -1,7 +1,7 @@
 class VenuesController < ApplicationController
 
   get '/venues' do
-    @venues = Venue.order(:name)
+    @venues = Venue.order("lower(name)")
     erb :'/venues/venues_index'
   end
 

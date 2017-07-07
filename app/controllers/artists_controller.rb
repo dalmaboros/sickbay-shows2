@@ -1,7 +1,7 @@
 class ArtistsController < ApplicationController
 
   get '/artists' do
-    @artists = Artist.order(:name)
+    @artists = Artist.order("lower(name)")
     erb :'/artists/artists_index'
   end
 
