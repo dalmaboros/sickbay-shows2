@@ -39,11 +39,15 @@ class ShowsController < ApplicationController
   end
 
   get '/shows/:id' do
-    @show = Show.find_by(id: params[:id])
-    if @show.nil?
-      erb :'/shows/not_found'
+    if logged_in?
+      @show = Show.find_by(id: params[:id])
+      if @show.nil?
+        erb :'/shows/not_found'
+      else
+        erb :'/shows/show_show'
+      end
     else
-      erb :'/shows/show_show'
+      redirect to '/shows'
     end
   end
 
