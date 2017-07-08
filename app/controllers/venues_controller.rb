@@ -1,4 +1,6 @@
 class VenuesController < ApplicationController
+  # enable :sessions
+  # use Rack::Flash
 
   get '/venues' do
     @venues = Venue.order("lower(name)")
@@ -7,6 +9,7 @@ class VenuesController < ApplicationController
 
   # CREATE
   get '/venues/new' do
+    # binding.pry
     if logged_in?
       erb :'/venues/create_venue'
     else
@@ -17,9 +20,11 @@ class VenuesController < ApplicationController
   post '/venues/new' do
     if logged_in?
       if Venue.find_by(name: params[:name])
+        flash[:message] = "Venue already exists."
         redirect to "venues/new"
       else
         @venue = Venue.create(name: params[:name])
+        flash[:message] = "Successfully created venue!"
         redirect to "venues/#{@venue.id}"
       end
     else

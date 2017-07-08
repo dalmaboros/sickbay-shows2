@@ -17,9 +17,11 @@ class ArtistsController < ApplicationController
   post '/artists/new' do
     if logged_in?
       if Artist.find_by(name: params[:name])
+        flash[:message] = "Artist already exists."
         redirect to "artists/new"
       else
         @artist = Artist.create(name: params[:name])
+        flash[:message] = "Successfully created artist!"
         redirect to "artists/#{@artist.id}"
       end
     else

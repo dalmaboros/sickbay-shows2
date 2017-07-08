@@ -1,6 +1,4 @@
 class ShowsController < ApplicationController
-  enable :sessions
-  use Rack::Flash
 
   # CREATE
   get '/shows/new' do
