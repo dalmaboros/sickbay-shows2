@@ -63,8 +63,10 @@ class ArtistsController < ApplicationController
     @artist = Artist.find_by(id: params[:id])
     if logged_in? && @user.authenticate(params[:password])
       @artist.destroy
+      flash[:message] = "BALEETED!"
       redirect to '/artists'
     else
+      flash[:message] = "Incorrect password. Could not delete artist."
       redirect to "/artists/#{@artist.id}/edit"
     end
   end

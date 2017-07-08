@@ -66,8 +66,10 @@ class VenuesController < ApplicationController
     @venue = Venue.find_by(id: params[:id])
     if logged_in? && @user.authenticate(params[:password])
       @venue.destroy
+      flash[:message] = "BALEETED!"
       redirect to '/venues'
     else
+      flash[:message] = "Incorrect password. Could not delete artist."
       redirect to "/venues/#{@venue.id}/edit"
     end
   end

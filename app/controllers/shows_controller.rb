@@ -95,13 +95,14 @@ class ShowsController < ApplicationController
 
   # DELETE
   delete '/shows/:id/delete' do
-    binding.pry
     @user = current_user
     @show = Show.find_by(id: params[:id])
     if logged_in? && @user.authenticate(params[:password])
       @show.destroy
+      flash[:message] = "BALEETED!"
       redirect to '/shows'
     else
+      flash[:message] = "Incorrect password. Could not delete show."
       redirect to "/shows/#{@show.id}/edit"
     end
   end
