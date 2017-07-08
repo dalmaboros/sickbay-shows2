@@ -50,6 +50,7 @@ class ArtistsController < ApplicationController
       @artist = Artist.find_by(id: params[:id])
       @artist.name = params[:name] if params[:name] != @artist.name
       @artist.save
+      flash[:message] = "Successfully updated artist!"
       redirect to "/artists/#{@artist.id}"
     else
       redirect to '/artists'

@@ -86,6 +86,7 @@ class ShowsController < ApplicationController
       end
 
       @show.save
+      flash[:message] = "Successfully updated show!"
       redirect to "/shows/#{@show.id}"
     else
       redirect to '/shows'

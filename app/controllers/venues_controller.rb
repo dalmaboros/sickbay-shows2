@@ -53,6 +53,7 @@ class VenuesController < ApplicationController
       @venue = Venue.find_by(id: params[:id])
       @venue.name = params[:name] if params[:name] != @venue.name  && !params[:name].empty?
       @venue.save
+      flash[:message] = "Successfully updated venue!"
       redirect to "/venues/#{@venue.id}"
     else
       redirect to '/venues'
