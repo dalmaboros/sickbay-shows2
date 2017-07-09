@@ -72,7 +72,7 @@ h2 {
   letter-spacing: normal;
 }
 
-h2.heading {
+h2.center {
   text-align: center;
 }
 
@@ -164,6 +164,15 @@ ul {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.hidden {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
 }
 
 /*////// SECTIONS //////*/
