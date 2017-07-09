@@ -166,6 +166,8 @@ ul {
   text-transform: uppercase;
 }
 
+/*////// ACCESSIBILITY //////*/
+
 .hidden {
   position:absolute;
   left:-10000px;
@@ -173,6 +175,22 @@ ul {
   width:1px;
   height:1px;
   overflow:hidden;
+}
+
+#skip a {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  font-size: 0.9em;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+#skip a:focus {
+  position:static;
+  width:auto;
+  height:auto;
 }
 
 /*////// SECTIONS //////*/
@@ -187,7 +205,7 @@ footer {
   font-size: .9em;
 }
 
-#shows {
+#content {
   max-width: 700px;
   padding: 10px 30px;
 }
