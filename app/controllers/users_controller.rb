@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # use Rack::Flash
 
   # CREATE
   get '/signup' do
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
+    # binding.pry
     if !logged_in?
       erb :'/users/login'
     else
@@ -31,9 +33,13 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      # flash[:message] = "Successfully logged in!"
+      # binding.pry
       redirect to '/dashboard'
     else
-      redirect to '/login'
+      # flash[:message] = "Something went wrong. Try again."
+      # binding.pry
+      redirect '/login'
     end
   end
 
@@ -100,6 +106,7 @@ class UsersController < ApplicationController
   end
 
   get '/dashboard' do
+    # binding.pry
     if logged_in?
       erb :'/users/dashboard'
     else
