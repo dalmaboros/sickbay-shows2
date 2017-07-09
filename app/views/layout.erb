@@ -16,15 +16,15 @@
         <h1><a href="/">Sickbay</a></h1>
       </div>
       <nav>
-        <a href="/shows">Shows</a>
-        <a href="/shows/archive">Archive</a>
-        <a href="/contact">Contact</a>
+        <a href="/shows" <% if request.path_info == "/shows" %> class="active" <% end %>>Shows</a>
+        <a href="/shows/archive" <% if request.path_info == "/shows/archive" %> class="active" <% end %>>Archive</a>
+        <a href="/contact" <% if request.path_info == "/contact" %> class="active" <% end %>>Contact</a>
         <a href="https://sickbaysounds.bandcamp.com/" target="_blank">Sounds</a>
       </nav>
       <% if logged_in? %>
       <nav class="logged_in">
-        <a href="/shows/new">New Show</a>
-        <a href="/dashboard">Dashboard</a>
+        <a href="/shows/new" <% if request.path_info == "/shows/new" %> class="active" <% end %>>New Show</a>
+        <a href="/dashboard" <% if request.path_info == "/dashboard" %> class="active" <% end %>>Dashboard</a>
         <a href="/logout">Log Out</a>
       </nav>
       <% end %>

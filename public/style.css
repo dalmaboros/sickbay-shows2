@@ -72,6 +72,10 @@ h2 {
   letter-spacing: normal;
 }
 
+h2.heading {
+  text-align: center;
+}
+
 h3 {
   font-family: 'VT323', monospace;
   font-size: 1.8em;
@@ -110,7 +114,8 @@ nav a:active {
   color: beige;
 }
 
-nav.active {
+nav a.active {
+  color: violet;
   text-decoration: none;
 }
 
@@ -133,6 +138,10 @@ p, li {
   font-family: 'VT323', monospace;
   font-size: 1.6em;
   color: black;
+}
+
+p.center {
+  text-align: center;
 }
 
 p.flash {
