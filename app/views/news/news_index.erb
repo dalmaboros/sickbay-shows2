@@ -1,4 +1,8 @@
-<h2>News</h2>
+<% if request.path_info == "/news/pending" %>
+  <h2>Pending News</h2>
+<% else %>
+  <h2>News</h2>
+<% end %>
 
 <table>
   <tr>

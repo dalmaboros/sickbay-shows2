@@ -29,6 +29,16 @@ class NewsController < ApplicationController
     end
   end
 
+  # READ
+  get '/news/pending' do
+    if logged_in?
+      @news = News.where("date > ?", Date.today).order(:date)
+      erb :'/news/news_index'
+    else
+      redirect to '/news'
+    end
+  end
+
   # UPDATE
   get '/news/:id/edit' do
     if logged_in?
