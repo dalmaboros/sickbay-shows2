@@ -54,7 +54,16 @@ class NewsController < ApplicationController
   end
 
   delete '/news/:id/delete' do
-    #
+    @user = current_user
+    @news = News.find_by(id: params[:id])
+    if logged_in? && @user.authenticate(params[:password])
+      @news.destroy
+      flash[:message] = "BALEETED!"
+      redirect to '/news'
+    else
+      flash[:message] = "Incorrect password. Could not delete news item."
+      redirect to "/news/#{@news.id}/edit"
+    end
   end
 
 end

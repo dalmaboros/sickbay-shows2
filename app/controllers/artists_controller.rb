@@ -71,4 +71,5 @@ class ArtistsController < ApplicationController
       redirect to "/artists/#{@artist.id}/edit"
     end
   end
+  
 end

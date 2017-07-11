@@ -9,3 +9,14 @@
   <input type="submit" value="SUBMIT"/>
   <a href="/news"><input type="submit" value="CANCEL" /></a>
 </form>
+
+<p></p>
+
+<h2>Delete News Item</h2>
+
+<form method="POST" action="/news/<%= @news.id %>/delete">
+<input id="hidden" type="hidden" name="_method" value="delete">
+
+  <p>Enter Password to Delete News Item: <input type="password" name="password" required /></p>
+  <input type="submit" value="DELETE NEWS"></p>
+</form>
