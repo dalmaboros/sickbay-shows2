@@ -1,10 +1,5 @@
 class NewsController < ApplicationController
 
-  get '/news' do
-    @news = News.where("date <= ?", Date.today).order(:date).reverse
-    erb :'/news/news_index'
-  end
-
   # CREATE
   get '/news/new' do
     if logged_in?
@@ -30,6 +25,11 @@ class NewsController < ApplicationController
   end
 
   # READ
+  get '/news' do
+    @news = News.where("date <= ?", Date.today).order(:date).reverse
+    erb :'/news/news_index'
+  end
+
   get '/news/pending' do
     if logged_in?
       @news = News.where("date > ?", Date.today).order(:date)
@@ -63,6 +63,7 @@ class NewsController < ApplicationController
     end
   end
 
+  # DELETE
   delete '/news/:id/delete' do
     @user = current_user
     @news = News.find_by(id: params[:id])
