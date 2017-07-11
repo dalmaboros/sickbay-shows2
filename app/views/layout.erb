@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,12 +35,14 @@
 
   <div class="wrapper clearfix">
     <section id="content">
-      <!-- <h2>HEADING</h2> -->
-      <!-- TABLE -->
+      <% if flash.has?(:message) %>
+        <p class="flash"><%= flash[:message] %></p>
+      <% end %>
+
       <%= yield %>
 
     </section>
-  </div> <!-- .wrapper -->
+  </div> <!-- .wrapper .clearfix -->
 
   <div class="wrapper clearfix">
     <footer>

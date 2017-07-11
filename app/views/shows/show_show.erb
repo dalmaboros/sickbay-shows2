@@ -1,7 +1,3 @@
-<% if flash.has?(:message) %>
-  <p class="flash"><%= flash[:message] %></p>
-<% end %>
-
 <h2>Show I.D. #<%= @show.id %> Details</h2>
 
 <p>Date: <%= @show.date.to_date.strftime("%A, %B %d, %Y") %> </p>
