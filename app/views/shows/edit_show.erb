@@ -1,4 +1,4 @@
-<h2>Edit Show I.D. #<%= @show.id %></h2>
+<h2>Edit Show #<%= @show.id %></h2>
 
 <form method="POST" action="/shows/<%= @show.id %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
@@ -50,9 +50,11 @@
   <input type="submit" value="SUBMIT"/>
 </form>
 
-<form action="/shows/<%= @show.id %>">
-    <input type="submit" value="CANCEL" />
-</form>
+<a href="/shows/<%= @show.id %>"><input type="submit" value="CANCEL" /></a>
+
+<p></p>
+
+<h2>Delete Show</h2>
 
 <form method="POST" action="/shows/<%= @show.id %>/delete">
 <input id="hidden" type="hidden" name="_method" value="delete">
