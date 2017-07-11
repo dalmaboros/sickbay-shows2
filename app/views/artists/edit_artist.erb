@@ -1,4 +1,4 @@
-<h2>Edit Artist <%= @artist.name %></h2>
+<h2>Edit <%= @artist.name %></h2>
 
 <form method="POST" action="/artists/<%= @artist.id %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
@@ -9,6 +9,10 @@
 </form>
 
 <a href="/artists"><input type="submit" value="CANCEL" /></a>
+
+<p></p>
+
+<h2>Delete Artist</h2>
 
 <form method="POST" action="/artists/<%= @artist.id %>/delete">
 <input id="hidden" type="hidden" name="_method" value="delete">
