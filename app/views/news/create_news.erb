@@ -1,7 +1,7 @@
 <h2>Create News</h2>
 
 <form method="POST" action="/news/new">
-  <p>Date (optional): <input type="date" name="date"></p>
+  <p>Date: <input type="date" name="date" value="<%= Date.today.strftime("%Y-%m-%d") %>" required></p>
   <p>Content: <input type="text" name="content" autocomplete="off" required></p>
 
   <input type="submit" value="SUBMIT"/>
