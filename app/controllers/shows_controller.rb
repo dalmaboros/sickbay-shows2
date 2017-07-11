@@ -33,12 +33,12 @@ class ShowsController < ApplicationController
 
   # READ
   get '/shows' do
-    @shows = Show.order(:date).where("date > ?", DateTime.now.to_date)
+    @shows = Show.where("date > ?", Date.today).order(:date)
     erb :'/shows/shows_index'
   end
 
   get '/shows/archive' do
-    @shows = Show.order(:date).where("date < ?", DateTime.now.to_date).reverse
+    @shows = Show.where("date < ?", Date.today).order(:date).reverse
     erb :'/shows/shows_index'
   end
 
