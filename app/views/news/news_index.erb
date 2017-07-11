@@ -4,9 +4,13 @@
   <tr>
   <% @news.each do |news| %>
     <td>
-      <% if !news.date.nil? && !news.date.empty? %>
-      <%= news.date.to_date.strftime("%m.%d") %>
+      <% if logged_in? %>
+        <a href="/news/<%= news.id %>/edit">
       <% end %>
+      <% if !news.date.nil? && !news.date.empty? %>
+        <%= news.date.to_date.strftime("%m.%d") %>
+      <% end %>
+      </a>
     </td>
 
     <td class="details">

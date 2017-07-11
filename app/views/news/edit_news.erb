@@ -1,1 +1,11 @@
-<h2>Edit News #<%= @news.id %></h2>
+<h2>Edit News Item #<%= @news.id %></h2>
+
+<form method="POST" action="/news/<%= @news.id %>">
+<input id="hidden" type="hidden" name="_method" value="patch">
+
+  <p>Date: <input type="date" name="date" value="<%= @news.date %>" required></p>
+  <p>Content: <input type="text" name="content" autocomplete="off" value="<%= @news.content %>" required></p>
+
+  <input type="submit" value="SUBMIT"/>
+  <a href="/news"><input type="submit" value="CANCEL" /></a>
+</form>
