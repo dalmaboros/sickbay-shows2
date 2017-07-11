@@ -9,4 +9,5 @@ use ShowsController
 use ArtistsController
 use VenuesController
 use UsersController
+use NewsController
 run ApplicationController
