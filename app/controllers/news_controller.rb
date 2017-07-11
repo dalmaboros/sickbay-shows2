@@ -7,7 +7,11 @@ class NewsController < ApplicationController
 
   # CREATE
   get '/news/new' do
-    #
+    if logged_in?
+      erb :'/news/create_news'
+    else
+      redirect to '/news'
+    end
   end
 
   post '/news/new' do
@@ -16,7 +20,11 @@ class NewsController < ApplicationController
 
   # UPDATE
   get '/news/:id/edit' do
-    #
+    if logged_in?
+      erb :'/news/edit_news'
+    else
+      redirect to '/news'
+    end
   end
 
   patch '/news/:id/edit' do
