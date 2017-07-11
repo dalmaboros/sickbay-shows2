@@ -1,7 +1,7 @@
 class NewsController < ApplicationController
 
   get '/news' do
-    @news = News.all.order(:date).reverse
+    @news = News.where("date <= ?", Date.today).order(:date).reverse
     erb :'/news/news_index'
   end
 
