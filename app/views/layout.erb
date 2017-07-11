@@ -25,9 +25,11 @@
       </nav>
       <% if logged_in? %>
       <nav class="logged_in">
-        <a href="/shows/new" <% if request.path_info == "/shows/new" %> class="active" <% end %>>New Show</a>
-        <a href="/dashboard" <% if request.path_info == "/dashboard" %> class="active" <% end %>>Dashboard</a>
-        <a href="/logout">Log Out</a>
+        <span>
+          <a href="/shows/new" <% if request.path_info == "/shows/new" %> class="active" <% end %>>New Show</a>
+          <a href="/dashboard" <% if request.path_info == "/dashboard" %> class="active" <% end %>>Dashboard</a>
+          <a href="/logout">Log Out</a>
+        </span>
       </nav>
       <% end %>
     </div> <!-- .wrapper -->

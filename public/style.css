@@ -98,6 +98,24 @@ nav {
   font-size: 1.5em;
 }
 
+nav.logged_in span {
+  background-color: violet;
+  padding: 6px 20px;
+  margin: 0px;
+  display: inline-block;
+  border: 0px solid violet;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+nav.logged_in span a {
+  color: black;
+}
+
+nav.logged_in span a:hover {
+  color: violet;
+}
+
 nav a {
   transition: color 0.3s ease;
   text-decoration: none;
