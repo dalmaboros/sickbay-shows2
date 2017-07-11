@@ -11,17 +11,19 @@ class UsersController < ApplicationController
       @user = User.new(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
         session[:user_id] = @user.id
-        redirect to '/dashboard'
+        flash[:message] = "Successfully created account!"
+        erb :'/users/dashboard'
       else
-        redirect to '/signup'
+        flash[:message] = "Could not save user."
+        erb :'/users/create_user'
       end
     else
-      redirect to '/signup'
+      flash[:message] = "Something went wrong. Try again."
+      erb :'/users/create_user'
     end
   end
 
   get '/login' do
-    # binding.pry
     if !logged_in?
       erb :'/users/login'
     else
@@ -33,18 +35,13 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      # flash[:message] = "Successfully logged in!"
-      # binding.pry
-      redirect to '/dashboard'
+      flash[:message] = "Successfully logged in!"
+      erb :'/users/dashboard'
     else
-      # flash[:message] = "Something went wrong. Try again."
-      # binding.pry
-      redirect '/login'
+      flash[:message] = "Something went wrong. Try again."
+      erb :'/users/login'
     end
   end
-
-  # READ
-
 
   # EDIT
   get '/settings' do
@@ -66,9 +63,11 @@ class UsersController < ApplicationController
         @user.email = params[:email]
       end
       @user.save
-      redirect to '/settings'
+      flash[:message] = "Successfully updated user!"
+      erb :'/users/edit_user'
     else
-      redirect to '/settings'
+      flash[:message] = "Could not update user."
+      erb :'/users/edit_user'
     end
   end
 
@@ -77,9 +76,11 @@ class UsersController < ApplicationController
     if logged_in? && @user.authenticate(params[:old_password]) && params[:password] === params[:confirm_password]
       @user.password = params[:password]
       @user.save
-      redirect to '/dashboard'
+      flash[:message] = "Successfully updated password!"
+      erb :'/users/dashboard'
     else
-      redirect to '/settings'
+      flash[:message] = "Could not update password."
+      erb :'/users/edit_user'
     end
   end
 
@@ -89,9 +90,11 @@ class UsersController < ApplicationController
     if logged_in? && @user.authenticate(params[:password])
       @user.destroy
       session.clear
-      redirect to '/backdoor'
+      flash[:message] = "BALEETED!"
+      erb :'/users/backdoor'
     else
-      redirect to "/settings"
+      flash[:message] = "Could not delete account."
+      erb :'/users/edit_user'
     end
   end
 
@@ -106,7 +109,6 @@ class UsersController < ApplicationController
   end
 
   get '/dashboard' do
-    # binding.pry
     if logged_in?
       erb :'/users/dashboard'
     else
@@ -115,8 +117,13 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    session.clear if logged_in?
-    redirect to '/backdoor'
+    if logged_in?
+      session.clear
+      flash[:message] = "Successfully logged out."
+      erb :'/users/backdoor'
+    else
+      redirect :'/'
+    end
   end
 
 end
