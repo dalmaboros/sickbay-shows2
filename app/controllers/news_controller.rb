@@ -1,7 +1,7 @@
 class NewsController < ApplicationController
 
   get '/news' do
-    @news = News.all
+    @news = News.all.order(:date).reverse
     erb :'/news/news_index'
   end
 
