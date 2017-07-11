@@ -15,7 +15,18 @@ class NewsController < ApplicationController
   end
 
   post '/news/new' do
-    #
+    if logged_in?
+      if News.find_by(date: params[:date], content: params[:content])
+        flash[:message] = "News item already exists."
+        redirect to "/news/new"
+      else
+        @news = News.create(date: params[:date], content: params[:content])
+        flash[:message] = "Successfully created news item!"
+        redirect to "/news"
+      end
+    else
+      redirect to '/artists'
+    end
   end
 
   # UPDATE

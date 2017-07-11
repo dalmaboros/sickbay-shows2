@@ -1,5 +1,17 @@
 <h2>News</h2>
 
-<% @news.each do |news| %>
-  <%= news.content %>
-<% end %>
+<table>
+  <tr>
+  <% @news.each do |news| %>
+    <td>
+      <% if !news.date.nil? && !news.date.empty? %>
+      <%= news.date.to_date.strftime("%m.%d") %>
+      <% end %>
+    </td>
+
+    <td class="details">
+      <%= news.content %>
+    </td>
+  </tr>
+  <% end %>
+</table>
