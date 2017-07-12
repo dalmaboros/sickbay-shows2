@@ -6,8 +6,11 @@ Sickbay is an ongoing series of local alternative live music shows in Lafayette,
 
 ### Installation
 
-1. Fork and clone repo to your machine
-2. Run `bundle install` in your terminal's command line to install dependencies
+1. [Fork and clone](https://help.github.com/articles/cloning-a-repository/) this repository to your machine
+2. To install gem dependencies, run the following command in your terminal:
+```
+'bundle install'
+```
 
 ### Usage
 
