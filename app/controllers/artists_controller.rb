@@ -23,7 +23,7 @@ class ArtistsController < ApplicationController
       else
         @artist = Artist.create(name: params[:name])
         flash[:message] = "Successfully created artist!"
-        redirect to "artists/#{@artist.id}"
+        redirect to "artists/#{@artist.slug}"
       end
     else
       redirect to '/artists'
@@ -31,8 +31,8 @@ class ArtistsController < ApplicationController
   end
 
   # READ
-  get '/artists/:id' do
-    @artist = Artist.find_by(id: params[:id])
+  get '/artists/:slug' do
+    @artist = Artist.find_by_slug(params[:slug])
     erb :'/artists/show_artist'
   end
 
@@ -71,5 +71,5 @@ class ArtistsController < ApplicationController
       redirect to "/artists/#{@artist.id}/edit"
     end
   end
-  
+
 end

@@ -60,6 +60,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   bcrypt
+  i18n
   pry
   rack-flash3
   rake

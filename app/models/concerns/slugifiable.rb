@@ -2,7 +2,8 @@ module Slugifiable
 
   module InstanceMethods #include
     def slug
-      self.name.downcase.gsub(" ","-")
+      I18n.transliterate(self.name.downcase.gsub(" ","-"))
+
     end
   end
 
