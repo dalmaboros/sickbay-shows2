@@ -1,4 +1,4 @@
-class CreateNews < ActiveRecord::Migration[5.0]
+class CreateNews < ActiveRecord::Migration
   def change
     create_table :news do |t|
       t.string :date

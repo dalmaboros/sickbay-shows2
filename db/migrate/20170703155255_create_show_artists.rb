@@ -1,4 +1,4 @@
-class CreateShowArtists < ActiveRecord::Migration[5.0]
+class CreateShowArtists < ActiveRecord::Migration
   def change
     create_table :show_artists do |t|
       t.integer :show_id
