@@ -1,8 +1,12 @@
-# Sickbay Show CMS
+# Sickbay Shows CMS
 
 ## Introduction
 
 Sickbay is an ongoing series of local alternative live music shows in Lafayette, Louisiana and surrounding areas. This project is a web-based content management system for creating and publishing these shows online.
+
+There is a public listing of shows and news items. Once logged in, a user can create new shows and news items that automatically get added to the public listings. A logged in user can also edit and delete shows and news items, as well as individual artists and venues.
+
+Created as a school project at the Flatiron School, this web app is designed for real world use by the producer of Sickbay for publicly listing events.
 
 ## Installation
 
