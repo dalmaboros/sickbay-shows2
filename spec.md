@@ -9,7 +9,7 @@ Specs:
 - [ ] Ensure that users can't modify content created by other users [This project's domain was designed to have only a few users who can edit all site content]
 - [x] Include user input validations [User input is validated in form HTML elements as well as associated controller routes]
 - [x] Display validation failures to user with error message (example form URL e.g. /posts/new) [Validation failures and successes appear as flash messages for all Show, Artist, and Venue forms]
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
 - [x] You have a large number of small Git commits
