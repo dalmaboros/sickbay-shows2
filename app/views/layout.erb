@@ -18,9 +18,9 @@
         <h1><a href="/">Sickbay</a></h1>
       </div>
       <nav>
+        <a href="/news" <% if request.path_info == "/news" %> class="active" <% end %>>News</a>
         <a href="/shows" <% if request.path_info == "/shows" %> class="active" <% end %>>Shows</a>
         <a href="/shows/archive" <% if request.path_info == "/shows/archive" %> class="active" <% end %>>Archive</a>
-        <a href="/news" <% if request.path_info == "/news" %> class="active" <% end %>>News</a>
         <a href="/contact" <% if request.path_info == "/contact" %> class="active" <% end %>>Contact</a>
         <a href="https://sickbaysounds.bandcamp.com/" target="_blank">Sounds</a>
       </nav>
