@@ -185,6 +185,10 @@ ul {
   text-transform: uppercase;
 }
 
+img.icon {
+  width: 36px;
+}
+
 /*////// ACCESSIBILITY //////*/
 
 .hidden {
