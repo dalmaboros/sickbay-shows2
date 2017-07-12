@@ -18,7 +18,11 @@
     </td>
 
     <td class="details">
-      <%= news.content %><br>
+      <% if news.url != "" %>
+        <a href="<%= news.url %>" target="_blank">
+      <% end %>
+      <%= news.content %>
+      </a>
     </td>
   </tr>
   <% end %>

@@ -5,6 +5,7 @@
 
   <p>Date: <input type="date" name="date" value="<%= @news.date %>" required></p>
   <p>Content: <input type="text" name="content" autocomplete="off" value="<%= @news.content %>" required></p>
+  <p>URL: <input type="url" name="url" autocomplete="off" value="<%= @news.url %>"></p>
 
   <input type="submit" value="SUBMIT"/>
   <a href="/news"><input type="submit" value="CANCEL" /></a>
