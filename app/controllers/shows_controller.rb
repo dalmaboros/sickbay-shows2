@@ -44,7 +44,7 @@ class ShowsController < ApplicationController
 
   get '/shows/all' do
     @shows = Show.order(:date).reverse
-    erb :'/shows/all_shows'
+    erb :'/shows/shows_index'
   end
 
   get '/shows/:id' do
