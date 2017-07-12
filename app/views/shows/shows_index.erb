@@ -1,11 +1,10 @@
 <% if request.path_info == "/shows/archive" %>
   <h2>Show Archive</h2>
-<% else %>
+<% elsif request.path_info == "/shows" %>
   <h2>Upcoming Shows</h2>
+<% elsif request.path_info == "/shows/all" %>
+  <h2>All Shows</h2>
 <% end %>
-
-Change so that if request.path_info == "/shows" then mm.dd,
-otherwise (archive and all shows) mm.dd.yy. Then delete "all_shows.erb"
 
 <table>
   <tr>
