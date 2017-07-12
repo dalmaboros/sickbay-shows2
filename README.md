@@ -23,11 +23,9 @@ shotgun
 
 ## Usage
 
-1. Visit `localhost:9393/backdoor` to log in or create a new account
-
-A logged in user can create, update, and delete shows and news items, as well as individual artists and venues.
-
-A logged out visitor can see a list of upcoming and archived shows, as well as current news.
+Visit http://localhost:9393/backdoor to log in or create a new account
+* A logged in user can create, update, and delete shows and news items, as well as individual artists and venues.
+* A logged out visitor can see a list of upcoming and archived shows, as well as current news.
 
 ## Contributing
 
