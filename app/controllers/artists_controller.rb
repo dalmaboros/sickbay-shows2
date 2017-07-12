@@ -37,38 +37,38 @@ class ArtistsController < ApplicationController
   end
 
   # EDIT
-  get '/artists/:id/edit' do
+  get '/artists/:slug/edit' do
     if logged_in?
-      @artist = Artist.find_by(id: params[:id])
+      @artist = Artist.find_by_slug(params[:slug])
       erb :'/artists/edit_artist'
     else
       redirect to '/artists'
     end
   end
 
-  patch '/artists/:id' do
+  patch '/artists/:slug' do
     if logged_in?
-      @artist = Artist.find_by(id: params[:id])
+      @artist = Artist.find_by_slug(params[:slug])
       @artist.name = params[:name] if params[:name] != @artist.name
       @artist.save
       flash[:message] = "Successfully updated artist!"
-      redirect to "/artists/#{@artist.id}"
+      redirect to "/artists/#{@artist.slug}"
     else
       redirect to '/artists'
     end
   end
 
   # DELETE
-  delete '/artists/:id/delete' do
+  delete '/artists/:slug/delete' do
     @user = current_user
-    @artist = Artist.find_by(id: params[:id])
+    @artist = Artist.find_by_slug(params[:slug])
     if logged_in? && @user.authenticate(params[:password])
       @artist.destroy
       flash[:message] = "BALEETED!"
       redirect to '/artists'
     else
       flash[:message] = "Incorrect password. Could not delete artist."
-      redirect to "/artists/#{@artist.id}/edit"
+      redirect to "/artists/#{@artist.slug}/edit"
     end
   end
 

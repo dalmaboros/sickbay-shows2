@@ -1,6 +1,6 @@
 <h2>Edit <%= @artist.name %></h2>
 
-<form method="POST" action="/artists/<%= @artist.id %>">
+<form method="POST" action="/artists/<%= @artist.slug %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 
   <p>Name: <input type="text" name="name" value="<%= @artist.name %>" autocomplete="off" required /></p>
@@ -14,7 +14,7 @@
 
 <h2>Delete Artist</h2>
 
-<form method="POST" action="/artists/<%= @artist.id %>/delete">
+<form method="POST" action="/artists/<%= @artist.slug %>/delete">
 <input id="hidden" type="hidden" name="_method" value="delete">
 
   <p>Enter Password to Delete Artist: <input type="password" name="password" required /></p>
