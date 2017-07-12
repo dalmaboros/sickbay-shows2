@@ -22,5 +22,5 @@
 </table>
 
 <% if logged_in? %>
-<h3><a href="/venues/<%= @venue.id %>/edit">Edit <%= @venue.name %></a></h3>
+<h3><a href="/venues/<%= @venue.slug %>/edit">Edit <%= @venue.name %></a></h3>
 <% end %>

@@ -1,6 +1,6 @@
 <h2>Edit <%= @venue.name %></h2>
 
-<form method="POST" action="/venues/<%= @venue.id %>">
+<form method="POST" action="/venues/<%= @venue.slug %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 
   <p>Name: <input type="text" name="name" value="<%= @venue.name %>" autocomplete="off" required /></p>
@@ -14,7 +14,7 @@
 
 <h2>Delete Venue</h2>
 
-<form method="POST" action="/venues/<%= @venue.id %>/delete">
+<form method="POST" action="/venues/<%= @venue.slug %>/delete">
 <input id="hidden" type="hidden" name="_method" value="delete">
 
   <p>Enter Password to Delete Venue: <input type="password" name="password" required /></p>
