@@ -6,4 +6,6 @@ class Artist < ActiveRecord::Base
   has_many :venue_artists
   has_many :venues, through: :venue_artists
 
+  include Slugifiable::InstanceMethods
+  extend Slugifiable::ClassMethods
 end
