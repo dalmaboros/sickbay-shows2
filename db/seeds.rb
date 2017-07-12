@@ -21,3 +21,7 @@ the_reeds = Artist.create(name: "Mitch & Renée Reed")
 
 show2.artists.push(tumbling_wheels, the_reeds)
 show2.save
+
+# NEWS ITEM 1
+
+news1 = News.create(date: "2017-07-12", content: "New single coming out this month!", url: "https://sickbaysounds.bandcamp.com/")

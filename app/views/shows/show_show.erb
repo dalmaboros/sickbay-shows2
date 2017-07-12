@@ -1,10 +1,10 @@
 <h2>Show I.D. #<%= @show.id %> Details</h2>
 
-<p>Date: <%= @show.date.to_date.strftime("%A, %B %d, %Y") %> </p>
+<p><strong>Date:</strong> <%= @show.date.to_date.strftime("%A, %B %d, %Y") %> </p>
 
-<p>Venue: <a href="/venues/<%= @show.venue.id %>"><%= @show.venue.name %></a></p>
+<p><strong>Venue:</strong> <a href="/venues/<%= @show.venue.id %>"><%= @show.venue.name %></a></p>
 
-<p>Artists:
+<p><strong>Artists:</strong>
   <ul>
     <% @show.artists.collect do |artist| %>
       <li><a href="/artists/<%= artist.id %>"><%= artist.name %></a></li>
@@ -12,6 +12,6 @@
   </ul>
 </p>
 
-<p>URL: <a href="<%= @show.url %>"><%= @show.url %></a></p>
+<p><strong>URL:</strong> <a href="<%= @show.url %>"><%= @show.url %></a></p>
 
 <h3><a href="/shows/<%= @show.id %>/edit">Edit Show</a></h3>
