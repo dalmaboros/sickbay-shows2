@@ -7,7 +7,7 @@ show1 = Show.create(date: "2017-07-08", venue: biergarten, url: "https://www.fac
 
 adult_braces = Artist.create(name: "Adult Braces")
 now_i = Artist.create(name: "Now I Am Become Death")
-marie = Artist.create(name: "Marie Et La Toilette")
+marie = Artist.create(name: "Marie")
 mystery = Artist.create(name: "Mystery Guest")
 
 show1.artists.push(adult_braces, now_i, marie, mystery)
@@ -24,4 +24,4 @@ show2.save
 
 # NEWS ITEM 1
 
-news1 = News.create(date: "2017-07-12", content: "New single coming out this month!", url: "https://sickbaysounds.bandcamp.com/")
+news1 = News.create(date: "2017-07-12", content: "New Sickbay Singles Club release by Sarcotics coming August 4th!", url: "https://sickbaysounds.bandcamp.com/")
