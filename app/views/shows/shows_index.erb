@@ -1,9 +1,9 @@
 <% if request.path_info == "/shows/archive" %>
   <h2>Show Archive</h2>
-<% elsif request.path_info == "/shows" %>
-  <h2>Upcoming Shows</h2>
 <% elsif request.path_info == "/shows/all" %>
   <h2>All Shows</h2>
+<% else %>
+  <h2>Upcoming Shows</h2>
 <% end %>
 
 <table>
