@@ -8,7 +8,7 @@ Created as a school project at the Flatiron School, this web app is designed for
 
 ## Installation
 
-1. [Fork and clone](https://help.github.com/articles/cloning-a-repository/) this repository to your machine
+1. [Fork and clone](https://help.github.com/articles/cloning-a-repository/) this repository to your local environment.
 2. Install gem dependencies using the following command in your terminal:
 ```
 $ bundle install
