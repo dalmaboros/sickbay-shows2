@@ -11,17 +11,18 @@ Created as a school project at the Flatiron School, this web app is designed for
 1. [Fork and clone](https://help.github.com/articles/cloning-a-repository/) this repository to your machine
 2. Install gem dependencies using the following command in your terminal:
 ```
-bundle install
+$ bundle install
 ```
 3. Initialize the database:
 ```
-rake db:migrate
+$ rake db:migrate
 ```
-4. Start the application server:
+4. [Install PostgreSQL](https://www.postgresql.org/download/). Open PostgreSQL and start the server (click the start button).
+5. Start the application server:
 ```
-shotgun
+$ shotgun
 ```
-5. Navigate to http://localhost:9393 to view the application.
+6. Navigate to http://localhost:9393 to view the application.
 
 ## Usage
 
