@@ -1,10 +1,4 @@
 class ArtistsController < ApplicationController
-  # use Rack::Flash
-
-  get '/artists' do
-    @artists = Artist.order("lower(name)")
-    erb :'/artists/artists_index'
-  end
 
   # CREATE
   get '/artists/new' do
@@ -31,12 +25,17 @@ class ArtistsController < ApplicationController
   end
 
   # READ
+  get '/artists' do
+    @artists = Artist.order("lower(name)")
+    erb :'/artists/artists_index'
+  end
+
   get '/artists/:slug' do
     @artist = Artist.find_by_slug(params[:slug])
     erb :'/artists/show_artist'
   end
 
-  # EDIT
+  # UPDATE
   get '/artists/:slug/edit' do
     if logged_in?
       @artist = Artist.find_by_slug(params[:slug])

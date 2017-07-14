@@ -1,11 +1,4 @@
 class VenuesController < ApplicationController
-  # enable :sessions
-  # use Rack::Flash
-
-  get '/venues' do
-    @venues = Venue.order("lower(name)")
-    erb :'/venues/venues_index'
-  end
 
   # CREATE
   get '/venues/new' do
@@ -32,12 +25,17 @@ class VenuesController < ApplicationController
   end
 
   # READ
+  get '/venues' do
+    @venues = Venue.order("lower(name)")
+    erb :'/venues/venues_index'
+  end
+
   get '/venues/:slug' do
     @venue = Venue.find_by_slug(params[:slug])
     erb :'/venues/show_venue'
   end
 
-  # EDIT
+  # UPDATE
   get '/venues/:slug/edit' do
     if logged_in?
       @venue = Venue.find_by_slug(params[:slug])

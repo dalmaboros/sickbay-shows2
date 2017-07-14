@@ -1,8 +1,5 @@
 class ApplicationController < Sinatra::Base
   use Rack::Flash
-  # set :session_secret, "my_application_secret"
-  # set :views, Proc.new { File.join(root, "../views/") }
-  # set :public_folder, Proc.new { File.join(root, "static") }
 
   # CONFIGURE
   configure do
@@ -12,14 +9,26 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
-  # ROUTES
+  # GENERAL ROUTES
   get '/' do
-    @shows = Show.order(:date).where("date > ?", DateTime.now.to_date)
+    @shows = Show.where("date >= ?", Date.today).order(:date)
     erb :'/shows/shows_index'
   end
 
-  get '/contact' do
-    erb :contact
+  get '/backdoor' do
+    if !logged_in?
+      erb :backdoor
+    else
+      redirect to '/dashboard'
+    end
+  end
+
+  get '/dashboard' do
+    if logged_in?
+      erb :dashboard
+    else
+      redirect to '/'
+    end
   end
 
   not_found do

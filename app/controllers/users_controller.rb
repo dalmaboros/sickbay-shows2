@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  # use Rack::Flash
 
   # CREATE
   get '/signup' do
@@ -23,6 +22,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # READ?
   get '/login' do
     if !logged_in?
       erb :login
@@ -43,7 +43,17 @@ class UsersController < ApplicationController
     end
   end
 
-  # EDIT
+  get '/logout' do
+    if logged_in?
+      session.clear
+      flash[:message] = "Successfully logged out."
+      erb :backdoor
+    else
+      redirect to '/'
+    end
+  end
+
+  # UPDATE
   get '/settings' do
     if logged_in?
       @user = current_user
@@ -95,34 +105,6 @@ class UsersController < ApplicationController
     else
       flash[:message] = "Could not delete account."
       erb :'/users/edit_user'
-    end
-  end
-
-  # ETC...
-
-  get '/backdoor' do
-    if !logged_in?
-      erb :backdoor
-    else
-      redirect to '/dashboard'
-    end
-  end
-
-  get '/dashboard' do
-    if logged_in?
-      erb :dashboard
-    else
-      redirect to '/'
-    end
-  end
-
-  get '/logout' do
-    if logged_in?
-      session.clear
-      flash[:message] = "Successfully logged out."
-      erb :backdoor
-    else
-      redirect to '/'
     end
   end
 

@@ -59,7 +59,7 @@ class ShowsController < ApplicationController
     end
   end
 
-  # EDIT
+  # UPDATE
   get '/shows/:id/edit' do
     if logged_in?
       @show = Show.find_by(id: params[:id])
