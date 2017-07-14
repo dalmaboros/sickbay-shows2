@@ -13,9 +13,10 @@ Created as a school project at the Flatiron School, this web app is designed for
 ```
 $ bundle install
 ```
-3. Initialize the database:
+3. Initialize and seed the database:
 ```
 $ rake db:migrate
+$ rake db:seed
 ```
 4. [Install PostgreSQL](https://www.postgresql.org/download/). Open PostgreSQL and start the server (click the start button).
 5. Start the application server:

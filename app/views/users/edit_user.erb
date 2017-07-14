@@ -32,7 +32,7 @@
 
 <form method="POST" action="/users/<%= @user.id %>/delete">
 <input id="hidden" type="hidden" name="_method" value="delete">
-  <p>Enter Password to Delete User: <input type="password" name="password" required /></p>
+  <p><label for="password">Enter Password to Delete User:</label> <input type="password" name="password" id="password" required /></p>
 
   <input type="submit" value="DELETE USER"></p>
 </form></p>

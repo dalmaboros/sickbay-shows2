@@ -3,9 +3,9 @@
 <form method="POST" action="/news/<%= @news.id %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 
-  <p>Date: <input type="date" name="date" value="<%= @news.date %>" required></p>
-  <p>Content: <input type="text" name="content" autocomplete="off" value="<%= @news.content %>" required></p>
-  <p>URL: <input type="url" name="url" autocomplete="off" value="<%= @news.url %>"></p>
+  <p><label for="date">Date:</label> <input type="date" name="date" id="date" value="<%= @news.date %>" required></p>
+  <p><label for="contents">Content:</label> <input type="text" name="content" id="contents" autocomplete="off" value="<%= @news.content %>" required></p>
+  <p><label for="url">URL:</label> <input type="url" name="url" id="url" autocomplete="off" value="<%= @news.url %>"></p>
 
   <input type="submit" value="UPDATE"/>
   <a href="/news"><input type="submit" value="CANCEL" /></a>
@@ -18,6 +18,6 @@
 <form method="POST" action="/news/<%= @news.id %>/delete">
 <input id="hidden" type="hidden" name="_method" value="delete">
 
-  <p>Enter Password to Delete News Item: <input type="password" name="password" required /></p>
+  <p><label for="password">Enter Password to Delete News Item:</label> <input type="password" name="password" id="password" required /></p>
   <input type="submit" value="DELETE NEWS"></p>
 </form>

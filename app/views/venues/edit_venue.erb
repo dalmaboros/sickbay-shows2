@@ -3,7 +3,7 @@
 <form method="POST" action="/venues/<%= @venue.slug %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 
-  <p>Name: <input type="text" name="name" value="<%= @venue.name %>" autocomplete="off" required /></p>
+  <p><label for="name">Name:</label> <input type="text" name="name" id="name" value="<%= @venue.name %>" autocomplete="off" required /></p>
 
   <input type="submit" value ="UPDATE"/>
 </form>
@@ -17,6 +17,6 @@
 <form method="POST" action="/venues/<%= @venue.slug %>/delete">
 <input id="hidden" type="hidden" name="_method" value="delete">
 
-  <p>Enter Password to Delete Venue: <input type="password" name="password" required /></p>
+  <p><label for="password">Enter Password to Delete Venue:</label> <input type="password" name="password" id="password" required /></p>
   <input type="submit" value="DELETE VENUE"></p>
 </form></p>

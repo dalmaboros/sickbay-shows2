@@ -1,49 +1,65 @@
 <h2>Create a New Show</h2>
 
 <form method="POST" action="/shows/new">
-  <p>Date: <input type="date" name="date" required /></p>
+  <p>
+    <label for="date">Date:</label>
+    <input type="date" name="date" id="date" required />
+  </p>
 
-  <p>Venue:
-  <input type="text" list="venues" name="venue" autocomplete="off" required />
-  <datalist id="venues">
-    <% Venue.all.order("lower(name)").each do |venue| %>
-      <option value="<%= venue.name %>"><%= venue.name %></option>
-    <% end %>
-  </datalist></p>
+  <p>
+    <label for="venue">Venue:</label>
+    <input type="text" list="venues" name="venue" id="venue" autocomplete="off" required />
+    <datalist id="venues">
+      <% Venue.all.order("lower(name)").each do |venue| %>
+        <option value="<%= venue.name %>"><%= venue.name %></option>
+      <% end %>
+    </datalist>
+  </p>
 
-  <p>Artist 1:
-  <input type="text" list="artists" name="artists[]" autocomplete="off" required />
-  <datalist id="artists">
-    <% Artist.all.order("lower(name)").each do |artist| %>
-      <option value="<%= artist.name %>"><%= artist.name %></option>
-    <% end %>
-  </datalist></p>
+  <p>
+    <label for="artist1">Artist 1:</label>
+    <input type="text" list="artists" name="artists[]" id="artist1" autocomplete="off" required />
+    <datalist id="artists">
+      <% Artist.all.order("lower(name)").each do |artist| %>
+        <option value="<%= artist.name %>"><%= artist.name %></option>
+      <% end %>
+    </datalist>
+  </p>
 
-  <p>Artist 2:
-  <input type="text" list="artists2" name="artists[]" autocomplete="off" />
-  <datalist id="artists2">
-    <% Artist.all.order("lower(name)").each do |artist| %>
-      <option value="<%= artist.name %>"><%= artist.name %></option>
-    <% end %>
-  </datalist></p>
+  <p>
+    <label for="artist2">Artist 2:</label>
+    <input type="text" list="artists2" name="artists[]" id="artist2" autocomplete="off" />
+    <datalist id="artists2">
+      <% Artist.all.order("lower(name)").each do |artist| %>
+        <option value="<%= artist.name %>"><%= artist.name %></option>
+      <% end %>
+    </datalist>
+  </p>
 
-  <p>Artist 3:
-  <input type="text" list="artists3" name="artists[]" autocomplete="off" />
-  <datalist id="artists3">
-    <% Artist.all.order("lower(name)").each do |artist| %>
-      <option value="<%= artist.name %>"><%= artist.name %></option>
-    <% end %>
-  </datalist></p>
+  <p>
+    <label for="artist3">Artist 3:</label>
+    <input type="text" list="artists3" name="artists[]" id="artist3" autocomplete="off" />
+    <datalist id="artists3">
+      <% Artist.all.order("lower(name)").each do |artist| %>
+        <option value="<%= artist.name %>"><%= artist.name %></option>
+      <% end %>
+    </datalist>
+  </p>
 
-  <p>Artist 4:
-  <input type="text" list="artists4" name="artists[]" autocomplete="off" />
-  <datalist id="artists4">
-    <% Artist.all.order("lower(name)").each do |artist| %>
-      <option value="<%= artist.name %>"><%= artist.name %></option>
-    <% end %>
-  </datalist></p>
+  <p>
+    <label for="artist4">Artist 4:</label>
+    <input type="text" list="artists4" name="artists[]" id="artist4" autocomplete="off" />
+    <datalist id="artists4">
+      <% Artist.all.order("lower(name)").each do |artist| %>
+        <option value="<%= artist.name %>"><%= artist.name %></option>
+      <% end %>
+    </datalist>
+  </p>
 
-  <p>URL: <input type="url" name="url" autocomplete="off" ></p>
+  <p>
+    <label for="url">URL:</label>
+    <input type="url" name="url" id="url" autocomplete="off" >
+  </p>
 
   <input type="submit" value="SUBMIT"/>
 </form>
