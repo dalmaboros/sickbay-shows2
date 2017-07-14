@@ -11,15 +11,14 @@ class ShowsController < ApplicationController
 
   post '/shows/new' do
     if logged_in?
-      @venue = Venue.find_or_create_by(name: params[:venue])
-      @show = Show.new(date: params[:date], venue: @venue)
+      venue = Venue.find_or_create_by(name: params[:venue])
+      @show = Show.new(date: params[:date], venue: venue)
       @show.url = params[:url] if !params[:url].empty?
 
       # add all artists if not empty
       params[:artists].each do |artist|
         if !artist.empty?
-          artist_object = Artist.find_or_create_by(name: artist)
-          @show.artists << artist_object
+          @show.artists << Artist.find_or_create_by(name: artist)
         end
       end
 
