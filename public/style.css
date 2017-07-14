@@ -24,6 +24,7 @@ body {
 .wrapper {
   width: 100%;
   margin: 0 auto;
+  padding: 0;
 }
 
 .clearfix:after {
@@ -52,16 +53,19 @@ a:active {
 }
 
 /*////// HEADINGS //////*/
+header {
+  padding-bottom: 5px;
+}
 
 h1 {
   font-family: Firecat;
-  font-size: 3.3em;
+  font-size: 3.0em;
   color: beige;
   text-shadow: 2px 2px 2px violet;
   text-align: center;
   margin-bottom: 0;
-  padding-bottom: 12px;
-  margin-left: -1px;
+  padding-bottom: 10px;
+  margin-left: 0px;
   display: block;
   max-width: 100%;
 }
@@ -94,9 +98,9 @@ h3 {
 
 nav {
   text-align: center;
-  padding: 5px;
+  padding: 0px;
   font-family: 'VT323', monospace;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 nav.logged_in span {
@@ -140,16 +144,6 @@ nav a.active {
 }
 
 nav.logged_in a:link, nav.logged_in a:visited {
-}
-
-nav a[href="/shows/new"] {
-  /*color: violet;*/
-  /*transition: text-shadow 0.3s ease;*/
-}
-
-nav a[href="/shows/new"]:hover {
-  /*color: beige;*/
-  /*text-shadow: 2px 2px 2px beige;*/
 }
 
 /*////// BODY //////*/
@@ -230,18 +224,25 @@ img.icon {
 /*////// SECTIONS //////*/
 
 section {
-  margin: 10px auto;
+  margin: 0px auto;
 }
 
 footer {
   text-align: center;
-  border: 1px solid pink;
-  font-size: .9em;
+  border: none;
+}
+
+footer p {
+  font-size: 1.3em;
+}
+
+footer span.copyright {
+  display: block;
 }
 
 #content {
-  max-width: 700px;
-  padding: 10px 30px;
+  max-width: 400px;
+  padding: 0px 15px;
 }
 
 /*////// TABLE //////*/
@@ -254,7 +255,7 @@ table {
 
 td {
   vertical-align: top;
-  padding: 12px 0;
+  padding: 6px 0;
   text-transform: uppercase;
 }
 
@@ -344,9 +345,39 @@ input[type=submit]:hover {
 
 /* MEDIA QUERIES */
 
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 360px) {
   body {
-  font-size: 120%;
+    font-size: 115%;
+  }
+
+  header {
+    margin-bottom: 15px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    font-size: 132%;
+  }
+
+  h1 {
+    font-size: 4.0em;
+  }
+
+  nav {
+    font-size: 1.8em;
+  }
+
+  #content {
+    max-width: 550px;
+    padding: 0px 20px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #content {
+    max-width: 700px;
+    /*padding: 0px 40px;*/
   }
 }
 
