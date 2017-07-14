@@ -1,4 +1,4 @@
-# Add seed data here. Seed your database with `rake db:seed`
+# Seed database with `rake db:seed`
 
 biergarten = Venue.create(name: "The Wurst Biergarten")
 
