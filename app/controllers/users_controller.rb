@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         flash[:message] = "Successfully created account!"
-        erb :'/users/dashboard'
+        erb :dashboard
       else
         flash[:message] = "Could not save user."
         erb :'/users/create_user'
@@ -25,9 +25,9 @@ class UsersController < ApplicationController
 
   get '/login' do
     if !logged_in?
-      erb :'/users/login'
+      erb :login
     else
-      erb :'/users/dashboard'
+      erb :dashboard
     end
   end
 
@@ -36,10 +36,10 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:message] = "Successfully logged in!"
-      erb :'/users/dashboard'
+      erb :dashboard
     else
       flash[:message] = "Something went wrong. Try again."
-      erb :'/users/login'
+      erb :login
     end
   end
 
@@ -77,7 +77,7 @@ class UsersController < ApplicationController
       @user.password = params[:password]
       @user.save
       flash[:message] = "Successfully updated password!"
-      erb :'/users/dashboard'
+      erb :dashboard
     else
       flash[:message] = "Could not update password."
       erb :'/users/edit_user'
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
       @user.destroy
       session.clear
       flash[:message] = "BALEETED!"
-      erb :'/users/backdoor'
+      erb :backdoor
     else
       flash[:message] = "Could not delete account."
       erb :'/users/edit_user'
@@ -102,7 +102,7 @@ class UsersController < ApplicationController
 
   get '/backdoor' do
     if !logged_in?
-      erb :'/users/backdoor'
+      erb :backdoor
     else
       redirect to '/dashboard'
     end
@@ -110,7 +110,7 @@ class UsersController < ApplicationController
 
   get '/dashboard' do
     if logged_in?
-      erb :'/users/dashboard'
+      erb :dashboard
     else
       redirect to '/'
     end
@@ -120,9 +120,9 @@ class UsersController < ApplicationController
     if logged_in?
       session.clear
       flash[:message] = "Successfully logged out."
-      erb :'/users/backdoor'
+      erb :backdoor
     else
-      redirect :'/'
+      redirect to '/'
     end
   end
 
