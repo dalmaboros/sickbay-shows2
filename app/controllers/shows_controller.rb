@@ -32,7 +32,7 @@ class ShowsController < ApplicationController
 
   # READ
   get '/shows' do
-    @shows = Show.where("date > ?", Date.today).order(:date)
+    @shows = Show.where("date >= ?", Date.today).order(:date)
     erb :'/shows/shows_index'
   end
 
