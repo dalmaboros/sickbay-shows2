@@ -293,6 +293,7 @@ input[type=text], input[type=url], input[type=password], input[type=email], inpu
     border: none;
     border-radius: 4px;
     box-sizing: border-box;
+    -webkit-appearance: none;
 }
 
 input[type=submit] {
@@ -307,10 +308,12 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    -webkit-appearance: none;
 }
 
 input[type=submit]:hover {
     background-color: violet;
+    -webkit-appearance: none;
 }
 
 /* DATALIST POLYFILL */
@@ -333,15 +336,15 @@ input[type=submit]:hover {
 	display: none !important;
 }
 
-    .datalist-polyfill > li {
-        padding: 3px;
-        font: 13px "Lucida Grande", Sans-Serif;
-    }
+.datalist-polyfill > li {
+  padding: 3px;
+  font: 13px "Lucida Grande", Sans-Serif;
+}
 
-    .datalist-polyfill__active {
-        background: #3875d7;
-        color: white;
-    }
+.datalist-polyfill__active {
+  background: #3875d7;
+  color: white;
+}
 
 /* MEDIA QUERIES */
 
@@ -349,11 +352,9 @@ input[type=submit]:hover {
   body {
     font-size: 115%;
   }
-
   nav {
     padding: 2px 0px 0px 0px;
   }
-
   header {
     margin-bottom: 15px;
   }
@@ -363,16 +364,13 @@ input[type=submit]:hover {
   body {
     font-size: 132%;
   }
-
   h1 {
     font-size: 4.0em;
   }
-
   nav {
     font-size: 1.6em;
     padding: 5px 0px 0px 0px;
   }
-
   #content {
     max-width: 550px;
     padding: 0px 20px;
@@ -390,12 +388,12 @@ input[type=submit]:hover {
 
 /* Mozilla based browsers */
 ::-moz-selection {
-       background-color: beige;
-       color: violet;
+  background-color: beige;
+  color: violet;
 }
 
 /* Works in Safari */
 ::selection {
-       background-color: beige;
-       color: violet;
+  background-color: beige;
+  color: violet;
 }
