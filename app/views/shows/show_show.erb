@@ -2,7 +2,7 @@
 
 <p><strong>Date:</strong> <%= @show.date.to_date.strftime("%A, %B %d, %Y") %> </p>
 
-<p><strong>Venue:</strong> <a href="/venues/<%= @show.venue.id %>"><%= @show.venue.name %></a></p>
+<p><strong>Venue:</strong> <a href="/venues/<%= @show.venue.slug %>"><%= @show.venue.name %></a></p>
 
 <p><strong>Artists:</strong>
   <ul>
