@@ -14,7 +14,7 @@
         <a href="/shows/<%= show.id %>">
       <% end %>
 
-      <% if request.path_info == "/shows" || if request.path_info == "/" %>
+      <% if request.path_info == "/shows" || request.path_info == "/" %>
         <%= show.date.to_date.strftime("%m.%d") %>
       <% else %>
         <%= show.date.to_date.strftime("%m.%d.%y") %>
