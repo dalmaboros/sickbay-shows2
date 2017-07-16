@@ -11,11 +11,11 @@ class NewsController < ApplicationController
 
   post '/news/new' do
     if logged_in?
-      if News.find_by(date: params[:date], content: params[:content], url: params[:url])
+      if News.find_by(date: params[:date], content: params[:content])
         flash[:message] = "News item already exists."
         redirect to "/news/new"
       else
-        @news = News.create(date: params[:date], content: params[:content], url: params[:url])
+        @news = News.create(date: params[:date], content: params[:content], url: params[:url], image_url: params[:image_url])
         flash[:message] = "Successfully created news item!"
         redirect to "/news"
       end
@@ -55,6 +55,7 @@ class NewsController < ApplicationController
       @news.date = params[:date] if params[:date] != @news.date
       @news.content = params[:content] if params[:content] != @news.content
       @news.url = params[:url] if params[:url] != @news.url
+      @news.image_url = params[:image_url] if params[:image_url] != @news.image_url
       @news.save
       flash[:message] = "Successfully updated news item!"
       redirect to "/news"

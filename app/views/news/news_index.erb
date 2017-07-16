@@ -18,10 +18,13 @@
     </td>
 
     <td class="details">
-      <% if news.url != "" %>
+      <% if !news.url.empty? %>
         <a href="<%= news.url %>" target="_blank">
       <% end %>
       <%= news.content %>
+      <% if !news.image_url.nil? %>
+        <img src="<%= news.image_url %>" width="100%">
+      <% end %>
       </a>
     </td>
   </tr>
