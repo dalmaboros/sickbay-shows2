@@ -282,7 +282,7 @@ table a:active {
 
 /*////// FORM //////*/
 
-input[type=text], input[type=url], input[type=password], input[type=email], input[type=date] {
+input[type=text], input[type=url], input[type=password], input[type=email], input[type=date], textarea {
   width: 100%;
   background-color: beige;
   font-family: 'VT323', monospace;
@@ -298,6 +298,10 @@ input[type=text], input[type=url], input[type=password], input[type=email], inpu
 
 input[type=date] {
   -webkit-appearance: none;
+}
+
+textarea {
+  resize: none;
 }
 
 input[type=submit] {

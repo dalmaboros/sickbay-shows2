@@ -4,7 +4,7 @@
 <input id="hidden" type="hidden" name="_method" value="patch">
 
   <p><label for="date">Date:</label> <input type="date" name="date" id="date" value="<%= @news.date %>" required></p>
-  <p><label for="contents">Content:</label> <input type="text" name="content" id="contents" autocomplete="off" value="<%= @news.content %>" required></p>
+  <p><label for="contents">Content:</label> <textarea rows="1" name="content" value="contents" required></textarea></p>
   <p><label for="url">URL:</label> <input type="url" name="url" id="url" autocomplete="off" value="<%= @news.url %>"></p>
   <p><label for="image_url">Image URL:</label> <input type="url" name="image_url" id="image_url" autocomplete="off" value="<%= @news.image_url %>"></p>
 
