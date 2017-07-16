@@ -283,37 +283,41 @@ table a:active {
 /*////// FORM //////*/
 
 input[type=text], input[type=url], input[type=password], input[type=email], input[type=date] {
-    width: 100%;
-    background-color: beige;
-    font-family: 'VT323', monospace;
-    font-size: .8em;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: none;
-    border-radius: 4px;
-    box-sizing: border-box;
-    -webkit-appearance: none;
+  width: 100%;
+  background-color: beige;
+  font-family: 'VT323', monospace;
+  font-size: .8em;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  /*-webkit-appearance: none;*/
+}
+
+input[type=date] {
+  -webkit-appearance: none;
 }
 
 input[type=submit] {
-    width: 100%;
-    background-color: #000;
-    color: beige;
-    font-family: 'VT323', monospace;
-    font-size: 1.6em;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    -webkit-appearance: none;
+  width: 100%;
+  background-color: #000;
+  color: beige;
+  font-family: 'VT323', monospace;
+  font-size: 1.6em;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  -webkit-appearance: none;
 }
 
 input[type=submit]:hover {
-    background-color: violet;
-    -webkit-appearance: none;
+  background-color: violet;
+  -webkit-appearance: none;
 }
 
 /* DATALIST POLYFILL */
@@ -377,7 +381,7 @@ input[type=submit]:hover {
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 875px) {
   #content {
     max-width: 700px;
     padding: 0px 40px;
