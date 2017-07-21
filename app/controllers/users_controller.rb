@@ -150,7 +150,6 @@ class UsersController < ApplicationController
     elsif @user && !@user.authenticate(params[:password])
       @errors[:password] = "Incorrect password."
     end
-
   end
 
 end

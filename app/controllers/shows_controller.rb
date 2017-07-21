@@ -73,7 +73,6 @@ class ShowsController < ApplicationController
   get '/shows/:id/edit' do
     if logged_in?
       @show = Show.find_by(id: params[:id])
-      binding.pry
       erb :'/shows/edit_show'
     else
       redirect to '/shows'
@@ -111,15 +110,14 @@ class ShowsController < ApplicationController
 
   # DELETE
   delete '/shows/:id/delete' do
-    @user = current_user
+    validate_password
     @show = Show.find_by(id: params[:id])
-    if logged_in? && @user.authenticate(params[:password])
+    if @errors.empty?
       @show.destroy
       flash[:message] = "BALEETED!"
       redirect to '/shows'
     else
-      flash[:message] = "Incorrect password. Could not delete show."
-      redirect to "/shows/#{@show.id}/edit"
+      erb :'/shows/edit_show'
     end
   end
 
@@ -140,6 +138,17 @@ class ShowsController < ApplicationController
 
     if params[:artists].all? {|artist| artist == "" }
       @errors[:artists] = "Must have at least one artist!"
+    end
+  end
+
+  def validate_password
+    @errors = {}
+    @user = current_user
+
+    if params[:password].empty?
+      @errors[:password] = "Password can't be empty!"
+    elsif @user && !@user.authenticate(params[:password])
+      @errors[:password] = "Incorrect password."
     end
   end
 

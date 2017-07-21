@@ -70,9 +70,9 @@
     name="artists[]"
     id="artist1"
     value = <% if params[:artists] && !@errors[:artists] %>
-    "<%= params[:artists][0] if !params[:artists][0].empty? %>butt"
+    "<%= params[:artists][0] if !params[:artists][0].empty? %>"
     <% else %>
-    "<%= @show.artists[0].name if @show.artists[0] %>hole"
+    "<%= @show.artists[0].name if @show.artists[0] %>"
     <% end %>
     autocomplete="off"
   />
@@ -171,8 +171,21 @@
 <h2>Delete Show</h2>
 
 <form method="POST" action="/shows/<%= @show.id %>/delete">
-<input id="hidden" type="hidden" name="_method" value="delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
 
-  <p><label for="password">Enter Password to Delete Show:</label> <input type="password" name="password" id="password" required /></p>
-  <input type="submit" value="DELETE SHOW"></p>
+  <p>
+    <% if @errors && @errors[:password] %>
+      <label for="password" style="color: violet;">
+        <%= @errors[:password] %>
+      </label>
+    <% else %>
+      <label for="password">
+        Enter Password To Delete Show:
+      </label>
+    <% end %>
+    <input type="password" name="password" id="password" />
+  </p>
+
+  <input type="submit" value="DELETE SHOW" />
+  <p></p>
 </form></p>
