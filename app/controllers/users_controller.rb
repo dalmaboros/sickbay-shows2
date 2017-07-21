@@ -14,7 +14,6 @@ class UsersController < ApplicationController
       flash[:message] = "Successfully created account!"
       erb :dashboard
     else
-      # flash[:message] = "Something went wrong. Try again."
       erb :'/users/create_user'
     end
   end
@@ -32,6 +31,7 @@ class UsersController < ApplicationController
     validate_login
     if @user && @errors.empty?
       session[:user_id] = @user.id
+      binding.pry
       flash[:message] = "Successfully logged in!"
       erb :dashboard
     else
