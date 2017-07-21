@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
 
   # CREATE
-  get '/signup' do
+  get '/users/new' do
     @user = User.new
     erb :'/users/create_user'
   end
 
-  post '/signup' do
+  post '/users' do
     validate_signup
     @user = User.new(username: params[:username], email: params[:email], password: params[:password])
     if @errors.empty? && @user.save
