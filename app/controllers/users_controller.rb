@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       flash[:message] = "Successfully created account!"
       erb :dashboard
     else
-      flash[:message] = "Something went wrong. Try again."
+      # flash[:message] = "Something went wrong. Try again."
       erb :'/users/create_user'
     end
   end
@@ -29,13 +29,13 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    @user = User.find_by(username: params[:username])
-    if @user && @user.authenticate(params[:password])
+    validate_login
+    if @user && @errors.empty?
       session[:user_id] = @user.id
       flash[:message] = "Successfully logged in!"
       erb :dashboard
     else
-      flash[:message] = "Something went wrong. Try again."
+      # flash[:message] = "Something went wrong. Try again."
       erb :login
     end
   end
@@ -116,7 +116,7 @@ class UsersController < ApplicationController
       @errors[:username] = "Username is taken!"
     end
 
-    if params[:email].empty?
+    if params[:email] && params[:email].empty?
       @errors[:email] = "Email can't be empty!"
     elsif User.find_by(email: params[:email])
       @errors[:email] = "Email is taken!"
@@ -128,11 +128,29 @@ class UsersController < ApplicationController
       @errors[:password] = "Password must be between 8 - 20 character long"
     end
 
-    if params[:confirm_password].empty?
+    if params[:confirm_password] && params[:confirm_password].empty?
       @errors[:confirm_password] = "Please confirm your password!"
     elsif params[:confirm_password] != params[:password]
       @errors[:confirm_password] = "Passwords don't match!"
     end
+  end
+
+  def validate_login
+    @errors = {}
+    @user = User.find_by(username: params[:username])
+
+    if params[:username].empty?
+      @errors[:username] = "Username can't be empty!"
+    elsif !@user
+      @errors[:username] = "Username does not exist!"
+    end
+
+    if params[:password].empty?
+      @errors[:password] = "Password can't be empty!"
+    elsif @user && !@user.authenticate(params[:password])
+      @errors[:password] = "Incorrect password."
+    end
+
   end
 
 end

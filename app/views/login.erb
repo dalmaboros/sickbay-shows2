@@ -1,7 +1,35 @@
 <h2>Log In</h2>
 <form method="POST" action="/login">
-  <p><label for="username">Username:</label> <input type="text" name="username" id="username" autocomplete="off" required></p>
-  <p><label for="password">Password:</label> <input type="password" name="password" id="password" required></p>
+  <p>
+    <% if @errors && @errors[:username] %>
+      <label for="username" style="color: violet;">
+        <%= @errors[:username] %>
+      </label>
+    <% else %>
+      <label for="username">
+        Username:
+      </label>
+    <% end %>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      autocomplete="off"
+      value = "<%= @user.username if @user %>"
+    />
+  </p>
+  <p>
+    <% if @errors && @errors[:password] %>
+      <label for="password" style="color: violet;">
+        <%= @errors[:password] %>
+      </label>
+    <% else %>
+      <label for="password">
+        Password:
+      </label>
+    <% end %>
+    <input type="password" name="password" id="password" />
+  </p>
 
   <input type="submit" value="SUBMIT">
 
