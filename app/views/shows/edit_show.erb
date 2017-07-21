@@ -3,63 +3,163 @@
 <form method="POST" action="/shows/<%= @show.id %>">
 <input id="hidden" type="hidden" name="_method" value="patch">
 
-  <p>
-    <label for="date">Date:</label>
-    <input type="date" name="date" id="date" value="<%= @show.date %>" required />
-  </p>
+<p>
+  <% if @errors && @errors[:date] %>
+    <label for="date" style="color: violet;">
+      <%= @errors[:date] %>
+    </label>
+  <% else %>
+    <label for="date">
+      Date:
+    </label>
+  <% end %>
+  <input
+    type="date"
+    name="date"
+    id="date"
+    value=<% if params[:date] && !@errors[:date] %>
+    "<%= params[:date] %>"
+    <% else %>
+    "<%= @show.date %>"
+    <% end %>
+    autocomplete="off"
+  />
+</p>
 
-  <p>
-    <label for="venue">Venue:</label>
-    <input type="text" list="venues" name="venue" id="venue" value="<%= @show.venue.name %>" autocomplete="off" required />
-    <datalist id="venues">
-      <% Venue.all.order("lower(name)").each do |venue| %>
-        <option value="<%= venue.name %>"><%= venue.name %></option>
-      <% end %>
-    </datalist>
-  </p>
+<p>
+  <% if @errors && @errors[:venue] %>
+    <label for="venue" style="color: violet;">
+      <%= @errors[:venue] %>
+    </label>
+  <% else %>
+    <label for="venue">
+      Venue:
+    </label>
+  <% end %>
+  <input
+    type="text"
+    list="venues"
+    name="venue" id="venue"
+    value = <% if params[:venue] && !@errors[:venue] %>
+    "<%= params[:venue] %>"
+    <% else %>
+    "<%= @show.venue.name %>"
+    <% end %>
+    autocomplete="off"
+  />
+  <datalist id="venues">
+    <% Venue.all.order("lower(name)").each do |venue| %>
+      <option value="<%= venue.name %>"><%= venue.name %></option>
+    <% end %>
+  </datalist>
+</p>
 
-  <p>
-    <label for="artist1">Artist 1:</label>
-    <input type="text" list="artists" name="artists[]" id="artist1" value="<%= @show.artists[0].name if @show.artists[0]%>" autocomplete="off" required />
-    <datalist id="artists">
-      <% Artist.all.order("lower(name)").each do |artist| %>
-        <option value="<%= artist.name %>"><%= artist.name %></option>
-      <% end %>
-    </datalist>
-  </p>
+<p>
+  <% if @errors && @errors[:artists] %>
+    <label for="artist1" style="color: violet;">
+      <%= @errors[:artists] %>
+    </label>
+  <% else %>
+    <label for="artist1">
+      Artist 1:
+    </label>
+  <% end %>
+  <input
+    type="text"
+    list="artists"
+    name="artists[]"
+    id="artist1"
+    value = <% if params[:artists] && !@errors[:artists] %>
+    "<%= params[:artists][0] if !params[:artists][0].empty? %>butt"
+    <% else %>
+    "<%= @show.artists[0].name if @show.artists[0] %>hole"
+    <% end %>
+    autocomplete="off"
+  />
+  <datalist id="artists">
+    <% Artist.all.order("lower(name)").each do |artist| %>
+      <option value="<%= artist.name %>"><%= artist.name %></option>
+    <% end %>
+  </datalist>
+</p>
 
-  <p>
-    <label for="artist2">Artist 2:</label>
-    <input type="text" list="artists2" name="artists[]" id="artist2" value="<%= @show.artists[1].name if @show.artists[1]%>" autocomplete="off" />
-    <datalist id="artists2">
-      <% Artist.all.order("lower(name)").each do |artist| %>
-        <option value="<%= artist.name %>"><%= artist.name %></option>
-      <% end %>
-    </datalist></p>
+<p>
+  <label for="artist2">Artist 2:</label>
+  <input
+    type="text"
+    list="artists2"
+    name="artists[]"
+    id="artist2"
+    value = <% if params[:artists] && !@errors[:artists] %>
+    "<%= params[:artists][1] %>"
+    <% else %>
+    "<%= @show.artists[1].name if @show.artists[1] %>"
+    <% end %>
+    autocomplete="off"
+  />
+  <datalist id="artists2">
+    <% Artist.all.order("lower(name)").each do |artist| %>
+      <option value="<%= artist.name %>"><%= artist.name %></option>
+    <% end %>
+  </datalist>
+</p>
 
-  <p>
-    <label for="artist3">Artist 3:</label>
-    <input type="text" list="artists3" name="artists[]" id="artist3" value="<%= @show.artists[2].name if @show.artists[2]%>" autocomplete="off" />
-    <datalist id="artists3">
-      <% Artist.all.order("lower(name)").each do |artist| %>
-        <option value="<%= artist.name %>"><%= artist.name %></option>
-      <% end %>
-    </datalist>
-  </p>
+<p>
+  <label for="artist3">Artist 3:</label>
+  <input
+    type="text"
+    list="artists3"
+    name="artists[]"
+    id="artist3"
+    value = <% if params[:artists] && !@errors[:artists] %>
+    "<%= params[:artists][2] %>"
+    <% else %>
+    "<%= @show.artists[2].name if @show.artists[2] %>"
+    <% end %>
+    autocomplete="off"
+  />
+  <datalist id="artists3">
+    <% Artist.all.order("lower(name)").each do |artist| %>
+      <option value="<%= artist.name %>"><%= artist.name %></option>
+    <% end %>
+  </datalist>
+</p>
 
-  <p>
-    <label for="artist4">Artist 4:</label>
-    <input type="text" list="artists4" name="artists[]" id="artist4" value="<%= @show.artists[3].name if @show.artists[3]%>" autocomplete="off" />
-    <datalist id="artists4">
-      <% Artist.all.order("lower(name)").each do |artist| %>
-        <option value="<%= artist.name %>"><%= artist.name %></option>
-      <% end %>
-    </datalist>
-  </p>
+<p>
+  <label for="artist4">Artist 4:</label>
+  <input
+    type="text"
+    list="artists4"
+    name="artists[]"
+    id="artist4"
+    value = <% if params[:artists] && !@errors[:artists] %>
+    "<%= params[:artists][3] if params[:artists][3] %>"
+    <% else %>
+    "<%= @show.artists[3].name if @show.artists[3] %>"
+    <% end %>
+    autocomplete="off"
+  />
+  <datalist id="artists4">
+    <% Artist.all.order("lower(name)").each do |artist| %>
+      <option value="<%= artist.name %>"><%= artist.name %></option>
+    <% end %>
+  </datalist>
+</p>
 
-  <p><label for="url">URL:</label>
-    <input type="url" name="url" id="url" value="<%= @show.url %>" autocomplete="off" >
-  </p>
+<p>
+  <label for="url">URL:</label>
+  <input
+    type="url"
+    name="url"
+    id="url"
+    value = <% if params[:url] && !@errors[:url] %>
+    "<%= params[:url] %>"
+    <% else %>
+    "<%= @show.url %>"
+    <% end %>
+    autocomplete="off"
+  />
+</p>
 
   <input type="submit" value="UPDATE"/>
 </form>

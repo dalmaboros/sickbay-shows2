@@ -36,7 +36,7 @@ class ShowsController < ApplicationController
         erb :'/shows/create_show'
       end
     else
-      erb :'/shows/create_show' #maybe not needed
+      erb :'/shows'
     end
   end
 
@@ -73,6 +73,7 @@ class ShowsController < ApplicationController
   get '/shows/:id/edit' do
     if logged_in?
       @show = Show.find_by(id: params[:id])
+      binding.pry
       erb :'/shows/edit_show'
     else
       redirect to '/shows'
@@ -81,22 +82,28 @@ class ShowsController < ApplicationController
 
   patch '/shows/:id' do
     if logged_in?
+      validate_show
       @show = Show.find_by(id: params[:id])
-      @show.date = params[:date] if params[:date] != @show.date
-      @show.venue = Venue.find_or_create_by(name: params[:venue]) if params[:venue] != @show.venue.name
-      @show.url = params[:url] if params[:url] != @show.url && !params[:url].empty?
+      binding.pry
+      if @errors.empty?
+        @show.date = params[:date] if params[:date] != @show.date
+        @show.venue = Venue.find_or_create_by(name: params[:venue]) if params[:venue] != @show.venue.name
+        @show.url = params[:url] if params[:url] != @show.url && !params[:url].empty?
 
-      @show.artists.clear
-      params[:artists].each do |artist|
-        if !artist.empty?
-          artist_object = Artist.find_or_create_by(name: artist)
-          @show.artists << artist_object
+        @show.artists.clear
+        params[:artists].each do |artist|
+          if !artist.empty?
+            artist_object = Artist.find_or_create_by(name: artist)
+            @show.artists << artist_object
+          end
         end
-      end
 
-      @show.save
-      flash[:message] = "Successfully updated show!"
-      redirect to "/shows/#{@show.id}"
+        @show.save
+        flash[:message] = "Successfully updated show!"
+        redirect to "/shows/#{@show.id}"
+      else
+        erb :'/shows/edit_show'
+      end
     else
       redirect to '/shows'
     end
@@ -132,7 +139,7 @@ class ShowsController < ApplicationController
     end
 
     if params[:artists].all? {|artist| artist == "" }
-      @errors[:artist] = "Must have at least one artist!"
+      @errors[:artists] = "Must have at least one artist!"
     end
   end
 
