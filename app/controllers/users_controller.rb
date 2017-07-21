@@ -2,20 +2,17 @@ class UsersController < ApplicationController
 
   # CREATE
   get '/signup' do
+    @user = User.new
     erb :'/users/create_user'
   end
 
   post '/signup' do
-    if !params[:username].empty? && !params[:email].empty? && !params[:password].empty? && params[:password] === params[:confirm_password] && !User.find_by(username: params[:username])
-      @user = User.new(username: params[:username], email: params[:email], password: params[:password])
-      if @user.save
-        session[:user_id] = @user.id
-        flash[:message] = "Successfully created account!"
-        erb :dashboard
-      else
-        flash[:message] = "Could not save user."
-        erb :'/users/create_user'
-      end
+    validate_signup
+    @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+    if @errors.empty? && @user.save
+      session[:user_id] = @user.id
+      flash[:message] = "Successfully created account!"
+      erb :dashboard
     else
       flash[:message] = "Something went wrong. Try again."
       erb :'/users/create_user'
@@ -105,6 +102,36 @@ class UsersController < ApplicationController
     else
       flash[:message] = "Could not delete account."
       erb :'/users/edit_user'
+    end
+  end
+
+  private
+
+  def validate_signup
+    @errors = {}
+
+    if params[:username].empty?
+      @errors[:username] = "Username can't be empty!"
+    elsif User.find_by(username: params[:username])
+      @errors[:username] = "Username is taken!"
+    end
+
+    if params[:email].empty?
+      @errors[:email] = "Email can't be empty!"
+    elsif User.find_by(email: params[:email])
+      @errors[:email] = "Email is taken!"
+    end
+
+    if params[:password].empty?
+      @errors[:password] = "Password can't be empty!"
+    elsif params[:password].length < 8 || params[:password].length > 20
+      @errors[:password] = "Password must be between 8 - 20 character long"
+    end
+
+    if params[:confirm_password].empty?
+      @errors[:confirm_password] = "Please confirm your password!"
+    elsif params[:confirm_password] != params[:password]
+      @errors[:confirm_password] = "Passwords don't match!"
     end
   end
 
