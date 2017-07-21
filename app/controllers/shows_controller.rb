@@ -3,30 +3,40 @@ class ShowsController < ApplicationController
   # CREATE
   get '/shows/new' do
     if logged_in?
+      @show = Show.new
       erb :'/shows/create_show'
     else
       redirect to '/shows'
     end
   end
 
-  post '/shows/new' do
+  post '/shows' do
     if logged_in?
-      venue = Venue.find_or_create_by(name: params[:venue])
-      @show = Show.new(date: params[:date], venue: venue)
-      @show.url = params[:url] if !params[:url].empty?
+      validate_show
+      @show = Show.new
+      binding.pry
 
-      # add all artists if not empty
-      params[:artists].each do |artist|
-        if !artist.empty?
-          @show.artists << Artist.find_or_create_by(name: artist)
+      if @errors.empty?
+        @show.date = params[:date]
+        @show.venue = Venue.find_or_create_by(name: params[:venue])
+        @show.url = params[:url] if !params[:url].empty?
+
+        # add all artists if not empty
+        params[:artists].each do |artist|
+          if !artist.empty?
+            @show.artists << Artist.find_or_create_by(name: artist)
+          end
         end
-      end
+        @show.save
 
-      @show.save
-      flash[:message] = "Successfully created show!"
-      redirect to "/shows/#{@show.id}"
+        flash[:message] = "Successfully created show!"
+        redirect to "/shows/#{@show.id}"
+        # redirect to "/login"
+      else
+        erb :'/shows/create_show'
+      end
     else
-      redirect to "/shows"
+      erb :'/shows/create_show' #maybe not needed
     end
   end
 
@@ -105,4 +115,25 @@ class ShowsController < ApplicationController
       redirect to "/shows/#{@show.id}/edit"
     end
   end
+
+  private
+
+  def validate_show
+    @errors = {}
+
+    if params[:date].empty?
+      @errors[:date] = "Date can't be empty!"
+    elsif !/^\d{4}-\d{2}-\d{2}$/.match(params[:date])
+      @errors[:date] = "Date format must be yyyy-mm-dd!"
+    end
+
+    if params[:venue] && params[:venue].empty?
+      @errors[:venue] = "Venue can't be empty!"
+    end
+
+    if params[:artists].all? {|artist| artist == "" }
+      @errors[:artist] = "Must have at least one artist!"
+    end
+  end
+
 end
