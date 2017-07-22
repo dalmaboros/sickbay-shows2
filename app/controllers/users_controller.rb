@@ -61,20 +61,17 @@ class UsersController < ApplicationController
   end
 
   patch '/settings' do
-    @user = current_user
-    if logged_in? && @user.authenticate(params[:password])
-      if @user.username != params[:username] && !params[:username].empty?
+    if logged_in?
+      validate_edit
+      if @errors.empty?
         @user.username = params[:username]
-      end
-      if @user.email != params[:email] && !params[:email].empty?
         @user.email = params[:email]
+        @user.save
+        flash[:message] = "Successfully updated user!"
+        erb :'/users/edit_user'
+      else
+        erb :'/users/edit_user'
       end
-      @user.save
-      flash[:message] = "Successfully updated user!"
-      erb :'/users/edit_user'
-    else
-      flash[:message] = "Could not update user."
-      erb :'/users/edit_user'
     end
   end
 
@@ -124,8 +121,8 @@ class UsersController < ApplicationController
 
     if params[:password].empty?
       @errors[:password] = "Password can't be empty!"
-    elsif params[:password].length < 8 || params[:password].length > 20
-      @errors[:password] = "Password must be between 8 - 20 character long"
+    elsif params[:password].length < 6 || params[:password].length > 20
+      @errors[:password] = "Password must be between 6 - 20 characters long"
     end
 
     if params[:confirm_password] && params[:confirm_password].empty?
@@ -143,6 +140,29 @@ class UsersController < ApplicationController
       @errors[:username] = "Username can't be empty!"
     elsif !@user
       @errors[:username] = "Username does not exist!"
+    end
+
+    if params[:password].empty?
+      @errors[:password] = "Password can't be empty!"
+    elsif @user && !@user.authenticate(params[:password])
+      @errors[:password] = "Incorrect password."
+    end
+  end
+
+  def validate_edit
+    @errors = {}
+    @user = current_user
+
+    if params[:username].empty?
+      @errors[:username] = "Username can't be empty!"
+    elsif User.find_by(username: params[:username]) && User.find_by(username: params[:username]) != @user
+      @errors[:username] = "Username is taken!"
+    end
+
+    if params[:email].empty?
+      @errors[:email] = "Email can't be empty!"
+    elsif User.find_by(email: params[:email]) && !@user.email
+      @errors[:email] = "Email is taken!"
     end
 
     if params[:password].empty?

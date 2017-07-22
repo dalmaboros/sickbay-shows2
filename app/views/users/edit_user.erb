@@ -3,11 +3,60 @@
 <form method="POST" action="/settings">
 <input id="hidden" type="hidden" name="_method" value="patch">
 
-  <p>Username: <input type="text" name="username" value="<%= current_user.username %>" autocomplete="off" required /></p>
+  <p>
+    <% if @errors && @errors[:username] %>
+      <label for="username" style="color: violet;">
+        <%= @errors[:username] %>
+      </label>
+    <% else %>
+      <label for="username">
+        Username:
+      </label>
+    <% end %>
+    <input
+      type="text"
+      name="username"
+      id="password"
+      value="<%= current_user.username %>"
+      autocomplete="off"
+      />
+  </p>
 
-  <p>Email: <input type="email" name="email" value="<%= current_user.email %>" autocomplete="off" required /></p>
+  <p>
+    <% if @errors && @errors[:email] %>
+      <label for="email" style="color: violet;">
+        <%= @errors[:email] %>
+      </label>
+    <% else %>
+      <label for="email">
+        Email:
+      </label>
+    <% end %>
+    <input
+      type="email"
+      name="email"
+      id="password"
+      value="<%= current_user.email %>"
+      autocomplete="off"
+      />
+  </p>
 
-  <p>Enter Password to Make Changes: <input type="password" name="password" required /></p>
+  <p>
+    <% if @errors && @errors[:password] %>
+      <label for="password" style="color: violet;">
+        <%= @errors[:password] %>
+      </label>
+    <% else %>
+      <label for="password">
+        Enter Password To Make Changes:
+      </label>
+    <% end %>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      />
+  </p>
 
   <input type="submit" value="UPDATE" />
 </form>
@@ -17,12 +66,23 @@
 <h2>Change Password</h2>
 
 <form method="POST" action="/password">
-<input id="hidden" type="hidden" name="_method" value="patch">
-  <p>Old Password: <input type="password" name="old_password" required /></p>
+  <input id="hidden" type="hidden" name="_method" value="patch">
 
-  <p>New Password: <input type="password" name="password" required /></p>
+  <p>
+    Old Password:
+    <input type="password" name="old_password" required />
+  </p>
 
-  <p>Confirm New Password: <input type="password" name="confirm_password" required /></p>
+  <p>
+    New Password:
+    <input type="password" name="password" required />
+  </p>
+
+  <p>
+    Confirm New Password:
+    <input type="password" name="confirm_password" required />
+  </p>
+
   <input type="submit" value="SUBMIT" />
 </form>
 
