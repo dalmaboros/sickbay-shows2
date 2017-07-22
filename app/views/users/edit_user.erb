@@ -16,7 +16,7 @@
     <input
       type="text"
       name="username"
-      id="password"
+      id="username"
       value="<%= current_user.username %>"
       autocomplete="off"
       />
@@ -35,7 +35,7 @@
     <input
       type="email"
       name="email"
-      id="password"
+      id="email"
       value="<%= current_user.email %>"
       autocomplete="off"
       />
@@ -69,18 +69,54 @@
   <input id="hidden" type="hidden" name="_method" value="patch">
 
   <p>
-    Old Password:
-    <input type="password" name="old_password" required />
+    <% if @errors && @errors[:old_password] %>
+      <label for="old_password" style="color: violet;">
+        <%= @errors[:old_password] %>
+      </label>
+    <% else %>
+      <label for="old_password">
+        Old Password:
+      </label>
+    <% end %>
+    <input
+      type="password"
+      name="old_password"
+      id="old_password"
+      />
   </p>
 
   <p>
-    New Password:
-    <input type="password" name="password" required />
+    <% if @errors && @errors[:new_password] %>
+      <label for="new_password" style="color: violet;">
+        <%= @errors[:new_password] %>
+      </label>
+    <% else %>
+      <label for="new_password">
+        New Password:
+      </label>
+    <% end %>
+    <input
+      type="password"
+      name="new_password"
+      id="new_password"
+      />
   </p>
 
   <p>
-    Confirm New Password:
-    <input type="password" name="confirm_password" required />
+    <% if @errors && @errors[:confirm_password] %>
+      <label for="confirm_password" style="color: violet;">
+        <%= @errors[:confirm_password] %>
+      </label>
+    <% else %>
+      <label for="confirm_password">
+        Confirm New Password:
+      </label>
+    <% end %>
+    <input
+      type="password"
+      name="confirm_password"
+      id="confirm_password"
+      />
   </p>
 
   <input type="submit" value="SUBMIT" />
@@ -91,8 +127,20 @@
 <h2>Delete Account</h2>
 
 <form method="POST" action="/users/<%= @user.id %>/delete">
-<input id="hidden" type="hidden" name="_method" value="delete">
-  <p><label for="password">Enter Password to Delete User:</label> <input type="password" name="password" id="password" required /></p>
+  <input id="hidden" type="hidden" name="_method" value="delete">
+
+  <p>
+    <label for="delete_password">
+      Enter Password to Delete User:
+    </label>
+    <input
+      type="password"
+      name="password"
+      id="delete_password"
+      required />
+  </p>
 
   <input type="submit" value="DELETE USER"></p>
-</form></p>
+</form>
+
+<p></p>

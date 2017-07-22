@@ -76,15 +76,17 @@ class UsersController < ApplicationController
   end
 
   patch '/password' do
-    @user = current_user
-    if logged_in? && @user.authenticate(params[:old_password]) && params[:password] === params[:confirm_password]
-      @user.password = params[:password]
-      @user.save
-      flash[:message] = "Successfully updated password!"
-      erb :dashboard
-    else
-      flash[:message] = "Could not update password."
-      erb :'/users/edit_user'
+    if logged_in?
+      validate_password
+      if @errors.empty?
+        @user.password = params[:new_password]
+        @user.save
+        flash[:message] = "Successfully updated password!"
+        erb :'/users/edit_user'
+      else
+        flash[:message] = "Could not update password."
+        erb :'/users/edit_user'
+      end
     end
   end
 
@@ -169,6 +171,29 @@ class UsersController < ApplicationController
       @errors[:password] = "Password can't be empty!"
     elsif @user && !@user.authenticate(params[:password])
       @errors[:password] = "Incorrect password."
+    end
+  end
+
+  def validate_password
+    @errors = {}
+    @user = current_user
+
+    if params[:old_password].empty?
+      @errors[:old_password] = "Please enter your current password!"
+    elsif @user && !@user.authenticate(params[:old_password])
+      @errors[:old_password] = "Incorrect password."
+    end
+
+    if params[:new_password].empty?
+      @errors[:new_password] = "New password can't be blank!"
+    elsif params[:new_password].length < 6 || params[:new_password].length > 20
+      @errors[:new_password] = "New password must be between 6 - 20 characters long"
+    end
+
+    if params[:confirm_password] && params[:confirm_password].empty?
+      @errors[:confirm_password] = "Please confirm your new password!"
+    elsif params[:confirm_password] != params[:new_password]
+      @errors[:confirm_password] = "Passwords don't match!"
     end
   end
 
