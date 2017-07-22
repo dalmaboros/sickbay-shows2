@@ -130,14 +130,20 @@
   <input id="hidden" type="hidden" name="_method" value="delete">
 
   <p>
-    <label for="delete_password">
-      Enter Password to Delete User:
-    </label>
+    <% if @errors && @errors[:delete_password] %>
+      <label for="delete_password" style="color: violet;">
+        <%= @errors[:delete_password] %>
+      </label>
+    <% else %>
+      <label for="delete_password">
+        Enter Password To Delete Account:
+      </label>
+    <% end %>
     <input
       type="password"
-      name="password"
+      name="delete_password"
       id="delete_password"
-      required />
+      />
   </p>
 
   <input type="submit" value="DELETE USER"></p>

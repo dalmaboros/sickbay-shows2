@@ -92,15 +92,17 @@ class UsersController < ApplicationController
 
   # DELETE
   delete '/users/:id/delete' do
-    @user = current_user
-    if logged_in? && @user.authenticate(params[:password])
-      @user.destroy
-      session.clear
-      flash[:message] = "BALEETED!"
-      erb :backdoor
-    else
-      flash[:message] = "Could not delete account."
-      erb :'/users/edit_user'
+    if logged_in?
+      @user = current_user
+      validate_delete
+      if @errors.empty?
+        @user.destroy
+        session.clear
+        flash[:message] = "BALEETED!"
+        erb :backdoor
+      else
+        erb :'/users/edit_user'
+      end
     end
   end
 
@@ -194,6 +196,17 @@ class UsersController < ApplicationController
       @errors[:confirm_password] = "Please confirm your new password!"
     elsif params[:confirm_password] != params[:new_password]
       @errors[:confirm_password] = "Passwords don't match!"
+    end
+  end
+
+  def validate_delete
+    @errors = {}
+    @user = current_user
+
+    if params[:delete_password].empty?
+      @errors[:delete_password] = "Password can't be empty!"
+    elsif @user && !@user.authenticate(params[:delete_password])
+      @errors[:delete_password] = "Incorrect password."
     end
   end
 
