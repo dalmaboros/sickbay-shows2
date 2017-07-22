@@ -1,7 +1,23 @@
 <h2>New Artist</h2>
 
 <form method="POST" action="/artists/new">
-  <p><label for="name">Name:</label> <input type="text" name="name" id="name" autocomplete="off" required></p>
+  <p>
+    <% if @errors && @errors[:artist] %>
+      <label for="name" style="color: violet;">
+        <%= @errors[:artist] %>
+      </label>
+    <% else %>
+      <label for="name">
+        Name:
+      </label>
+    <% end %>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      autocomplete="off"
+      />
+  </p>
 
   <input type="submit" value="SUBMIT"/>
 </form>

@@ -11,13 +11,14 @@ class ArtistsController < ApplicationController
 
   post '/artists/new' do
     if logged_in?
-      if Artist.find_by(name: params[:name])
-        flash[:message] = "Artist already exists."
-        redirect to "artists/new"
-      else
+      validate_artist
+      binding.pry
+      if @errors.empty?
         @artist = Artist.create(name: params[:name])
         flash[:message] = "Successfully created artist!"
         redirect to "artists/#{@artist.slug}"
+      else
+        erb :'/artists/create_artist'
       end
     else
       redirect to '/artists'
@@ -68,6 +69,18 @@ class ArtistsController < ApplicationController
     else
       flash[:message] = "Incorrect password. Could not delete artist."
       redirect to "/artists/#{@artist.slug}/edit"
+    end
+  end
+
+  private
+
+  def validate_artist
+    @errors = {}
+
+    if params[:name].empty?
+      @errors[:artist] = "Artist can't be empty!"
+    elsif Artist.find_by(name: params[:name])
+      @errors[:artist] = "Artist already exists!"
     end
   end
 
