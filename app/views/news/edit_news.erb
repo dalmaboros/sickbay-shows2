@@ -18,7 +18,7 @@
       name="date"
       id="date"
       value="<%= @news.date %>"
-      required>
+      />
   </p>
   <p>
     <% if @errors && @errors[:content] %>
@@ -34,7 +34,7 @@
       rows="1"
       name="content"
       id="contents"
-      required><%= @news.content %></textarea>
+      /><%= @news.content %></textarea>
   </p>
   <p>
     <label for="url">URL:</label>
