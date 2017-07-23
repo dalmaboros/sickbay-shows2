@@ -6,7 +6,7 @@ class ShowsController < ApplicationController
       @show = Show.new
       erb :'/shows/create_show'
     else
-      redirect to '/shows'
+      redirect to '/'
     end
   end
 
@@ -14,7 +14,6 @@ class ShowsController < ApplicationController
     if logged_in?
       validate_show
       @show = Show.new
-      binding.pry
 
       if @errors.empty?
         @show.date = params[:date]
@@ -31,7 +30,6 @@ class ShowsController < ApplicationController
 
         flash[:message] = "Successfully created show!"
         redirect to "/shows/#{@show.id}"
-        # redirect to "/login"
       else
         erb :'/shows/create_show'
       end
@@ -65,7 +63,7 @@ class ShowsController < ApplicationController
         erb :'/shows/show_show'
       end
     else
-      redirect to '/shows'
+      redirect to '/'
     end
   end
 
@@ -75,7 +73,7 @@ class ShowsController < ApplicationController
       @show = Show.find_by(id: params[:id])
       erb :'/shows/edit_show'
     else
-      redirect to '/shows'
+      redirect to '/'
     end
   end
 
@@ -104,20 +102,24 @@ class ShowsController < ApplicationController
         erb :'/shows/edit_show'
       end
     else
-      redirect to '/shows'
+      redirect to '/'
     end
   end
 
   # DELETE
   delete '/shows/:id/delete' do
-    validate_password
-    @show = Show.find_by(id: params[:id])
-    if @errors.empty?
-      @show.destroy
-      flash[:message] = "BALEETED!"
-      redirect to '/shows'
+    if logged_in?
+      validate_password
+      @show = Show.find_by(id: params[:id])
+      if @errors.empty?
+        @show.destroy
+        flash[:message] = "BALEETED!"
+        redirect to '/shows'
+      else
+        erb :'/shows/edit_show'
+      end
     else
-      erb :'/shows/edit_show'
+      redirect to '/'
     end
   end
 

@@ -72,6 +72,8 @@ class UsersController < ApplicationController
       else
         erb :'/users/edit_user'
       end
+    else
+      redirect to '/'
     end
   end
 
@@ -87,6 +89,8 @@ class UsersController < ApplicationController
         flash[:message] = "Could not update password."
         erb :'/users/edit_user'
       end
+    else
+      redirect to '/'
     end
   end
 
@@ -103,6 +107,8 @@ class UsersController < ApplicationController
       else
         erb :'/users/edit_user'
       end
+    else
+      redirect to '/'
     end
   end
 

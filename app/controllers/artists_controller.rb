@@ -48,11 +48,16 @@ class ArtistsController < ApplicationController
 
   patch '/artists/:slug' do
     if logged_in?
+      validate_artist
       @artist = Artist.find_by_slug(params[:slug])
-      @artist.name = params[:name] if params[:name] != @artist.name
-      @artist.save
-      flash[:message] = "Successfully updated artist!"
-      redirect to "/artists/#{@artist.slug}"
+      if @errors.empty?
+        @artist.name = params[:name]
+        @artist.save
+        flash[:message] = "Successfully updated artist!"
+        redirect to "/artists/#{@artist.slug}"
+      else
+        erb :'/artists/edit_artist'
+      end
     else
       redirect to '/artists'
     end
@@ -79,7 +84,7 @@ class ArtistsController < ApplicationController
 
     if params[:name].empty?
       @errors[:artist] = "Artist can't be empty!"
-    elsif Artist.find_by(name: params[:name])
+    elsif Artist.find_by(name: params[:name]) && Artist.find_by(name: params[:name]) != Artist.find_by_slug(params[:slug])
       @errors[:artist] = "Artist already exists!"
     end
   end
