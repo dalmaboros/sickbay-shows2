@@ -92,10 +92,12 @@ class ArtistsController < ApplicationController
       @errors[:artist] = "Artist already exists!"
     end
 
-    if params[:password].empty?
-      @errors[:password] = "Password can't be empty!"
-    elsif @user && !@user.authenticate(params[:password])
-      @errors[:password] = "Incorrect password."
+    if params[:password]
+      if params[:password].empty?
+        @errors[:password] = "Password can't be empty!"
+      elsif @user && !@user.authenticate(params[:password])
+        @errors[:password] = "Incorrect password."
+      end
     end
   end
 
