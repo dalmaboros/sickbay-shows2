@@ -11,13 +11,14 @@ class VenuesController < ApplicationController
 
   post '/venues/new' do
     if logged_in?
-      if Venue.find_by(name: params[:name])
-        flash[:message] = "Venue already exists."
-        redirect to "venues/new"
-      else
+      validate_venue
+      binding.pry
+      if @errors.empty?
         @venue = Venue.create(name: params[:name])
         flash[:message] = "Successfully created venue!"
         redirect to "venues/#{@venue.slug}"
+      else
+        erb :'/venues/create_venue'
       end
     else
       redirect to '/venues'
@@ -68,6 +69,27 @@ class VenuesController < ApplicationController
     else
       flash[:message] = "Incorrect password. Could not delete venue."
       redirect to "/venues/#{@venue.slug}/edit"
+    end
+  end
+
+  private
+
+  def validate_venue
+    @errors = {}
+    @user = current_user
+
+    if params[:name] && params[:name].empty?
+      @errors[:venue] = "Venue can't be empty!"
+    elsif Venue.find_by(name: params[:name]) && Venue.find_by(name: params[:name]) != Venue.find_by_slug(params[:slug])
+      @errors[:venue] = "Venue already exists!"
+    end
+
+    if params[:password]
+      if params[:password].empty?
+        @errors[:password] = "Password can't be empty!"
+      elsif @user && !@user.authenticate(params[:password])
+        @errors[:password] = "Incorrect password."
+      end
     end
   end
 

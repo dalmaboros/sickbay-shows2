@@ -1,9 +1,25 @@
 <h2>New Venue</h2>
 
 <form method="POST" action="/venues/new">
-  <p><label for="name">Name:</label> <input type="text" name="name" id="name" autocomplete="off" required></p>
+  <p>
+    <% if @errors && @errors[:venue] %>
+      <label for="name" style="color: violet;">
+        <%= @errors[:venue] %>
+      </label>
+    <% else %>
+      <label for="name">
+        Name:
+      </label>
+    <% end %>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      autocomplete="off"
+      />
+  </p>
 
-  <input type="submit" value="SUBMIT"/>
+  <input type="submit" value="SUBMIT" />
 </form>
 
 <a href="/venues"><input type="submit" value="CANCEL" /></a>

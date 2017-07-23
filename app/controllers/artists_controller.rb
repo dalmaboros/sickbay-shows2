@@ -65,11 +65,9 @@ class ArtistsController < ApplicationController
 
   # DELETE
   delete '/artists/:slug/delete' do
-    # @user = current_user
     if logged_in?
       @artist = Artist.find_by_slug(params[:slug])
       validate_artist
-      binding.pry
       if @errors.empty?
         @artist.destroy
         flash[:message] = "BALEETED!"
