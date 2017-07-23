@@ -23,7 +23,7 @@
     </td>
 
     <td class="details">
-      <% if !show.url.empty? %>
+      <% if !show.url.nil? && !show.url.empty? %>
       <a href="<%= show.url %>" target="_blank">
       <% end %>
       <%= show.artists.collect { |artist| artist.name }.join(" + ") %> at <%= show.venue.name %>
