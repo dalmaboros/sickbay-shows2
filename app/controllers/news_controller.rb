@@ -10,7 +10,7 @@ class NewsController < ApplicationController
   end
 
   post '/news' do
-    if logged_in?
+    if authorized?
       validate_news
       @news = News.new
       if @errors.empty?
@@ -24,7 +24,8 @@ class NewsController < ApplicationController
         erb :'/news/create_news'
       end
     else
-      redirect to '/news'
+      flash[:message] = "This account is not authorized to create a news item."
+      redirect to "/news"
     end
   end
 
@@ -54,7 +55,7 @@ class NewsController < ApplicationController
   end
 
   patch '/news/:id' do
-    if logged_in?
+    if authorized?
       validate_news
       @news = News.find_by(id: params[:id])
       binding.pry
@@ -70,13 +71,14 @@ class NewsController < ApplicationController
         erb :'/news/edit_news'
       end
     else
-      redirect to '/news'
+      flash[:message] = "This account is not authorized to edit a news item."
+      redirect to "/news"
     end
   end
 
   # DELETE
   delete '/news/:id/delete' do
-    if logged_in?
+    if authorized?
       validate_news
       @news = News.find_by(id: params[:id])
       if @errors.empty?
@@ -87,7 +89,8 @@ class NewsController < ApplicationController
         erb :'/news/edit_news'
       end
     else
-      redirect to '/news'
+      flash[:message] = "This account is not authorized to delete a news item."
+      redirect to "/news"
     end
   end
 
