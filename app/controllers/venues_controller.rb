@@ -66,15 +66,18 @@ class VenuesController < ApplicationController
 
   # DELETE
   delete '/venues/:slug/delete' do
-    @user = current_user
-    @venue = Venue.find_by_slug(params[:slug])
-    if logged_in? && @user.authenticate(params[:password])
-      @venue.destroy
-      flash[:message] = "BALEETED!"
-      redirect to '/venues'
+    if logged_in?
+      @venue = Venue.find_by_slug(params[:slug])
+      validate_venue
+      if @errors.empty?
+        @venue.destroy
+        flash[:message] = "BALEETED!"
+        redirect to '/venues'
+      else
+        erb :'/venues/edit_venue'
+      end
     else
-      flash[:message] = "Incorrect password. Could not delete venue."
-      redirect to "/venues/#{@venue.slug}/edit"
+      redirect to '/venues'
     end
   end
 
