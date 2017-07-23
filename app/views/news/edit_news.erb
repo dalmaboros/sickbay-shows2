@@ -1,12 +1,59 @@
 <h2>Edit News Item #<%= @news.id %></h2>
 
 <form method="POST" action="/news/<%= @news.id %>">
-<input id="hidden" type="hidden" name="_method" value="patch">
+  <input id="hidden" type="hidden" name="_method" value="patch">
 
-  <p><label for="date">Date:</label> <input type="date" name="date" id="date" value="<%= @news.date %>" required></p>
-  <p><label for="contents">Content:</label> <textarea rows="1" name="content" id="contents" required><%= @news.content %></textarea></p>
-  <p><label for="url">URL:</label> <input type="url" name="url" id="url" autocomplete="off" value="<%= @news.url %>"></p>
-  <p><label for="image_url">Image URL:</label> <input type="url" name="image_url" id="image_url" autocomplete="off" value="<%= @news.image_url %>"></p>
+  <p>
+    <% if @errors && @errors[:date] %>
+      <label for="date" style="color: violet;">
+        <%= @errors[:date] %>
+      </label>
+    <% else %>
+      <label for="date">
+        Date:
+      </label>
+    <% end %>
+    <input
+      type="date"
+      name="date"
+      id="date"
+      value="<%= @news.date %>"
+      required>
+  </p>
+  <p>
+    <% if @errors && @errors[:content] %>
+      <label for="content" style="color: violet;">
+        <%= @errors[:content] %>
+      </label>
+    <% else %>
+      <label for="content">
+        Content:
+      </label>
+    <% end %>
+    <textarea
+      rows="1"
+      name="content"
+      id="contents"
+      required><%= @news.content %></textarea>
+  </p>
+  <p>
+    <label for="url">URL:</label>
+    <input
+      type="url"
+      name="url"
+      id="url"
+      autocomplete="off"
+      value="<%= @news.url %>">
+  </p>
+  <p>
+    <label for="image_url">Image URL:</label>
+    <input
+      type="url"
+      name="image_url"
+      id="image_url"
+      autocomplete="off"
+      value="<%= @news.image_url %>">
+  </p>
 
   <input type="submit" value="UPDATE"/>
   <a href="/news"><input type="submit" value="CANCEL" /></a>
@@ -17,8 +64,14 @@
 <h2>Delete News Item</h2>
 
 <form method="POST" action="/news/<%= @news.id %>/delete">
-<input id="hidden" type="hidden" name="_method" value="delete">
-
-  <p><label for="password">Enter Password to Delete News Item:</label> <input type="password" name="password" id="password" required /></p>
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <p>
+    <label for="password">Enter Password to Delete News Item:</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      required />
+  </p>
   <input type="submit" value="DELETE NEWS"></p>
 </form>

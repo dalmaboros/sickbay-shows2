@@ -13,7 +13,6 @@ class NewsController < ApplicationController
     if logged_in?
       validate_news
       @news = News.new
-      binding.pry
       if @errors.empty?
         @news.date = params[:date]
         @news.content = params[:content]
@@ -56,17 +55,21 @@ class NewsController < ApplicationController
 
   patch '/news/:id' do
     if logged_in?
+      validate_news
       @news = News.find_by(id: params[:id])
-      @news.date = params[:date] if params[:date] != @news.date
-      @news.content = params[:content] if params[:content] != @news.content
-      @news.url = params[:url] if params[:url] != @news.url
-      @news.image_url = params[:image_url] if params[:image_url] != @news.image_url
-      @news.save
-      flash[:message] = "Successfully updated news item!"
-      redirect to "/news"
+      if @errors.empty?
+        @news.date = params[:date]
+        @news.content = params[:content]
+        @news.url = params[:url]
+        @news.image_url = params[:image_url]
+        @news.save
+        flash[:message] = "Successfully updated news item!"
+        redirect to "/news"
+      else
+        erb :'/news/edit_news'
+      end
     else
-      flash[:message] = "Could not update news item."
-      redirect to '/news/:id/edit'
+      redirect to '/news'
     end
   end
 
