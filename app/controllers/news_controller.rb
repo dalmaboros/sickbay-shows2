@@ -58,7 +58,6 @@ class NewsController < ApplicationController
     if authorized?
       validate_news
       @news = News.find_by(id: params[:id])
-      binding.pry
       if @errors.empty?
         @news.date = params[:date]
         @news.content = params[:content]
