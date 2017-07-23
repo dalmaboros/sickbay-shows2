@@ -12,7 +12,6 @@ class VenuesController < ApplicationController
   post '/venues/new' do
     if logged_in?
       validate_venue
-      binding.pry
       if @errors.empty?
         @venue = Venue.create(name: params[:name])
         flash[:message] = "Successfully created venue!"
@@ -50,7 +49,6 @@ class VenuesController < ApplicationController
     if logged_in?
       validate_venue
       @venue = Venue.find_by_slug(params[:slug])
-      binding.pry
       if @errors.empty?
         @venue.name = params[:name]
         @venue.save

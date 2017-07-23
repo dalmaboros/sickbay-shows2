@@ -9,18 +9,23 @@ class NewsController < ApplicationController
     end
   end
 
-  post '/news/new' do
+  post '/news' do
     if logged_in?
-      if News.find_by(date: params[:date], content: params[:content])
-        flash[:message] = "News item already exists."
-        redirect to "/news/new"
-      else
-        @news = News.create(date: params[:date], content: params[:content], url: params[:url], image_url: params[:image_url])
-        flash[:message] = "Successfully created news item!"
+      validate_news
+      @news = News.new
+      binding.pry
+      if @errors.empty?
+        @news.date = params[:date]
+        @news.content = params[:content]
+        @news.url = params[:url]
+        @news.image_url = params[:image_url]
+        @news.save
         redirect to "/news"
+      else
+        erb :'/news/create_news'
       end
     else
-      redirect to '/artists'
+      redirect to '/news'
     end
   end
 
@@ -76,6 +81,26 @@ class NewsController < ApplicationController
     else
       flash[:message] = "Incorrect password. Could not delete news item."
       redirect to "/news/#{@news.id}/edit"
+    end
+  end
+
+  private
+
+  def validate_news
+    @errors = {}
+
+    if params[:date].empty?
+      @errors[:date] = "Date can't be empty!"
+    elsif !/^\d{4}-\d{2}-\d{2}$/.match(params[:date])
+      @errors[:date] = "Date format must be yyyy-mm-dd!"
+    end
+
+    if params[:content].empty?
+      @errors[:content] = "Content can't be empty!"
+    end
+
+    if News.find_by(date: params[:date], content: params[:content])
+      @errors[:content] = "News item already exists."
     end
   end
 

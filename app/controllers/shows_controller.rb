@@ -14,7 +14,6 @@ class ShowsController < ApplicationController
     if logged_in?
       validate_show
       @show = Show.new
-
       if @errors.empty?
         @show.date = params[:date]
         @show.venue = Venue.find_or_create_by(name: params[:venue])
@@ -81,7 +80,6 @@ class ShowsController < ApplicationController
     if logged_in?
       validate_show
       @show = Show.find_by(id: params[:id])
-      binding.pry
       if @errors.empty?
         @show.date = params[:date] if params[:date] != @show.date
         @show.venue = Venue.find_or_create_by(name: params[:venue]) if params[:venue] != @show.venue.name

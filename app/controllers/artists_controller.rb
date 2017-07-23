@@ -12,7 +12,6 @@ class ArtistsController < ApplicationController
   post '/artists/new' do
     if logged_in?
       validate_artist
-      binding.pry
       if @errors.empty?
         @artist = Artist.create(name: params[:name])
         flash[:message] = "Successfully created artist!"

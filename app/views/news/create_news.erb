@@ -1,10 +1,57 @@
 <h2>Create News</h2>
 
-<form method="POST" action="/news/new">
-  <p><label for="date">Date:</label> <input type="date" name="date" id="date" value="<%= Date.today.strftime("%Y-%m-%d") %>" required></p>
-  <p><label for="contents">Content:</label> <textarea rows="1" name="content" id="contents" required></textarea></p>
-  <p><label for="url">URL:</label> <input type="url" name="url" id="url" autocomplete="off"></p>
-  <p><label for="image_url">Image URL:</label> <input type="url" name="image_url" id="image_url" autocomplete="off"></p>
+<form method="POST" action="/news">
+  <p>
+    <% if @errors && @errors[:date] %>
+      <label for="date" style="color: violet;">
+        <%= @errors[:date] %>
+      </label>
+    <% else %>
+      <label for="date">
+        Date:
+      </label>
+    <% end %>
+    <input
+      type="date"
+      name="date"
+      id="date"
+      value="<%= Date.today.strftime("%Y-%m-%d") %>"
+      />
+  </p>
+  <p>
+    <% if @errors && @errors[:content] %>
+      <label for="content" style="color: violet;">
+        <%= @errors[:content] %>
+      </label>
+    <% else %>
+      <label for="content">
+        Content:
+      </label>
+    <% end %>
+    <textarea
+      rows="1"
+      name="content"
+      id="contents"
+      /></textarea>
+  </p>
+  <p>
+    <label for="url">URL:</label>
+    <input
+      type="url"
+      name="url"
+      id="url"
+      autocomplete="off"
+      />
+  </p>
+  <p>
+    <label for="image_url">Image URL:</label>
+    <input
+      type="url"
+      name="image_url"
+      id="image_url"
+      autocomplete="off"
+      />
+  </p>
 
   <input type="submit" value="SUBMIT"/>
 </form>
