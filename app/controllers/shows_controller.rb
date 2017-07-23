@@ -11,7 +11,7 @@ class ShowsController < ApplicationController
   end
 
   post '/shows' do
-    if logged_in?
+    if authorized?
       validate_show
       @show = Show.new
       if @errors.empty?
@@ -33,7 +33,8 @@ class ShowsController < ApplicationController
         erb :'/shows/create_show'
       end
     else
-      erb :'/shows'
+      flash[:message] = "This account is not authorized to create a show."
+      redirect to "/shows"
     end
   end
 
@@ -77,7 +78,7 @@ class ShowsController < ApplicationController
   end
 
   patch '/shows/:id' do
-    if logged_in?
+    if authorized?
       validate_show
       @show = Show.find_by(id: params[:id])
       if @errors.empty?
@@ -100,13 +101,14 @@ class ShowsController < ApplicationController
         erb :'/shows/edit_show'
       end
     else
-      redirect to '/'
+      flash[:message] = "This account is not authorized to edit a show."
+      redirect to "/shows"
     end
   end
 
   # DELETE
   delete '/shows/:id/delete' do
-    if logged_in?
+    if authorized?
       validate_password
       @show = Show.find_by(id: params[:id])
       if @errors.empty?
@@ -117,7 +119,8 @@ class ShowsController < ApplicationController
         erb :'/shows/edit_show'
       end
     else
-      redirect to '/'
+      flash[:message] = "This account is not authorized to delete a show."
+      redirect to "/shows"
     end
   end
 
