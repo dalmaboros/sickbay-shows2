@@ -15,16 +15,21 @@
       type="date"
       name="date"
       id="date"
-      value="<%= Date.today.strftime("%Y-%m-%d") %>"
+      value=<% if params[:date] && !@errors[:date] %>
+      "<%= params[:date] %>"
+      <% else %>
+      "<%= Date.today.strftime("%Y-%m-%d") %>"
+      <% end %>
+      autocomplete="off"
       />
   </p>
   <p>
     <% if @errors && @errors[:content] %>
-      <label for="content" style="color: violet;">
+      <label for="contents" style="color: violet;">
         <%= @errors[:content] %>
       </label>
     <% else %>
-      <label for="content">
+      <label for="contents">
         Content:
       </label>
     <% end %>
@@ -32,7 +37,7 @@
       rows="1"
       name="content"
       id="contents"
-      /></textarea>
+      /><%= params[:content] if params[:content] %></textarea>
   </p>
   <p>
     <label for="url">URL:</label>
@@ -40,6 +45,7 @@
       type="url"
       name="url"
       id="url"
+      value="<%= params[:url] if params[:url] %>"
       autocomplete="off"
       />
   </p>
@@ -49,6 +55,7 @@
       type="url"
       name="image_url"
       id="image_url"
+      value="<%= params[:image_url] if params[:image_url] %>"
       autocomplete="off"
       />
   </p>
