@@ -65,15 +65,20 @@ class ArtistsController < ApplicationController
 
   # DELETE
   delete '/artists/:slug/delete' do
-    @user = current_user
-    @artist = Artist.find_by_slug(params[:slug])
-    if logged_in? && @user.authenticate(params[:password])
-      @artist.destroy
-      flash[:message] = "BALEETED!"
-      redirect to '/artists'
+    # @user = current_user
+    if logged_in?
+      @artist = Artist.find_by_slug(params[:slug])
+      validate_artist
+      binding.pry
+      if @errors.empty?
+        @artist.destroy
+        flash[:message] = "BALEETED!"
+        redirect to '/artists'
+      else
+        erb :'/artists/edit_artist'
+      end
     else
-      flash[:message] = "Incorrect password. Could not delete artist."
-      redirect to "/artists/#{@artist.slug}/edit"
+      redirect to "/artists"
     end
   end
 
@@ -81,11 +86,18 @@ class ArtistsController < ApplicationController
 
   def validate_artist
     @errors = {}
+    @user = current_user
 
-    if params[:name].empty?
+    if params[:name] && params[:name].empty?
       @errors[:artist] = "Artist can't be empty!"
     elsif Artist.find_by(name: params[:name]) && Artist.find_by(name: params[:name]) != Artist.find_by_slug(params[:slug])
       @errors[:artist] = "Artist already exists!"
+    end
+
+    if params[:password].empty?
+      @errors[:password] = "Password can't be empty!"
+    elsif @user && !@user.authenticate(params[:password])
+      @errors[:password] = "Incorrect password."
     end
   end
 
