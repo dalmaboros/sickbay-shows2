@@ -48,11 +48,17 @@ class VenuesController < ApplicationController
 
   patch '/venues/:slug' do
     if logged_in?
+      validate_venue
       @venue = Venue.find_by_slug(params[:slug])
-      @venue.name = params[:name] if params[:name] != @venue.name  && !params[:name].empty?
-      @venue.save
-      flash[:message] = "Successfully updated venue!"
-      redirect to "/venues/#{@venue.slug}"
+      binding.pry
+      if @errors.empty?
+        @venue.name = params[:name]
+        @venue.save
+        flash[:message] = "Successfully updated venue!"
+        redirect to "/venues/#{@venue.slug}"
+      else
+        erb :'/venues/edit_venue'
+      end
     else
       redirect to '/venues'
     end
