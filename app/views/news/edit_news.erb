@@ -17,7 +17,11 @@
       type="date"
       name="date"
       id="date"
-      value="<%= @news.date %>"
+      value=<% if params[:date] && !@errors[:date] %>
+      "<%= params[:date] %>"
+      <% else %>
+      "<%= @news.date %>"
+      <% end %>
       />
   </p>
   <p>
@@ -34,7 +38,7 @@
       rows="1"
       name="content"
       id="contents"
-      /><%= @news.content %></textarea>
+      /><% if params[:content] && !@errors[:content] %><%= params[:content] %><% else %><%= @news.content %><% end %></textarea>
   </p>
   <p>
     <label for="url">URL:</label>
@@ -43,7 +47,12 @@
       name="url"
       id="url"
       autocomplete="off"
-      value="<%= @news.url %>">
+      value = <% if params[:url] && !@errors[:url] %>
+      "<%= params[:url] %>"
+      <% else %>
+      "<%= @news.url %>"
+      <% end %>
+      />
   </p>
   <p>
     <label for="image_url">Image URL:</label>
@@ -52,7 +61,12 @@
       name="image_url"
       id="image_url"
       autocomplete="off"
-      value="<%= @news.image_url %>">
+      value = <% if params[:image_url] && !@errors[:image_url] %>
+      "<%= params[:image_url] %>"
+      <% else %>
+      "<%= @news.image_url %>"
+      <% end %>
+      />
   </p>
 
   <input type="submit" value="UPDATE"/>
