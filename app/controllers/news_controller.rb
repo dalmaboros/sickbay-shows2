@@ -76,15 +76,18 @@ class NewsController < ApplicationController
 
   # DELETE
   delete '/news/:id/delete' do
-    @user = current_user
-    @news = News.find_by(id: params[:id])
-    if logged_in? && @user.authenticate(params[:password])
-      @news.destroy
-      flash[:message] = "BALEETED!"
-      redirect to '/news'
+    if logged_in?
+      validate_news
+      @news = News.find_by(id: params[:id])
+      if @errors.empty?
+        @news.destroy
+        flash[:message] = "BALEETED!"
+        redirect to '/news'
+      else
+        erb :'/news/edit_news'
+      end
     else
-      flash[:message] = "Incorrect password. Could not delete news item."
-      redirect to "/news/#{@news.id}/edit"
+      redirect to '/news'
     end
   end
 
@@ -92,19 +95,28 @@ class NewsController < ApplicationController
 
   def validate_news
     @errors = {}
+    @user = current_user
 
-    if params[:date].empty?
-      @errors[:date] = "Date can't be empty!"
-    elsif !/^\d{4}-\d{2}-\d{2}$/.match(params[:date])
-      @errors[:date] = "Date format must be yyyy-mm-dd!"
+    if params[:date]
+      if params[:date].empty?
+        @errors[:date] = "Date can't be empty!"
+      elsif !/^\d{4}-\d{2}-\d{2}$/.match(params[:date])
+        @errors[:date] = "Date format must be yyyy-mm-dd!"
+      end
+
+      if params[:content].empty?
+        @errors[:content] = "Content can't be empty!"
+      elsif News.find_by(date: params[:date], content: params[:content])
+        @errors[:content] = "News item already exists."
+      end
     end
 
-    if params[:content].empty?
-      @errors[:content] = "Content can't be empty!"
-    end
-
-    if News.find_by(date: params[:date], content: params[:content])
-      @errors[:content] = "News item already exists."
+    if params[:password]
+      if params[:password].empty?
+        @errors[:password] = "Password can't be empty!"
+      elsif @user && !@user.authenticate(params[:password])
+        @errors[:password] = "Incorrect password."
+      end
     end
   end
 

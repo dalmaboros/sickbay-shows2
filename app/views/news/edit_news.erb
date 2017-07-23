@@ -66,12 +66,20 @@
 <form method="POST" action="/news/<%= @news.id %>/delete">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <p>
-    <label for="password">Enter Password to Delete News Item:</label>
+    <% if @errors && @errors[:password] %>
+      <label for="password" style="color: violet;">
+        <%= @errors[:password] %>
+      </label>
+    <% else %>
+      <label for="password">
+        Enter Password To Delete News Item:
+      </label>
+    <% end %>
     <input
       type="password"
       name="password"
       id="password"
-      required />
+      />
   </p>
   <input type="submit" value="DELETE NEWS"></p>
 </form>
