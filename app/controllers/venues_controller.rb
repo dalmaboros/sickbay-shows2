@@ -9,8 +9,8 @@ class VenuesController < ApplicationController
     end
   end
 
-  post '/venues/new' do
-    if logged_in?
+  post '/venues' do
+    if authorized?
       validate_venue
       if @errors.empty?
         @venue = Venue.create(name: params[:name])
@@ -20,7 +20,8 @@ class VenuesController < ApplicationController
         erb :'/venues/create_venue'
       end
     else
-      redirect to '/venues'
+      flash[:message] = "This account is not authorized to create a venue."
+      redirect to "/venues"
     end
   end
 
@@ -46,7 +47,7 @@ class VenuesController < ApplicationController
   end
 
   patch '/venues/:slug' do
-    if logged_in?
+    if authorized?
       validate_venue
       @venue = Venue.find_by_slug(params[:slug])
       if @errors.empty?
@@ -58,13 +59,14 @@ class VenuesController < ApplicationController
         erb :'/venues/edit_venue'
       end
     else
-      redirect to '/venues'
+      flash[:message] = "This account is not authorized to edit a venue."
+      redirect to "/venues"
     end
   end
 
   # DELETE
   delete '/venues/:slug/delete' do
-    if logged_in?
+    if authorized?
       @venue = Venue.find_by_slug(params[:slug])
       validate_venue
       if @errors.empty?
@@ -75,7 +77,8 @@ class VenuesController < ApplicationController
         erb :'/venues/edit_venue'
       end
     else
-      redirect to '/venues'
+      flash[:message] = "This account is not authorized to delete a venue."
+      redirect to "/venues"
     end
   end
 

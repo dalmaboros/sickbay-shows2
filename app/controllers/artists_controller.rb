@@ -9,7 +9,7 @@ class ArtistsController < ApplicationController
     end
   end
 
-  post '/artists/new' do
+  post '/artists' do
     if authorized?
       validate_artist
       if @errors.empty?
