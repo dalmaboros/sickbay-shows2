@@ -10,7 +10,7 @@ class ArtistsController < ApplicationController
   end
 
   post '/artists/new' do
-    if logged_in?
+    if authorized?
       validate_artist
       if @errors.empty?
         @artist = Artist.create(name: params[:name])
@@ -20,7 +20,8 @@ class ArtistsController < ApplicationController
         erb :'/artists/create_artist'
       end
     else
-      redirect to '/artists'
+      flash[:message] = "This account is not authorized to create an artist."
+      redirect to "/artists"
     end
   end
 
@@ -46,7 +47,7 @@ class ArtistsController < ApplicationController
   end
 
   patch '/artists/:slug' do
-    if logged_in?
+    if authorized?
       validate_artist
       @artist = Artist.find_by_slug(params[:slug])
       if @errors.empty?
@@ -58,13 +59,14 @@ class ArtistsController < ApplicationController
         erb :'/artists/edit_artist'
       end
     else
-      redirect to '/artists'
+      flash[:message] = "This account is not authorized to edit an artist."
+      redirect to "/artists"
     end
   end
 
   # DELETE
   delete '/artists/:slug/delete' do
-    if logged_in?
+    if authorized?
       @artist = Artist.find_by_slug(params[:slug])
       validate_artist
       if @errors.empty?
@@ -75,6 +77,7 @@ class ArtistsController < ApplicationController
         erb :'/artists/edit_artist'
       end
     else
+      flash[:message] = "This account is not authorized to delete an artist."
       redirect to "/artists"
     end
   end

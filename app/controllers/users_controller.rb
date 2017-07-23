@@ -34,7 +34,6 @@ class UsersController < ApplicationController
       flash[:message] = "Successfully logged in!"
       erb :dashboard
     else
-      # flash[:message] = "Something went wrong. Try again."
       erb :login
     end
   end
