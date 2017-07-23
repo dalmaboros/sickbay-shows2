@@ -36,8 +36,7 @@ class ApplicationController < Sinatra::Base
     redirect to '/'
   end
 
-  # HELPERS
-  helpers do
+  private
     def logged_in?
       !!current_user
     end
@@ -49,6 +48,5 @@ class ApplicationController < Sinatra::Base
     def authorized?
       session[:user_id] === 1 || session[:user_id] === 2
     end
-  end
 
 end
