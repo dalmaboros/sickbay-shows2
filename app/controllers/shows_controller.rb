@@ -89,6 +89,7 @@ class ShowsController < ApplicationController
         params[:artists].each do |artist|
           if !artist.empty?
             @show.artists << Artist.find_or_create_by(name: artist)
+            binding.pry
           end
         end
 
