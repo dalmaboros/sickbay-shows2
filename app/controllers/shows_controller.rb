@@ -18,7 +18,6 @@ class ShowsController < ApplicationController
         @show.date = params[:date]
         @show.venue = Venue.find_or_create_by(name: params[:venue])
         @show.url = params[:url]
-
         # add all artists if not empty
         params[:artists].each do |artist|
           if !artist.empty?
@@ -89,8 +88,7 @@ class ShowsController < ApplicationController
         @show.artists.clear
         params[:artists].each do |artist|
           if !artist.empty?
-            artist_object = Artist.find_or_create_by(name: artist)
-            @show.artists << artist_object
+            @show.artists << Artist.find_or_create_by(name: artist)
           end
         end
 
