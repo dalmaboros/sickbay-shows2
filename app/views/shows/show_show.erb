@@ -13,8 +13,8 @@
 <p>
   <strong>Artists:</strong>
   <ul>
-    <% @show.artists.collect do |artist| %>
-      <li><a href="/artists/<%= artist.id %>"><%= artist.name %></a></li>
+    <% @show.artists.each do |artist| %>
+      <li><a href="/artists/<%= artist.slug %>"><%= artist.name %></a></li>
     <% end %>
   </ul>
 </p>
