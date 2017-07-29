@@ -97,6 +97,7 @@ class ShowsController < ApplicationController
         end
 
         @show.save
+        puts "NOW this show's artists are #{@show.artists.each{|artist|artist.name}}"
         flash[:message] = "Successfully updated show!"
         redirect to "/shows/#{@show.id}"
       else
