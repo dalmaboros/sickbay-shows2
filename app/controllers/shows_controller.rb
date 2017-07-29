@@ -94,6 +94,7 @@ class ShowsController < ApplicationController
             @show.save
             puts "The artist #{artist} was added to show #{@show.id}."
           end
+        @show = Show.find_by(id:params[:id])
         puts "This show's artists are #{@show.artists.each{|artist|artist.name}}"
         end
 
