@@ -77,6 +77,7 @@ class ShowsController < ApplicationController
   end
 
   patch '/shows/:id' do
+    binding.pry
     if authorized?
       validate_show
       @show = Show.find_by(id: params[:id])
@@ -92,7 +93,7 @@ class ShowsController < ApplicationController
             @show.artists.push(the_artist)
             puts "The artist #{artist} was added to show #{@show.id}."
           end
-        puts "This show's artists are #{@show.artists}"
+        puts "This show's artists are #{@show.artists.each{|artist|artist.name}}"
         end
 
         @show.save
