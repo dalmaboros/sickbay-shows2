@@ -87,13 +87,13 @@ class ShowsController < ApplicationController
         @show.url = params[:url]
 
         @show.artists.clear
+        artist_array = []
         params[:artists].each do |artist|
           if !artist.empty?
-            the_artist = Artist.find_or_create_by(name: artist)
-            @show.artists.push(the_artist)
-            @show.save
-            puts "The artist #{artist} was added to show #{@show.id}."
+            artist_array << Artist.find_or_create_by(name: artist)
+            puts "The artist #{artist} was added to artist_array."
           end
+        @show.update(artists: artist_array)
         @show = Show.find_by(id:params[:id])
         puts "This show's artists are #{@show.artists.each{|artist|artist.name}}"
         end
