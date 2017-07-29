@@ -93,10 +93,8 @@ class ShowsController < ApplicationController
             artist_array << Artist.find_or_create_by(name: artist)
             puts "The artist #{artist} was added to artist_array."
           end
-        @show.update(artists: artist_array)
-        @show = Show.find_by(id:params[:id])
-        puts "This show's artists are #{@show.artists.each{|artist|artist.name}}"
         end
+        @show.update(artists: artist_array)
 
         # @show.save
         @show = Show.find_by(id:params[:id])
