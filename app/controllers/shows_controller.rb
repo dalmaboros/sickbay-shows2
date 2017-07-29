@@ -91,12 +91,13 @@ class ShowsController < ApplicationController
           if !artist.empty?
             the_artist = Artist.find_or_create_by(name: artist)
             @show.artists.push(the_artist)
+            @show.save
             puts "The artist #{artist} was added to show #{@show.id}."
           end
         puts "This show's artists are #{@show.artists.each{|artist|artist.name}}"
         end
 
-        @show.save
+        # @show.save
         @show = Show.find_by(id:params[:id])
         puts "NOW this show's artists are #{@show.artists.each{|artist|artist.name}}"
         flash[:message] = "Successfully updated show!"
