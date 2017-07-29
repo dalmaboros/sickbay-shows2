@@ -86,12 +86,11 @@ class ShowsController < ApplicationController
         @show.url = params[:url]
 
         @show.artists.clear
-        binding.pry
         params[:artists].each do |artist|
           if !artist.empty?
-            @show.artists << Artist.find_or_create_by(name: artist)
+            the_artist = Artist.find_or_create_by(name: artist)
+            @show.artists.push(the_artist)
           end
-        binding.pry
         end
 
         @show.save
