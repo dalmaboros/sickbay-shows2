@@ -90,7 +90,9 @@ class ShowsController < ApplicationController
           if !artist.empty?
             the_artist = Artist.find_or_create_by(name: artist)
             @show.artists.push(the_artist)
+            puts "The artist #{artist} was added to show #{@show.id}."
           end
+        puts "This show's artists are #{@show.artists}"
         end
 
         @show.save
