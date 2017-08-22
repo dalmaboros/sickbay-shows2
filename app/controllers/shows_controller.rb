@@ -18,12 +18,16 @@ class ShowsController < ApplicationController
         @show.date = params[:date]
         @show.venue = Venue.find_or_create_by(name: params[:venue])
         @show.url = params[:url]
-        # add all artists if not empty
+        # add all artists to array if not empty
         params[:artists].each do |artist|
           if !artist.empty?
             @show.artists << Artist.find_or_create_by(name: artist)
           end
         end
+
+        # add all artists to order array
+        @show.artist_order = params[:artists].reject(&:empty?).join(" + ")
+        binding.pry
         @show.save
 
         flash[:message] = "Successfully created show!"
