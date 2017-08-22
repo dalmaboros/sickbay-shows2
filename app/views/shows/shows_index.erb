@@ -26,8 +26,8 @@
       <% if !show.url.nil? && !show.url.empty? %>
       <a href="<%= show.url %>" target="_blank">
       <% end %>
-      <!-- <%= show.artists.collect { |artist| artist.name }.join(" + ") %> at <%= show.venue.name %> -->
-      <%= show.artist_order %> at <%= show.venue.name %>
+      <%= show.artists.collect { |artist| artist.name }.join(" + ") %> at <%= show.venue.name %>
+      <!-- <%= show.artist_order %> at <%= show.venue.name %> -->
       </a>
     </td>
   </tr>
