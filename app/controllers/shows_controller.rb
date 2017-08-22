@@ -81,7 +81,6 @@ class ShowsController < ApplicationController
   end
 
   patch '/shows/:id' do
-    binding.pry
     if authorized?
       validate_show
       @show = Show.find_by(id: params[:id])
@@ -91,18 +90,14 @@ class ShowsController < ApplicationController
         @show.url = params[:url]
 
         @show.artists.clear
-        artist_array = []
         params[:artists].each do |artist|
           if !artist.empty?
-            artist_array << Artist.find_or_create_by(name: artist)
-            puts "The artist #{artist} was added to artist_array."
+            @show.artists << Artist.find_or_create_by(name: artist)
           end
         end
-        @show.update(artists: artist_array)
+        @show.artist_order = params[:artists].reject(&:empty?).join(" + ")
+        @show.save
 
-        # @show.save
-        @show = Show.find_by(id:params[:id])
-        puts "NOW this show's artists are #{@show.artists.each{|artist|artist.name}}"
         flash[:message] = "Successfully updated show!"
         redirect to "/shows/#{@show.id}"
       else
