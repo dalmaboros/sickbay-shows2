@@ -16,6 +16,7 @@
       <a href="<%= show.url %>">
       <% end %>
       <%= show.artists.collect { |artist| artist.name }.join(" + ") %> at <%= show.venue.name %>
+      <!-- <%= show.artist_order %> at <%= show.venue.name %> -->
       </a>
     </td>
   </tr>
