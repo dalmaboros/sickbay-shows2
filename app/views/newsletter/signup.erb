@@ -1,0 +1,14 @@
+<h2 class="center">Get Sickbay Emails</h2>
+<form method="POST" action="/newsletter">
+  <p>
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      value="<%= params[:email] if params[:email] %>"
+      />
+  </p>
+  <input type="submit" value="SUBMIT"/>
+
+</form>

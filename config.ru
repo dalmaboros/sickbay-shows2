@@ -11,4 +11,5 @@ use ArtistsController
 use VenuesController
 use UsersController
 use NewsController
+use NewsletterController
 run ApplicationController
