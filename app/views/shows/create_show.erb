@@ -121,6 +121,23 @@
   </p>
 
   <p>
+    <label for="artist4">Artist 5:</label>
+    <input
+      type="text"
+      list="artists5"
+      name="artists[]"
+      id="artist5"
+      value = "<%= params[:artists][4] if params[:artists]%>"
+      autocomplete="off"
+    />
+    <datalist id="artists5">
+      <% Artist.all.order("lower(name)").each do |artist| %>
+        <option value="<%= artist.name %>"><%= artist.name %></option>
+      <% end %>
+    </datalist>
+  </p>
+
+  <p>
     <label for="url">URL:</label>
     <input
       type="url"
