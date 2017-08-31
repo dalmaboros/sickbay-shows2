@@ -108,7 +108,7 @@ class NewsController < ApplicationController
 
       if params[:content].empty?
         @errors[:content] = "Content can't be empty!"
-      elsif News.find_by(date: params[:date], content: params[:content])
+      elsif News.find_by(date: params[:date], content: params[:content], url: params[:url], image_url: params[:image_url])
         @errors[:content] = "News item already exists."
       end
     end
