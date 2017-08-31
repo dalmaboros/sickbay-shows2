@@ -55,15 +55,17 @@ class NewsController < ApplicationController
   end
 
   patch '/news/:id' do
+
     if authorized?
       validate_news
       @news = News.find_by(id: params[:id])
       if @errors.empty?
-        @news.date = params[:date]
-        @news.content = params[:content]
-        @news.url = params[:url]
-        @news.image_url = params[:image_url]
-        @news.save
+        # @news.date = params[:date]
+        # @news.content = params[:content]
+        # @news.url = params[:url]
+        # @news.image_url = params[:image_url]
+        # @news.save
+        @news.update(date: params[:date], content: params[:content], url: params[:url], image_url: params[:image_url])
         flash[:message] = "Successfully updated news item!"
         redirect to "/news"
       else
