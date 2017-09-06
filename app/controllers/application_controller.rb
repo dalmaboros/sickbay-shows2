@@ -11,8 +11,8 @@ class ApplicationController < Sinatra::Base
 
   # GENERAL ROUTES
   get '/' do
-    @shows = Show.where("date >= ?", Date.today).order(:date)
-    erb :'/shows/shows_index'
+    @news = News.where("date <= ?", Date.today).order(:date).reverse
+    erb :'/news/news_index'
   end
 
   get '/backdoor' do
