@@ -362,7 +362,7 @@ input[type=submit]:hover {
 
 /* MEDIA QUERIES */
 
-@media only screen and (min-width: 360px) {
+@media screen and (min-width: 360px) {
   body {
     font-size: 115%;
   }
@@ -374,7 +374,7 @@ input[type=submit]:hover {
   }
 }
 
-@media only screen and (min-width: 600px) {
+@media screen and (min-width: 600px) {
   body {
     font-size: 132%;
   }
@@ -400,7 +400,7 @@ input[type=submit]:hover {
   }
 }
 
-@media only screen and (min-width: 875px) {
+@media screen and (min-width: 875px) {
   #content {
     max-width: 700px;
     padding: 0px 40px;
