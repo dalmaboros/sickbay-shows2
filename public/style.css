@@ -36,7 +36,7 @@ body {
 /*////// LINKS //////*/
 
 a {
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
   text-decoration: none;
 }
 
@@ -92,6 +92,16 @@ h3 {
 #logo a:link, #logo a:visited, #logo a:active, #logo a:hover {
   color: beige;
   text-decoration: none;
+}
+
+#drippy {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  filter: drop-shadow(2px 2px 2px violet);
 }
 
 /*////// NAV //////*/

@@ -16,7 +16,8 @@
   <header>
     <div class="wrapper">
       <div id="logo">
-        <h1><a href="/">Sickbay</a></h1>
+        <!-- <h1><a href="/">Sickbay</a></h1> -->
+        <a href="/"><img id="drippy" src="/images/drippy_v_outline2.png" alt="Sickbay"/></a>
       </div>
       <nav>
         <a href="/news" <% if request.path_info == "/news" %> class="active" <% end %>>News</a>
@@ -52,9 +53,9 @@
     <footer>
       <p><span class="copyright">&copy; 2017 Sickbay.</span> All Rights Reserved.</p>
       <p>
-        <a href="https://www.instagram.com/sickbay.jpg/" target="_blank"><img src="<%= url('/instagram.png') %>" class="icon" alt="Instagram"></a>
-        <a href="https://www.facebook.com/sickbay.party/" target="_blank"><img src="<%= url('/facebook.png') %>" class="icon" alt="Facebook"></a>
-        <a href="mailto:sickbay.party@gmail.com"><img src="<%= url('/mail.png') %>" class="icon" alt="Email"></a>
+        <a href="https://www.instagram.com/sickbay.jpg/" target="_blank"><img src="<%= url('/images/instagram.png') %>" class="icon" alt="Instagram"></a>
+        <a href="https://www.facebook.com/sickbay.party/" target="_blank"><img src="<%= url('/images/facebook.png') %>" class="icon" alt="Facebook"></a>
+        <a href="mailto:sickbay.party@gmail.com"><img src="<%= url('/images/mail.png') %>" class="icon" alt="Email"></a>
       </p>
     </footer>
   <p></p>
