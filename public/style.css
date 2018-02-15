@@ -96,7 +96,7 @@ h3 {
 
 #drippy {
   width: 100%;
-  max-width: 400px;
+  max-width: 310px;
   height: auto;
   display: block;
   margin-left: auto;
@@ -384,6 +384,9 @@ input[type=submit]:hover {
   nav {
     font-size: 1.6em;
     padding: 5px 0px 0px 0px;
+  }
+  #drippy {
+    max-width: 400px;
   }
   #content {
     max-width: 550px;
